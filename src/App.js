@@ -11,7 +11,7 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://naver.com"
+          href="hhttps://react.dev/"
           target="_blank"
           rel="noopener noreferrer"
         >
