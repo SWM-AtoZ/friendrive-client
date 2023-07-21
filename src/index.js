@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {
-        path: "home",
+        index : true, 
         element: <Home />,
       },
       {
@@ -46,7 +46,6 @@ const router = createBrowserRouter([
         path:'user',
         element:<User/>,
       },
-      
     ],
   },
   {
