@@ -4,13 +4,13 @@ const Nav = () => {
     
     return (<ul className={style.nav}>
         <li className={style.link}>
-        <Link to={'supplyment'}>보충과목페이지로</Link>
+        <Link to={'/supplyment'}>보충과목페이지로</Link>
         </li>
         <li className={style.link}>
-        <Link to={'home'}>홈페이지로</Link>
+        <Link to={'/'}>홈페이지로</Link>
         </li>
         <li className={style.link}>
-        <Link to={'user'}>유저페이지로</Link>
+        <Link to={'/user'}>유저페이지로</Link>
         </li>
     </ul>
     )
