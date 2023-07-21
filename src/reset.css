@@ -46,3 +46,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+#root{
+	margin: 0 auto;
+	height: 100vh;
+	max-width: 900px;
+    width: 100%;
+}
