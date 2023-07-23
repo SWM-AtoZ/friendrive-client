@@ -1,27 +1,26 @@
 import React,{useRef, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import style from './home.module.css';
 
 function Home() {
-  const width = window.innerWidth;
-  console.log(width*0.66);
+  const curriculum = useOutletContext().curriculum;
 
   return (
-    <section id='home_section'>
-        <div className={style.section_explain}>
-        <div className={style.section_explain_numner}></div>
-        <div className={style.section_explain_title}></div>
-        <div className={style.section_explain_discription}></div>
+    <section id={style.home_section}>
+      <div className={style.section_explain}>
+        <div className={style.section_explain_number}>{curriculum[0].days} 운전, 그게 뭔데?</div>
+        <div className={style.section_explain_title}><h1>{curriculum[0].summary}</h1></div>
+        <div className={style.section_explain_discription}>{curriculum[0].explain}</div>
       </div>
       <div className={style.section_card_container}>
           <ul className={style.section_card_innerbox}>
               <li className={style.section_card_item}>
-                <Link to={'/section'}>상세보기</Link>
-              </li>
-              <li className={style.section_card_item}>
-                <Link to={'/request'}>요청하기</Link>
-              </li>
+                <Link className={style.section_item} to={`/section`} state={{section:curriculum[0].days}}>
+                     해당 섹션 자세히 보기.
+                </Link>
+              </li>              
           </ul>
+          <Link to={'/request'}><button>요청하기</button></Link>
       </div>
     </section>
   );
