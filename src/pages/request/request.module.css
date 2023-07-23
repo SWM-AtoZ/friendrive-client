@@ -1,0 +1,24 @@
+
+.container{
+    width: 100%;
+    height:100%;
+}
+.checkcontainer{
+    margin-top: 5px;
+    width: 100%;
+    height:10%;
+    position: relative;
+    background-color: white;
+}
+.checkbox{
+    border-radius: 50%;
+    width:1em;
+    height: 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-color: white;
+    transition: all ease-in-out 0.3s;
+}
