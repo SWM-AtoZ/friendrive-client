@@ -105,10 +105,17 @@ function App() {
         }
     ]
 };
+    const checked = {
+        "userId": 8,
+        "checkedItem": [
+            "d1i1",
+            "d2i1"
+    ]
+    }
   return (
     <>
     <section className='section_container'>
-      <Outlet context={curriculum}/>
+      <Outlet context={{curriculum, checked}}/>
     </section>
     <Nav/>
     </>
