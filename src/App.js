@@ -102,7 +102,97 @@ function App() {
                     "네이버"
                 ]
             ]
-        }
+        }, 
+        {
+            "itemId": "d3i1",
+            "day": 3,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
+        {
+            "itemId": "d3i2",
+            "day": 3,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
+        {
+            "itemId": "d4i1",
+            "day": 4,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
+        {
+            "itemId": "d4i2",
+            "day": 4,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
+        {
+            "itemId": "d5i1",
+            "day": 5,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
+        {
+            "itemId": "d5i2",
+            "day": 5,
+            "subject": "운전자세",
+            "content": [
+                [
+                    "https://paillo.tistory.com",
+                    "문석이 블로그"
+                ],
+                [
+                    "https://youtube.com",
+                    "네이버"
+                ]
+            ]
+        },
     ]
 };
     const checked = {

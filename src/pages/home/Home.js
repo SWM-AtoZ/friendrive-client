@@ -4,7 +4,6 @@ import style from './home.module.css';
 
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
-  console.log(curriculum);
 
   return (
     <section id={style.home_section}>

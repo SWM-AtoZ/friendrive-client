@@ -14,7 +14,7 @@ import Section from './pages/section/Section';
 import Supplyment from './pages/supplyment/Supplyment';
 import User from './pages/user/User';
 
-import Teacher from './pages/teacher/Teacher';
+import {Teacher, loader as loadData} from './pages/teacher/Teacher';
 import './reset.css';
 
 const router = createBrowserRouter([
@@ -50,14 +50,15 @@ const router = createBrowserRouter([
   },
   {
     path: "teacher",
+    loader: loadData,
     element: <Teacher />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <RouterProvider router={router} />
-  </React.StrictMode>
+ 
 );
 
