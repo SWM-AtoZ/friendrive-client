@@ -1,5 +1,6 @@
-import React,{useRef, useEffect} from 'react';
+import React,{useState,useRef, useEffect} from 'react';
 import { Outlet } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // 컴포넌트 임포트
 import Nav from './componenets/nav/Nav';
@@ -8,7 +9,19 @@ import Nav from './componenets/nav/Nav';
 import './App.css';
 
 function App() {
-    // API 더미데이터
+    // API 받아오기.
+    const [data, setData] = useState([]);
+  	const [cookies,,] = useCookies(['token']);
+    
+  	useEffect(() => {
+		const fetchData = async() => {
+          const res = await (await fetch('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum')).json();
+          setData(res);
+          console.log(data);
+        }	
+        fetchData();
+    }, []);
+
   const curriculum = {
     "curriculum": [
         {
@@ -198,8 +211,11 @@ function App() {
     const checked = {
         "userId": 8,
         "checkedItem": [
-            "d1i1",
-            "d2i1"
+             "d1i1",
+            "d2i1",
+            "d3i1",
+            "d4i1",
+            "d5i1"
     ]
     }
   return (

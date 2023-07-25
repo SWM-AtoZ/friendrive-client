@@ -1,9 +1,11 @@
 import { useState,useRef } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import style from './teacher.module.css';
 import Toggleitem from "../../componenets/toggleItem/Toggleitem";
 
 function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다. 여기서 데이터를 미리 불러오자.
+    
     const curriculum = {
         "curriculum": [
             {
@@ -191,7 +193,7 @@ function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다.
         ]
     };
     const checked = {
-        "userId": 8,
+        "name": '최문석',
         "checkedItem": [
             "d1i1",
             "d2i1",
@@ -204,7 +206,8 @@ function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다.
   }
 
 const Teacher = () => {
-
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    console.log(cookies.token);
 const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
 const [curriculum, allitems ,checked] = data;   
 

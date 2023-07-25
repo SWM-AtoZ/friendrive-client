@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const TeacherListItem = ({subject, content, checked}) =>{
     const chagestate = () =>{
-        //  상태표시 변경하는 함수.
+        //  체크 할 때마다 서버에 전송.
     }
     return(
     <div className={style.list_container}>

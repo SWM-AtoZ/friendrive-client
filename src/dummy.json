@@ -1,0 +1,10 @@
+{
+    "curriculum":[
+    {"days":1,"title":"차량 기본 조작 요령 숙지","summary":"넓고 안전한 공간에서 기본 조작을 배우는 시간이에요","explain":"도로에 나가기 전 여러 기능을 조작해 보고 차를 내게 맞도록 조정해야 해요!","goal":"운전시작","content":"오늘이 지나면 운전을 시작할 수 있어요"},
+    {"days":2,"title":"안전 주행, 방어 운전","summary":"넓고 안전한 도로에서 기본 주행을 배우는 시간이에요","explain":"도로에서 차선을 맞추며 달리다가 신호와 표지판에 따라 좌/우회전, U턴을 해보아요!","goal":"핸들링과 차선!","content":"도로에 나가기 전 핸들링과 차선에 익숙해지기 위한 시간이에요!"}],
+    
+    "items":[
+        {"itemId":"d1i1","day":1,"subject":"운전자세","content":[["https://paillo.tistory.com","문석이 블로그"],["https://youtube.com","네이버"]]},
+        {"itemId":"d1i2","day":1,"subject":"내부조작","content":[["https://paillo.tistory.com","문석이 블로그"],["https://youtube.com","네이버"]]},
+        {"itemId":"d2i1","day":2,"subject":"좌회전","content":[["https://paillo.tistory.com","문석이 블로그"],["https://youtube.com","네이버"]]},
+        {"itemId":"d2i2","day":2,"subject":"우회전","content":[["https://paillo.tistory.com","문석이 블로그"],["https://youtube.com","네이버"]]}]}
