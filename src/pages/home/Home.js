@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
+  const {data, checkedItem} = useOutletContext();
   const [cookies,,] = useCookies(['token']);
   const navigate = useNavigate();
 
@@ -18,6 +19,8 @@ function Home() {
       navigate('/login')
     }
   }
+  
+
   return (
     <section id={style.home_section}>
       <div className={style.section_explain}>

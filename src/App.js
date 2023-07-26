@@ -1,6 +1,7 @@
 import React,{useState,useRef, useEffect} from 'react';
 import { Outlet } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import { Cookies } from 'react-cookie';
+import axios from 'axios';
 
 // 컴포넌트 임포트
 import Nav from './componenets/nav/Nav';
@@ -9,17 +10,38 @@ import Nav from './componenets/nav/Nav';
 import './App.css';
 
 function App() {
-    // API 받아오기.
+    const cookies = new Cookies();
     const [data, setData] = useState([]);
-  	const [cookies,,] = useCookies(['token']);
+    const [checkedItem, setchecked] = useState([]);
+
+    // API 받아오기.
+    const getCurriculum = async() =>{
+        await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum")
+        .then(function (response) {
+            setData(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });  
+    }
+    
+    const getChecked = async() =>{
+        await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum/checked",{
+            headers:{
+                Authorization: `Bearer ${cookies.get('token')}`
+            }
+        })
+        .then((response)=>{
+            setchecked(response.data);
+        })
+        .catch((response)=>{
+            console.log(response);
+        })
+    }
     
   	useEffect(() => {
-		const fetchData = async() => {
-          const res = await (await fetch('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum')).json();
-          setData(res);
-          console.log(data);
-        }	
-        fetchData();
+		getCurriculum();
+        getChecked();
     }, []);
 
   const curriculum = {
@@ -221,7 +243,7 @@ function App() {
   return (
     <>
     <section className='section_container'>
-      <Outlet context={{curriculum, checked}}/>
+      <Outlet context={{curriculum, checked, data, checkedItem}}/>
     </section>
     <Nav/>
     </>
