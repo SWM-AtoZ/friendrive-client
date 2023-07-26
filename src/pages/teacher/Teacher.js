@@ -1,26 +1,11 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import {Cookies} from 'react-cookie';
+import { useCookies } from "react-cookie";
 import style from './teacher.module.css';
 import Toggleitem from "../../componenets/toggleItem/Toggleitem";
 import axios from "axios";
 
 function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다. 여기서 데이터를 미리 불러오자.
-    const cookies = new Cookies();
-    const body = {
-        token : `Bearer ${cookies.get('token')}`
-    }
-    // 선생님 페이지 get api
-    const loadTeacherdata = async() =>{
-        axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher", body)
-        .then(function (response) {
-            console.log(response);
-            return response;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });  
-    }
 
     const curriculum = {
         "curriculum": [
@@ -226,22 +211,39 @@ const Teacher = () => {
 
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
-    const cookies = new Cookies();
+    const [cookies,,] = useCookies([]);
+
+   
+    // 선생님 페이지 get api
     
-    // const postdata = async() =>{
-        axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum/checked", 
-        {
-            data : {
-                Authorization: `Bearer ${cookies.get('token')}`
-            }
+    const loadTeacherdata = async() =>{
+        axios.get(`http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher?token=${cookies.teacherToken}`)
+        .then(function (response) {
+            console.log(response);
         })
+        .catch(function (error) {
+            console.log(error);
+          });  
+    }
+
+    const body = {
+        token : cookies.teacherToken,
+        item : 'd1i2'
+    }
+
+    const postdata = async() =>{
+        axios.post("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/check",body)
         .then(function (response) {
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
           });  
-    // }
+    }
+
+    useEffect(()=>{
+        loadTeacherdata();
+    },[])
 
   return (
     <section className={style.teacher_section}>
@@ -258,7 +260,7 @@ const Teacher = () => {
             }
             return <Toggleitem {...prop}/>
         })}
-        <button style={{width: '40px', height:'40px'}}>post 체크</button>
+        <button onClick={postdata} style={{width: '40px', height:'40px'}}>post 체크</button>
     </section>
   );
 }

@@ -20,7 +20,7 @@ function Home() {
       }
     })
     .then((response)=>{
-      console.log(response);
+      console.log('티처토큰 받아와짐');
       setCookie('teacherToken', response.data.token, expires);
     })
     .catch((response)=>{
@@ -39,7 +39,7 @@ function Home() {
   }
   
   useEffect(()=>{
-    if(!cookies.teacherToken){
+    if(cookies.token){
       getTeacherToken();
     }
   },[])
