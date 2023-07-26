@@ -1,17 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+import { CookiesProvider } from 'react-cookie';
+//페이지 임포트
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Home from './pages/home/Home';
+import Detail from './pages/detail/Detail';
+import Request from './pages/request/Request';
+import Section from './pages/section/Section';
+import Supplyment from './pages/supplyment/Supplyment';
+import User from './pages/user/User';
+import Login from './pages/login/Login';
+
+//loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
+import {Teacher, loader as loadData} from './pages/teacher/Teacher';
+import './reset.css';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+    children: [
+      {
+        index : true, 
+        element: <Home />,
+      },
+      {
+        path:'detail',
+        element:<Detail/>,
+      },
+      {
+        path:'request',
+        element:<Request/>,
+      },
+      {
+        path:'section',
+        element:<Section/>,
+      },
+      {
+        path:'supplyment',
+        element:<Supplyment/>,
+      },
+      {
+        path:'user',
+        element:<User/>,
+      },
+      {
+        path:'login',
+        element:<Login/>,
+      }
+    ],
+  },
+  {
+    path: "teacher",
+    loader: loadData,
+    element: <Teacher />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <CookiesProvider>
+    <RouterProvider router={router} />
+  </CookiesProvider>
+ 
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
