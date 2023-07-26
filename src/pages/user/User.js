@@ -24,8 +24,8 @@ const User = () => {
       axios.post('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/login/kakao', body)
       .then(function (response) {
         setCookie('token', response.data.jwt.accessToken, expires);
+        window.location.href = 'http://localhost:3000';
         alert('로그인이 되었습니다.');
-        console.log(response);
       })
       .catch(function (error) {
         alert('로그인에 실패하셨습니다.');
@@ -47,34 +47,22 @@ const User = () => {
           });  
     }
 
-    const getTeacherToken = async() => {
-      axios.get('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/token',{
-        headers:{
-          Authorization: `Bearer ${cookies.token}`
-        }
-      })
-      .then((response)=>{
-        console.log(response);
-        setCookie('teacherToken', response.data.token, expires);
-      })
-      .catch((response)=>{
-        console.log(response);
-      })
-    }
     const Logout = () => { //로그아웃 이벤트 함수
         removeCookie('token'); 
+        removeCookie('teacherToken');
         //홈페이지로 이동하여 페이지를 새로고침해준다.
         alert('로그아웃 되었습니다.');
         window.location.href = 'http://localhost:3000';
     }
 
   useEffect(()=>{
-    getUserData();
-
-    if(code !== null){
-      Login();
-    }
+    if(cookies.token){
+      getUserData();
+    }     
     
+    if(code !== null){
+         Login();
+    }
 },[])
     return (<div>
         <h1>유저페이지입니다.</h1>

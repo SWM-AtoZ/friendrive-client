@@ -7,8 +7,26 @@ import axios from 'axios';
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const {data, checkedItem} = useOutletContext();
-  const [cookies,,] = useCookies(['token']);
+  const [cookies,setCookie,] = useCookies(['token']);
   const navigate = useNavigate();
+
+  const expires = new Date();
+  expires.setMonth(expires.getMonth+1);
+
+  const getTeacherToken = async() => {
+    axios.get('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/token',{
+      headers:{
+        Authorization: `Bearer ${cookies.token}`
+      }
+    })
+    .then((response)=>{
+      console.log(response);
+      setCookie('teacherToken', response.data.token, expires);
+    })
+    .catch((response)=>{
+      console.log(response);
+    })
+  }
 
   const isLogin = () => {
     if(cookies.token){
@@ -20,6 +38,11 @@ function Home() {
     }
   }
   
+  useEffect(()=>{
+    if(!cookies.teacherToken){
+      getTeacherToken();
+    }
+  },[])
 
   return (
     <section id={style.home_section}>
