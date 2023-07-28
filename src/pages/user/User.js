@@ -54,7 +54,7 @@ const User = () => {
         removeCookie('teacherToken');
         //홈페이지로 이동하여 페이지를 새로고침해준다.
         alert('로그아웃 되었습니다.');
-        window.location.href = 'https://friendrive.net/user';
+        window.location.href = 'https://friendrive.net';
     }
 
   useEffect(()=>{
