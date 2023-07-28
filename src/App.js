@@ -246,12 +246,13 @@ function App() {
     ]
     }
 
-    const setVh = () => {
-        document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
-      };
-      window.addEventListener('resize', setVh);
-      setVh();
-
+    function setScreenSize() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
+    console.log(document.documentElement.style);
   return (
     <>
     <section className='section_container'>

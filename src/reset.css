@@ -48,17 +48,8 @@ table {
 }
 #root{
 	margin: 0 auto;
-	height: 100vh;
+	height:calc(var(--vh, 1vh) * 100);
 	max-width: 900px;
     width: 100%;
 }
 
-:root {
-	--vh: 100%;
- }
- 
- html,
- body {
-	 height: 100vh;
-	 height: var(--vh);
- }
