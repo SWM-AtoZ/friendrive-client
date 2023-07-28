@@ -17,7 +17,7 @@ function App() {
 
     // API 받아오기.
     const getCurriculum = async() =>{
-        await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum")
+        await axios.get("https://friendriveapi.net/curriculum")
         .then(function (response) {
             setData(response.data);
             console.log(response);
