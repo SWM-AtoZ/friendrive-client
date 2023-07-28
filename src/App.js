@@ -1,6 +1,6 @@
 import React,{useState,useRef, useEffect} from 'react';
 import { Outlet } from 'react-router-dom';
-import { Cookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 // 컴포넌트 임포트
@@ -10,9 +10,10 @@ import Nav from './componenets/nav/Nav';
 import './App.css';
 
 function App() {
-    const cookies = new Cookies();
+    const[cookies,,] = useCookies([]);
     const [data, setData] = useState([]);
     const [checkedItem, setchecked] = useState([]);
+
 
     // API 받아오기.
     const getCurriculum = async() =>{
@@ -28,11 +29,12 @@ function App() {
     const getChecked = async() =>{
         await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum/checked",{
             headers:{
-                Authorization: `Bearer ${cookies.get('token')}`
+                Authorization: `Bearer ${cookies.token}`
             }
         })
         .then((response)=>{
             setchecked(response.data);
+            console.log('체크데이터를 불러왔습니다.');
         })
         .catch((response)=>{
             console.log(response);
@@ -41,7 +43,9 @@ function App() {
     
   	useEffect(() => {
 		getCurriculum();
-        getChecked();
+        if(cookies.token){
+            getChecked();
+        }
     }, []);
 
   const curriculum = {

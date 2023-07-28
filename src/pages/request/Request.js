@@ -21,6 +21,19 @@ const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹�
         itemCheck[click_section] = !itemCheck[click_section];
     }
 }
+
+const ShareTeacher = () => {
+    if (navigator.share) {
+        navigator.share({
+            title: '기록하며 성장하기',
+            text: 'Hello World',
+            url: 'https://naver.com',
+        });
+    }else{
+        alert("공유하기가 지원되지 않는 환경 입니다.")
+    }
+  }
+
     return(<div className={style.container}>
         <h1>요청페이지 입니다.</h1>
         {curriculum.map((item)=>(
@@ -30,7 +43,7 @@ const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹�
            </div> 
         ))}
         
-        <button className={style.share_button}>공유하기</button>
+        <button className={style.share_button} onClick={ShareTeacher}>공유하기</button>
     </div>)
 }
 
