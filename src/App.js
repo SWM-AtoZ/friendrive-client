@@ -20,6 +20,7 @@ function App() {
         await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum")
         .then(function (response) {
             setData(response.data);
+            console.log(response);
           })
           .catch(function (error) {
             console.log(error);
