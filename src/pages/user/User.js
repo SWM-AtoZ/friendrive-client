@@ -23,6 +23,7 @@ const User = () => {
     const Login = async () =>{
       axios.post('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/login/kakao', body)
       .then(function (response) {
+        console.log(body)
         setCookie('token', response.data.jwt.accessToken, expires);
         window.location.href = 'http://localhost:3000';
         alert('로그인이 되었습니다.');
