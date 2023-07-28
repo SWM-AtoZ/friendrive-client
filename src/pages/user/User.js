@@ -13,7 +13,7 @@ const User = () => {
     const code = params.get('code');
     const body = {
         code:code,
-        domain:'http://localhost:3000/user'
+        domain:'https://friendrive.net/user'
     }
 
     //쿠키의 유효기간 한달로 지정
@@ -25,7 +25,7 @@ const User = () => {
       .then(function (response) {
         console.log(body)
         setCookie('token', response.data.jwt.accessToken, expires);
-        window.location.href = 'http://localhost:3000';
+        window.location.href = 'https://friendrive.net';
         alert('로그인이 되었습니다.');
       })
       .catch(function (error) {
@@ -53,7 +53,7 @@ const User = () => {
         removeCookie('teacherToken');
         //홈페이지로 이동하여 페이지를 새로고침해준다.
         alert('로그아웃 되었습니다.');
-        window.location.href = 'http://localhost:3000';
+        window.location.href = 'https://friendrive.net/user';
     }
 
   useEffect(()=>{
@@ -62,6 +62,7 @@ const User = () => {
     }     
     
     if(code !== null){
+      console.log(code);
          Login();
     }
 },[])
