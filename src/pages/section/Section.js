@@ -1,5 +1,5 @@
 import style from './section.module.css';
-import { Link,useLocation, useOutletContext} from 'react-router-dom';
+import { Link,useLocation, useOutletContext,useNavigate} from 'react-router-dom';
 const Section = () => {
   const location = useLocation();
 
@@ -12,23 +12,31 @@ const Section = () => {
   // 체크된 아이템을 outletContext에서 추출한다.
   const checkedItem = useOutletContext().checked.checkedItem;
   
-    return(<div>
-        <div className={style.section_list_container}>
-        <h1>{id} 섹션 페이지입니다.</h1>
+  const navigate=useNavigate();
+
+  const goToDetail = (content,subject) => {
+    navigate('/detail', {state:{content:content, title:subject}})
+  }
+
+    return(
+      <div className={style.section_list_container}>
+        <div className={style.topNavi}>
+          <div onClick={() => navigate(-1)} className={style.back}>{'<'}</div>
+          <div className={style.naviTitle}>Section {id}</div>
+          <div className={style.blank}></div>
+        </div>
           <ul className={style.section_list_innerbox}>
               {Arryitem.map((item)=>{
                 var check = checkedItem.includes(item.itemId);
                 return(
-                <li className={style.section_list_item}>
-                <Link to={'/detail'} state={{
-                  content:item.content,
-                  title:item.subject}}>{item.subject}</Link>
+                <li onClick={()=>{goToDetail(item.content, item.subject)}} className={style.section_list_item}>
+                  <div>{item.subject}</div>
                   <div>{check?'체크됨':'체크안됨'}</div>
                 </li>
               )})}
           </ul>
         </div>
-    </div>)
+   )
 }
 
 export default Section;

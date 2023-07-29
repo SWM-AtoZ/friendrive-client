@@ -56,7 +56,9 @@ function Home() {
         alert("공유하기가 지원되지 않는 환경 입니다.")
     }
   }
-
+  const goToSection = (days) => {
+    navigate(`/section`,{state:{section:days}})
+  }
   useEffect(()=>{
     if(cookies.token){
       getTeacherToken();
@@ -98,13 +100,11 @@ function Home() {
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}>
               {curriculum.map((item,idx)=>(
-                <div className={style.section_card_item}>
+                <div onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
-                    <Link className={style.section_item} to={`/section`} state={{section:item.days}}>
-                     {item.title}
-                    </Link>
+                    <div>{item.title}</div>
                   </div>
-              </div> ))}
+                </div> ))}
           </Slider>
         </div>           
       </div>
