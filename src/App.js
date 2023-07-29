@@ -21,7 +21,6 @@ function App() {
         .then(function (response) {
             setData(response.data);
             console.log(response);
-            alert('커리큘럼 받아오기 성공');
           })
           .catch(function (error) {
             console.log(error);
@@ -36,7 +35,7 @@ function App() {
         })
         .then((response)=>{
             setchecked(response.data);
-            alert('체크데이터 받아오기 성공');
+           console.log(response)
             console.log('체크데이터를 불러왔습니다.');
         })
         .catch((response)=>{

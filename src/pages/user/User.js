@@ -23,7 +23,6 @@ const User = () => {
     const Login = async () =>{
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
-        console.log(body)
         setCookie('token', response.data.jwt.accessToken, expires);
         window.location.href = 'https://friendrive.net';
         alert('로그인이 되었습니다.');
@@ -41,7 +40,6 @@ const User = () => {
             }
         }).then(function (response) {
             console.log(response);
-            alert('유저데이터 받아오기 성공')
             setUser(response);
           })
           .catch(function (error) {
