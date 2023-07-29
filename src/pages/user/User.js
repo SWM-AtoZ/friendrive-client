@@ -29,7 +29,6 @@ const User = () => {
         alert('로그인이 되었습니다.');
       })
       .catch(function (error) {
-        console.log(body);
         alert('로그인에 실패하셨습니다.');
         console.log(error);
       }); 
