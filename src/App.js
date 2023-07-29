@@ -28,7 +28,7 @@ function App() {
     }
     
     const getChecked = async() =>{
-        await axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/curriculum/checked",{
+        await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum/checked",{
             headers:{
                 Authorization: `Bearer ${cookies.token}`
             }

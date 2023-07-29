@@ -21,7 +21,7 @@ const User = () => {
     expires.setMonth(expires.getMonth+1);
 
     const Login = async () =>{
-      axios.post('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/login/kakao', body)
+      axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
         console.log(body)
         setCookie('token', response.data.jwt.accessToken, expires);
@@ -36,7 +36,7 @@ const User = () => {
     }
 
     const getUserData = async () =>{ //유저 데이터 얻는 함수.
-        axios.get("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/user/info", {
+        axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }

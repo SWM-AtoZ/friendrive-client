@@ -217,7 +217,7 @@ const Teacher = () => {
     // 선생님 페이지 get api
     
     const loadTeacherdata = async() =>{
-        axios.get(`http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher?token=${cookies.teacherToken}`)
+        axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             console.log(response);
         })
@@ -232,7 +232,7 @@ const Teacher = () => {
     }
 
     const postdata = async() =>{
-        axios.post("http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/check",body)
+        axios.post("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/check",body)
         .then(function (response) {
             console.log(response);
           })
