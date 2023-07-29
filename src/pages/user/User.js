@@ -41,6 +41,7 @@ const User = () => {
             }
         }).then(function (response) {
             console.log(response);
+            alert('유저데이터 받아오기 성공')
             setUser(response);
           })
           .catch(function (error) {

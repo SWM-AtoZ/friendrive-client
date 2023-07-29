@@ -219,6 +219,7 @@ const Teacher = () => {
     const loadTeacherdata = async() =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
+            alert('선생정보 받아오기 성공');
             console.log(response);
         })
         .catch(function (error) {
@@ -234,6 +235,7 @@ const Teacher = () => {
     const postdata = async() =>{
         axios.post("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/check",body)
         .then(function (response) {
+            alert('포스트 성공');
             console.log(response);
           })
           .catch(function (error) {

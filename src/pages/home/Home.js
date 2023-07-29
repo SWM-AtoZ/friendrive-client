@@ -27,7 +27,7 @@ function Home() {
       }
     })
     .then((response)=>{
-      console.log('티처토큰 받아와짐');
+      alert('티처토큰 받아와짐');
       setCookie('teacherToken', response.data.token, expires);
     })
     .catch((response)=>{
