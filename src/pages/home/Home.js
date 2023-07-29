@@ -21,7 +21,7 @@ function Home() {
   const [nav2,setNav2] = useState(null)
 
   const getTeacherToken = async() => {
-    axios.get('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/token',{
+    axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
       headers:{
         Authorization: `Bearer ${cookies.token}`
       }
@@ -44,6 +44,7 @@ function Home() {
       navigate('/login')
     }
   }
+
   const ShareTeacher = () => {
     if (navigator.share) {
         navigator.share({
@@ -55,6 +56,7 @@ function Home() {
         alert("공유하기가 지원되지 않는 환경 입니다.")
     }
   }
+
   useEffect(()=>{
     if(cookies.token){
       getTeacherToken();

@@ -25,7 +25,7 @@ const User = () => {
       .then(function (response) {
         console.log(body)
         setCookie('token', response.data.jwt.accessToken, expires);
-        window.location.href = 'https://friendrive.net';
+        window.location.href = 'http://localhost:3000';
         alert('로그인이 되었습니다.');
       })
       .catch(function (error) {
