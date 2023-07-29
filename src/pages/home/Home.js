@@ -4,6 +4,11 @@ import { useCookies } from 'react-cookie';
 import style from './home.module.css';
 import axios from 'axios';
 
+//slick-slider import
+import Slider from "react-slick";
+import '../../slick-carousel/slick/slick.css';
+import '../../slick-carousel/slick/slick-theme.css';
+
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const {data, checkedItem} = useOutletContext();
@@ -54,22 +59,34 @@ function Home() {
     }
   },[])
 
+  const settings = {
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 1,
+    speed: 500
+  };
+  
   return (
     <section id={style.home_section}>
+      {/* 현재 카드섹션 설명칸 */}
       <div className={style.section_explain}>
         <div className={style.section_explain_number}>{curriculum[0].days} 운전, 그게 뭔데?</div>
         <div className={style.section_explain_title}><h1>{curriculum[0].summary}</h1></div>
         <div className={style.section_explain_discription}>{curriculum[0].explain}</div>
       </div>
+      {/* 카드섹션 슬라이드 */}
       <div className={style.section_card_container}>
+        <div>
+          <Slider {...settings}>
               {curriculum.map((item,idx)=>(
                 <div className={style.section_card_item}>
                 <Link className={style.section_item} to={`/section`} state={{section:item.days}}>
                      {item.title}
                 </Link>
-              </div>  
-              )
-              )};            
+              </div> ))}
+          </Slider>
+        </div>           
       </div>
      <button onClick={isLogin} className={style.request_button}>요청하기</button>
      <button className={style.share_button} onClick={ShareTeacher}>공유하기</button>
