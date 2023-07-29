@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
@@ -14,9 +14,11 @@ function Home() {
   const {data, checkedItem} = useOutletContext();
   const [cookies,setCookie,] = useCookies(['token']);
   const navigate = useNavigate();
-
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
+
+  const [nav1,setNav1] = useState(null)
+  const [nav2,setNav2] = useState(null)
 
   const getTeacherToken = async() => {
     axios.get('http://ec2-54-180-132-230.ap-northeast-2.compute.amazonaws.com/teacher/token',{
@@ -60,9 +62,11 @@ function Home() {
   },[])
 
   const settings = {
+    dots:true,
     centerMode: true,
-    infinite: true,
-    centerPadding: "60px",
+    infinite: false,
+    centerPadding: "50px",
+    adaptiveHeight: true,
     slidesToShow: 1,
     speed: 500
   };
@@ -71,19 +75,33 @@ function Home() {
     <section id={style.home_section}>
       {/* 현재 카드섹션 설명칸 */}
       <div className={style.section_explain}>
-        <div className={style.section_explain_number}>{curriculum[0].days} 운전, 그게 뭔데?</div>
-        <div className={style.section_explain_title}><h1>{curriculum[0].summary}</h1></div>
-        <div className={style.section_explain_discription}>{curriculum[0].explain}</div>
+        <Slider 
+        asNavFor={nav2} 
+        ref={(slider1) => setNav1(slider1)}
+        fade={true}>
+        {curriculum.map((item)=>(
+          <div className={style.explain_container}>
+            <div className={style.section_explain_number}>{item.days} 운전, 그게 뭔데?</div>
+            <div className={style.section_explain_title}><h1>{item.summary}</h1></div>
+            <div className={style.section_explain_discription}>{item.explain}</div>
+          </div>
+        ))}
+        </Slider>
       </div>
       {/* 카드섹션 슬라이드 */}
       <div className={style.section_card_container}>
         <div>
-          <Slider {...settings}>
+          <Slider 
+          {...settings} 
+          asNavFor={nav1}
+          ref={(slider2) => setNav2(slider2)}>
               {curriculum.map((item,idx)=>(
                 <div className={style.section_card_item}>
-                <Link className={style.section_item} to={`/section`} state={{section:item.days}}>
+                  <div className={style.setction_innerbox}>
+                    <Link className={style.section_item} to={`/section`} state={{section:item.days}}>
                      {item.title}
-                </Link>
+                    </Link>
+                  </div>
               </div> ))}
           </Slider>
         </div>           
