@@ -17,7 +17,7 @@ function App() {
 
     // API 받아오기.
     const getCurriculum = async() =>{
-        await axios.get("https://friendriveapi.net/curriculum")
+        await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
         .then(function (response) {
             setData(response.data);
             console.log(response);
@@ -252,7 +252,6 @@ function App() {
     }
     setScreenSize();
     window.addEventListener('resize', setScreenSize);
-    console.log(document.documentElement.style);
   return (
     <>
     <section className='section_container'>
