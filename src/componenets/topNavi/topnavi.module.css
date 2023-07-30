@@ -9,7 +9,9 @@
 
 .back{
     padding-left: 4vw;
-    box-sizing: border-box;
+}
+.blank{
+    padding-right: 4vw;
 }
 
 .naviTitle{

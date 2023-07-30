@@ -3,7 +3,8 @@
     width : 70vw;
     margin: auto;
     background-color: dodgerblue;
-    border-radius:6px;
+    border-radius:1rem;
+    overflow: hidden;
 }
 
 .img_content{
