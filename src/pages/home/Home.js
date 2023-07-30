@@ -46,17 +46,6 @@ function Home() {
     // }
   }
 
-  const ShareTeacher = () => {
-    if (navigator.share) {
-        navigator.share({
-            title: '기록하며 성장하기',
-            text: 'Hello World',
-            url: 'https://naver.com',
-        });
-    }else{
-        alert("공유하기가 지원되지 않는 환경 입니다.")
-    }
-  }
   const goToSection = (days) => {
     navigate(`/section`,{state:{section:days}})
   }
@@ -110,7 +99,6 @@ function Home() {
         </div>           
       </div>
      <button onClick={isLogin} className={style.request_button}>요청하기</button>
-     <button className={style.share_button} onClick={ShareTeacher}>공유하기</button>
     </section>
   );
 }

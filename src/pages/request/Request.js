@@ -2,14 +2,16 @@ import style from './request.module.css';
 import '../../global.css';
 import { useOutletContext } from 'react-router-dom';
 import { useRef } from 'react';
+import { useCookies } from 'react-cookie';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 
 const Request = () => {
 const curriculum = useOutletContext().curriculum.curriculum;
 const checkRef = useRef([]);
-console.log(curriculum)
+const [cookies,,] = useCookies([]);
+
 //섹션의 수만큼의 크기를 가진 배열을 생성 추후에 해당 배열의 true 섹션만 쿼리스트링으로 표기
-const itemCheck = new Array(5).fill(false);
+const itemCheck = new Array(curriculum.length).fill(false);
 
 const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹션의 체크상태 itemCheck에 표시. 
     var click_section;        
@@ -43,12 +45,26 @@ const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹�
     
 }
 
-const ShareTeacher = () => {
+function getSection(arr){
+    var temp = [];
+    for(var i=0; i<arr.length; i++){
+        if(arr[i]){
+            temp.push(i);
+        }
+    }
+    return temp.join(',');
+}
+
+const ShareTeacher = (checkArr) => {
+    //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
+    const teachertoken=cookies.teacherToken;
+    const section =getSection(checkArr);
+    
     if (navigator.share) {
         navigator.share({
             title: '기록하며 성장하기',
             text: 'Hello World',
-            url: 'https://naver.com',
+            url: `https://friendrive.net/teacher?section=${section}&teachertoken=${teachertoken}`,
         });
     }else{
         alert("공유하기가 지원되지 않는 환경 입니다.")
@@ -67,7 +83,7 @@ const ShareTeacher = () => {
            </div> 
         ))}
         </div>    
-        <button className={style.share_button} onClick={ShareTeacher}>공유하기</button>
+        <button className={style.share_button} onClick={()=>{ShareTeacher(itemCheck)}}>공유하기</button>
     </div>)
 }
 
