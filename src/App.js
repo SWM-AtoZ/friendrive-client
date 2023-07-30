@@ -50,7 +50,8 @@ function App() {
         }
     }, []);
 
-  const curriculum = {
+    //더미데이터
+    const curriculum = {
     "curriculum": [
         {
             "days": 1,
@@ -235,7 +236,7 @@ function App() {
             ]
         },
     ]
-};
+    }
     const checked = {
         "userId": 8,
         "checkedItem": [

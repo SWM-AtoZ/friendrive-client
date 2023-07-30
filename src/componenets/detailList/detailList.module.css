@@ -1,0 +1,16 @@
+.content_inner_box{
+    height: 40vh;
+    width : 70vw;
+    margin: auto;
+    background-color: dodgerblue;
+    border-radius:6px;
+}
+
+.img_content{
+   width:100%;
+   height: 80%;
+}
+
+.content_description{
+
+}

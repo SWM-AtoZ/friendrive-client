@@ -1,4 +1,5 @@
 import style from './section.module.css';
+import TopNavi from '../../componenets/topNavi/TopNavi';
 import { Link,useLocation, useOutletContext,useNavigate} from 'react-router-dom';
 const Section = () => {
   const location = useLocation();
@@ -20,11 +21,7 @@ const Section = () => {
 
     return(
       <div className={style.section_list_container}>
-        <div className={style.topNavi}>
-          <div onClick={() => navigate(-1)} className={style.back}>{'<'}</div>
-          <div className={style.naviTitle}>Section {id}</div>
-          <div className={style.blank}></div>
-        </div>
+          <TopNavi title={`Section ${id}`}/>
           <ul className={style.section_list_innerbox}>
               {Arryitem.map((item)=>{
                 var check = checkedItem.includes(item.itemId);

@@ -9,6 +9,8 @@
     align-items: center;
     justify-content: space-between;    
     height: 4vh;
+    box-sizing: border-box;
+    margin-bottom: 2vh;
 }
 
 .naviTitle{
@@ -18,8 +20,6 @@
 
 .section_list_innerbox{
     width: 100%;
-    margin-top: 2vh;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
