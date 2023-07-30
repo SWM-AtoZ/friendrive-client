@@ -1,6 +1,8 @@
 import style from './section.module.css';
+import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import { Link,useLocation, useOutletContext,useNavigate} from 'react-router-dom';
+import CommonList from '../../componenets/commonList/CommonList';
+import { useLocation, useOutletContext,useNavigate} from 'react-router-dom';
 const Section = () => {
   const location = useLocation();
 
@@ -20,16 +22,13 @@ const Section = () => {
   }
 
     return(
-      <div className={style.section_list_container}>
+      <div className='common_list_container'>
           <TopNavi title={`Section ${id}`}/>
-          <ul className={style.section_list_innerbox}>
+          <ul className='common_list_innerbox'>
               {Arryitem.map((item)=>{
                 var check = checkedItem.includes(item.itemId);
                 return(
-                <li onClick={()=>{goToDetail(item.content, item.subject)}} className={style.section_list_item}>
-                  <div>{item.subject}</div>
-                  <div>{check?'체크됨':'체크안됨'}</div>
-                </li>
+                <CommonList content={item.content} subject={item.subject} check={check}/>
               )})}
           </ul>
         </div>

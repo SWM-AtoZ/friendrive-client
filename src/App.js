@@ -50,7 +50,7 @@ function App() {
         }
     }, []);
 
-    //더미데이터
+    //추후 해당 더미데이터와 동명으로 API데이터로 교체 예정
     const curriculum = {
     "curriculum": [
         {
@@ -248,16 +248,18 @@ function App() {
     ]
     }
 
+    //모바일 화면에 맞게 화면 높이 조정
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
     setScreenSize();
     window.addEventListener('resize', setScreenSize);
+
   return (
     <>
     <section className='section_container'>
-      <Outlet context={{curriculum, checked, data, checkedItem}}/>
+      <Outlet context={{curriculum, checked}}/>
     </section>
     <Nav/>
     </>

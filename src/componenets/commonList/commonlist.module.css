@@ -1,0 +1,13 @@
+.section_list_item{
+    box-sizing: border-box;
+    width: 90%;
+    height: 7.5vh;
+    border-radius: 10px;
+    background-color: dodgerblue;
+    margin-bottom: 5px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

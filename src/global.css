@@ -1,0 +1,16 @@
+.common_list_container{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.common_list_innerbox{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
