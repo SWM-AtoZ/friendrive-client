@@ -36,13 +36,14 @@ function Home() {
   }
 
   const isLogin = () => {
-    if(cookies.token){
-      navigate('/request')
-    }
-    else{
-      alert('로그인이 필요힌 서비스입니다');
-      navigate('/login')
-    }
+    navigate('/request')
+    // if(cookies.token){
+    //   navigate('/request')
+    // }
+    // else{
+    //   alert('로그인이 필요힌 서비스입니다');
+    //   navigate('/login')
+    // }
   }
 
   const ShareTeacher = () => {

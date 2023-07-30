@@ -1,25 +1,46 @@
 import style from './request.module.css';
+import '../../global.css';
 import { useOutletContext } from 'react-router-dom';
+import { useRef } from 'react';
+import TopNavi from '../../componenets/topNavi/TopNavi';
 
 const Request = () => {
 const curriculum = useOutletContext().curriculum.curriculum;
-
+const checkRef = useRef([]);
+console.log(curriculum)
 //섹션의 수만큼의 크기를 가진 배열을 생성 추후에 해당 배열의 true 섹션만 쿼리스트링으로 표기
 const itemCheck = new Array(5).fill(false);
 
 const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹션의 체크상태 itemCheck에 표시. 
+    var click_section;        
     if(e.target.id){
-        const click_section = e.target.id;
-        if(!itemCheck[click_section]){
-            e.target.children[1].style.backgroundColor = 'dodgerblue';
-           
-        } 
-        else{
-            e.target.children[1].style.backgroundColor = 'white';
-          
+            click_section = e.target.id;
+            if(!itemCheck[click_section]){
+                checkRef.current[click_section].style.backgroundColor = 'dodgerblue';
+               
+            } 
+            else{
+                checkRef.current[click_section].style.backgroundColor = 'white';
+              
+            }
+            itemCheck[click_section] = !itemCheck[click_section];
+            console.log(itemCheck);
         }
-        itemCheck[click_section] = !itemCheck[click_section];
-    }
+        else{
+            click_section = e.target.parentElement.id;
+            if(!itemCheck[click_section]){
+                checkRef.current[click_section].style.backgroundColor = 'dodgerblue';
+               
+            } 
+            else{
+                checkRef.current[click_section].style.backgroundColor = 'white';
+              
+            }
+            itemCheck[click_section] = !itemCheck[click_section];
+            console.log(itemCheck);
+        }
+        
+    
 }
 
 const ShareTeacher = () => {
@@ -34,15 +55,18 @@ const ShareTeacher = () => {
     }
   }
 
-    return(<div className={style.container}>
-        <h1>요청페이지 입니다.</h1>
-        {curriculum.map((item)=>(
-           <div id={item.days-1} className={style.checkcontainer} onClick={clickbox}>
-           <h1>sesction {item.days}</h1>
-           <div className={style.checkbox}></div>
+    return(
+    <div className='common_list_container'>
+        <TopNavi title={'요청하기'}/>
+        <div className={style.request_list_innerbox}>
+        {curriculum.map((item, idx)=>(
+           <div id={idx} className={style.checkcontainer} onClick={clickbox}>
+            <p className={style.section_title}>sesction {item.days}</p>
+            <div ref={el => checkRef.current[idx] = el} className={style.checkbox}></div>
+            <div className={style.section_description}>{item.summary}</div>
            </div> 
         ))}
-        
+        </div>    
         <button className={style.share_button} onClick={ShareTeacher}>공유하기</button>
     </div>)
 }
