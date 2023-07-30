@@ -36,14 +36,13 @@ function Home() {
   }
 
   const isLogin = () => {
-    navigate('/request')
-    // if(cookies.token){
-    //   navigate('/request')
-    // }
-    // else{
-    //   alert('로그인이 필요힌 서비스입니다');
-    //   navigate('/login')
-    // }
+    if(cookies.token){
+      navigate('/request')
+    }
+    else{
+      alert('로그인이 필요힌 서비스입니다');
+      navigate('/login')
+    }
   }
 
   const goToSection = (days) => {

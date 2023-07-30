@@ -7,24 +7,18 @@ const Nav = () => {
     const navigate = useNavigate();
     const isLogin = (e) => {
         const value = e.target.value;
-        if(value==='supplyment'){
-            navigate('/supplyment');
+        if(cookies.token){
+            if(value==='supplyment'){
+                navigate('/supplyment');
+            }
+            else if(value === 'user'){
+                navigate('./user');
+            }
         }
-        else if(value === 'user'){
-            navigate('./user');
+        else{
+            alert('로그인이 필요한 서비스입니다.');
+            navigate('/login');
         }
-        // if(cookies.token){
-        //     if(value==='supplyment'){
-        //         navigate('/supplyment');
-        //     }
-        //     else if(value === 'user'){
-        //         navigate('./user');
-        //     }
-        // }
-        // else{
-        //     alert('로그인이 필요한 서비스입니다.');
-        //     navigate('/login');
-        // }
     }
     return (<ul className={style.nav}>
         <li className={style.link}>
