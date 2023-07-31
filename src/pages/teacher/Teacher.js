@@ -1,5 +1,5 @@
-import { useState,useRef, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useLoaderData,useSearchParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import toggle from './toggle.png';
 import style from './teacher.module.css';
@@ -273,6 +273,10 @@ const Teacher = () => {
     const [curriculum, allitems ,checked] = data;   
     const [cookies,,] = useCookies([]);
     const [TeacherPageData, setTeacherPageData] = useState();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    var section = [];
+    var teacherToken = '';
 
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
@@ -283,7 +287,8 @@ const Teacher = () => {
     
    //공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기.
    const get_gueryInfo = () => {
-
+    section = searchParams.get("section").split(',');
+    teacherToken = searchParams.get("teachertoken");
    }
 
     // 선생님 페이지 get api
@@ -300,6 +305,7 @@ const Teacher = () => {
 
     useEffect(()=>{
      loadTeacherdata();
+     get_gueryInfo();
     },[])
 
   return (
