@@ -292,7 +292,6 @@ const Teacher = () => {
     section = searchParams.get("section").split(',');
     teacherToken = searchParams.get("teachertoken");
     setCookie('teacherToken',teacherToken,expires);
-    console.log('첫번째')
    }
 
     // 선생님 페이지 get api
@@ -305,7 +304,6 @@ const Teacher = () => {
             console.log(error);
             
           });  
-          console.log('두번째')
     }
 
     // 전체 커리큘럼 받아오기
@@ -320,7 +318,7 @@ const Teacher = () => {
     }
     
     useEffect(()=>{
-    get_gueryInfo();
+    //get_gueryInfo();
     loadTeacherdata();
     getCurriculum();
     },[])
