@@ -305,7 +305,7 @@ const Teacher = () => {
 
   return (
     <section className={style.teacher_section}>
-        <div className={style.title}>{TeacherPageData.length>0?(<div className={style.font}>님과 함께하는 연수!</div>):(<div className={style.font}>{TeacherPageData.name}상일님과 함께하는 연수!</div>)}</div>
+        <div className={style.title}>{TeacherPageData.length>0?(<div className={style.font}>{TeacherPageData.name}님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
         {curriculum.map((item, idx)=>{
             //해당 섹션에 관련된 아이템 필터링
             const filteredItem = allitems.filter(nonfiltereditem => 
