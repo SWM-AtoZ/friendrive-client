@@ -4,3 +4,15 @@
     padding-top: 5%;
     box-sizing: border-box;
 }
+.title{
+    padding-left: 6%;
+    box-sizing: border-box;
+    height: 10%;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.font{
+    position: relative;
+    top:20%;
+}

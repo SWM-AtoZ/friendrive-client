@@ -272,6 +272,7 @@ const Teacher = () => {
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
     const [cookies,,] = useCookies([]);
+    var TeacherPageDate = {};
 
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
@@ -289,19 +290,22 @@ const Teacher = () => {
     const loadTeacherdata = async() =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
-            console.log('선생님데이터 다시불러오기.',response);
+            console.log(response.data);
+            return response.data;
         })
         .catch(function (error) {
             console.log(error);
+            
           });  
     }
 
     useEffect(()=>{
-        loadTeacherdata();
+     TeacherPageDate = loadTeacherdata();
     },[])
 
   return (
     <section className={style.teacher_section}>
+        <div className={style.title}>{TeacherPageDate.length>0?(<div className={style.font}>님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
         {curriculum.map((item, idx)=>{
             //해당 섹션에 관련된 아이템 필터링
             const filteredItem = allitems.filter(nonfiltereditem => 

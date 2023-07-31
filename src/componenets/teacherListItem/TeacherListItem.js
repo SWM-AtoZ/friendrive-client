@@ -11,8 +11,6 @@ const TeacherListItem = ({subject, content, checked, itemId}) =>{
     const navigate = useNavigate();
     const [checkState, setCheckState] = useState(checked);
     const [cookies,,] = useCookies([]);
- 
-    console.log(itemId.toString());
 
     const body = {
         token : cookies.teacherToken,
@@ -37,6 +35,7 @@ const TeacherListItem = ({subject, content, checked, itemId}) =>{
     const goToGuide = (content, subject) => {
         navigate('/detail', {state:{ content:content, title:subject}})
     }
+    
     return(
     <div className={style.list_container}>
         <div>{subject}</div>
