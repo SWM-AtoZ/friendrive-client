@@ -1,11 +1,11 @@
 .nav{
     position: static;
     bottom: 0;
-    height: 10%;
-    min-height: 70px;
+    height: 7%;
     box-sizing: border-box;
-    border: 2px;
+    border-top: 0.5px;
     border-style: solid;
+    border-color: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -15,6 +15,18 @@
     width: 20%;
     height: 100%;
     box-sizing: border-box;
-    border: 2px;
-    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width :35%;
+    height:50%;
+}
+
+.img_description{
+    margin-top: 4%;
+    font-size: 0.5rem;
 }
