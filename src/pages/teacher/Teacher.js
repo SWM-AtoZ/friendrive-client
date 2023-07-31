@@ -291,7 +291,7 @@ const Teacher = () => {
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             TeacherPageData= response.data;
-            console.log(TeacherPageData.length)
+            console.log(TeacherPageData)
         })
         .catch(function (error) {
             console.log(error);
@@ -306,7 +306,7 @@ const Teacher = () => {
 
   return (
     <section className={style.teacher_section}>
-        <div className={style.title}>{TeacherPageData.length>0?(<div className={style.font}>{TeacherPageData.name}님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
+        <div className={style.title}>{TeacherPageData?(<div className={style.font}>{TeacherPageData.name}님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
         {curriculum.map((item, idx)=>{
             //해당 섹션에 관련된 아이템 필터링
             const filteredItem = allitems.filter(nonfiltereditem => 
