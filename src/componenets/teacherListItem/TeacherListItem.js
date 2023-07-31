@@ -33,7 +33,7 @@ const TeacherListItem = ({subject, content, checked, itemId}) =>{
         postdata();
     }
     const goToGuide = (content, subject) => {
-        navigate('/detail', {state:{ content:content, title:subject}})
+        navigate('/teacherdetail', {state:{ content:content, title:subject}})
     }
     
     return(

@@ -300,7 +300,6 @@ const Teacher = () => {
 
     useEffect(()=>{
      loadTeacherdata();
-  
     },[])
 
   return (
