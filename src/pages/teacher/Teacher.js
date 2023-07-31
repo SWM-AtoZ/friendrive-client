@@ -300,7 +300,7 @@ const Teacher = () => {
     }
 
     useEffect(()=>{
-     TeacherPageData = loadTeacherdata();
+     loadTeacherdata();
   
     },[])
 
