@@ -272,7 +272,7 @@ const Teacher = () => {
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
     const [cookies,,] = useCookies([]);
-    var TeacherPageData ;
+    const [TeacherPageData, setTeacherPageData] = useState();
 
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
@@ -290,7 +290,7 @@ const Teacher = () => {
     const loadTeacherdata = async() =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
-            TeacherPageData= response.data;
+            setTeacherPageData(response.data);
         })
         .catch(function (error) {
             console.log(error);
