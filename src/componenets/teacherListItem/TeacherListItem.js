@@ -11,9 +11,10 @@ const TeacherListItem = ({subject, content, checked, itemId}) =>{
     const navigate = useNavigate();
     const [checkState, setCheckState] = useState(checked);
     const [cookies,,] = useCookies([]);
+    
     const body = {
         token : cookies.teacherToken,
-        item : {itemId}
+        item : itemId
     }
 
     const postdata = async() =>{
