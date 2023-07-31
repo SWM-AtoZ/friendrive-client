@@ -268,11 +268,11 @@ function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다.
 
   
 const Teacher = () => {
-
+    
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
     const [cookies,,] = useCookies([]);
-    var TeacherPageData = {};
+    var TeacherPageData ;
 
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
