@@ -290,8 +290,8 @@ const Teacher = () => {
     const loadTeacherdata = async() =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
-            console.log(response.data);
-            return response.data;
+            TeacherPageData= response.data;
+            console.log(TeacherPageData)
         })
         .catch(function (error) {
             console.log(error);
@@ -301,7 +301,7 @@ const Teacher = () => {
 
     useEffect(()=>{
      TeacherPageData = loadTeacherdata();
-     console.log(TeacherPageData)
+  
     },[])
 
   return (
