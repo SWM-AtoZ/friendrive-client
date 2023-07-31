@@ -301,6 +301,7 @@ const Teacher = () => {
 
     useEffect(()=>{
      TeacherPageData = loadTeacherdata();
+     console.log(TeacherPageData)
     },[])
 
   return (
