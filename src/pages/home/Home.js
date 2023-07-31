@@ -11,7 +11,6 @@ import '../../slick-carousel/slick/slick-theme.css';
 
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
-  const {data, checkedItem} = useOutletContext();
   const [cookies,setCookie,] = useCookies(['token']);
   const navigate = useNavigate();
   const expires = new Date();
@@ -48,6 +47,7 @@ function Home() {
   const goToSection = (days) => {
     navigate(`/section`,{state:{section:days}})
   }
+
   useEffect(()=>{
     if(cookies.token){
       getTeacherToken();
@@ -71,7 +71,8 @@ function Home() {
         <Slider 
         asNavFor={nav2} 
         ref={(slider1) => setNav1(slider1)}
-        fade={true}>
+        fade={true}
+        infinite={false}>
         {curriculum.map((item)=>(
           <div className={style.explain_container}>
             <div className={style.section_explain_number}>{item.days} 운전, 그게 뭔데?</div>

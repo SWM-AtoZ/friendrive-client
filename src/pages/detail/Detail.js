@@ -11,6 +11,7 @@ import '../../slick-carousel/slick/slick.css';
 import '../../slick-carousel/slick/slick-theme.css';
 
 const PrevBtn = (props) =>{
+  
 return(
     <div onClick={props.prev} className={style.prev_btn}>
         <div className={style.btn_text}>이전</div>
@@ -25,6 +26,7 @@ const NextBtn = (props) =>{
         </div>
     )
 }
+
 
 const Detail = ()=>{
     let sliderRef = useRef(null);

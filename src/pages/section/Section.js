@@ -2,7 +2,8 @@ import style from './section.module.css';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import CommonList from '../../componenets/commonList/CommonList';
-import { useLocation, useOutletContext,useNavigate} from 'react-router-dom';
+import { useLocation, useOutletContext} from 'react-router-dom';
+
 const Section = () => {
   const location = useLocation();
 
