@@ -1,14 +1,13 @@
 import { useState,useEffect } from "react";
 import { useLoaderData,useSearchParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import toggle from './toggle.png';
 import style from './teacher.module.css';
 import Toggleitem from "../../componenets/toggleItem/Toggleitem";
 import axios from "axios";
 
 function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다. 여기서 데이터를 미리 불러오자.
 
-    const curriculum = {
+    const curriculum = { // 전체 커리큘럼
         "curriculum": [
             {
                 "days": 1,
@@ -253,7 +252,7 @@ function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다.
             },
         ]
     };
-    const checked = {
+    const checked = {//loadTeacherdata 실행하면 받아지는거.
         "name": '최문석',
         "checkedItem": [
             "d1i1",
@@ -271,9 +270,12 @@ const Teacher = () => {
     
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
-    const [cookies,,] = useCookies([]);
+
+    const [cookies,setCookie,] = useCookies([]);
     const [TeacherPageData, setTeacherPageData] = useState();
     const [searchParams, setSearchParams] = useSearchParams();
+    const expires = new Date();
+    expires.setMonth(expires.getMonth+1);
 
     var section = [];
     var teacherToken = '';
@@ -285,14 +287,16 @@ const Teacher = () => {
     setScreenSize();
     window.addEventListener('resize', setScreenSize);
     
-   //공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기.
+   //로더에서 해당 컴포넌트 공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기. 
    const get_gueryInfo = () => {
     section = searchParams.get("section").split(',');
     teacherToken = searchParams.get("teachertoken");
+    setCookie('teacherToken',teacherToken,expires);
+    console.log('첫번째')
    }
 
     // 선생님 페이지 get api
-    const loadTeacherdata = async() =>{
+    const loadTeacherdata = () =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             setTeacherPageData(response.data);
@@ -301,11 +305,24 @@ const Teacher = () => {
             console.log(error);
             
           });  
+          console.log('두번째')
     }
 
+    // 전체 커리큘럼 받아오기
+    const getCurriculum = async() =>{
+        await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
+        .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });  
+    }
+    
     useEffect(()=>{
-     loadTeacherdata();
-     get_gueryInfo();
+    get_gueryInfo();
+    loadTeacherdata();
+    getCurriculum();
     },[])
 
   return (

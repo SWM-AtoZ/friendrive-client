@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import style from './toggleitem.module.css';
-import { Link } from 'react-router-dom';
 import TeacherListItem from '../teacherListItem/TeacherListItem';
 import toggle from './toggle.png';
 const Toggleitem = ({ day, summary, filterdItem, checked})=> {
@@ -8,7 +7,6 @@ const Toggleitem = ({ day, summary, filterdItem, checked})=> {
     const listRef = useRef();
     const toggleRef = useRef(false);
     const toggleBtn = useRef();
-    const innerboxRef = useRef();
 
     const toggleControl = () => { // 토글이벤트 함수
         if(!listRef || !listRef.current){ // 아직 userRef에 값이 없을 때 예외처리.
@@ -18,13 +16,11 @@ const Toggleitem = ({ day, summary, filterdItem, checked})=> {
         if(toggleRef.current){
             listRef.current.style.maxHeight = 0;
             toggleBtn.current.style.transform = 'rotate(180deg)';
-          //  innerboxRef.current.style.borderRadius = '1rem';
         }
         else if(!toggleRef.current){
             // maxHeight = scroll 길이가 되고 메뉴가 열린다.
             listRef.current.style.maxHeight = `${listRef.current.scrollHeight}px`;
             toggleBtn.current.style.transform = 'rotate(0deg)';
-           // innerboxRef.current.style.borderRadius = '1rem 1rem 0 0';
         }
        toggleRef.current = !toggleRef.current;
 
@@ -32,7 +28,7 @@ const Toggleitem = ({ day, summary, filterdItem, checked})=> {
 
     return(
     <section className={style.section_container}>
-        <div ref={innerboxRef} className={style.section_innerbox} onClick={toggleControl}>
+        <div className={style.section_innerbox} onClick={toggleControl}>
             <div className={style.item_title}>Section {day}</div>
             <div className={style.item_summary}>{summary}</div>
             <div ref={toggleBtn} className={style.item_imgbox}>
