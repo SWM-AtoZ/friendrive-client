@@ -1,6 +1,7 @@
 import { useState,useRef, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import toggle from './toggle.png';
 import style from './teacher.module.css';
 import Toggleitem from "../../componenets/toggleItem/Toggleitem";
 import axios from "axios";
@@ -45,6 +46,65 @@ function loader() { // 컴포넌트가 렌더링 되기 전에 호출이 된다.
                 "itemId": "d1i1",
                 "day": 1,
                 "subject": "운전자세",
+                "content": [
+                    [
+                        "https://paillo.tistory.com",
+                        "문석이 블로그"
+                    ],
+                    [
+                        "https://youtube.com",
+                        "네이버"
+                    ]
+                ]
+            },
+            {
+                "itemId": "d1i2",
+                "day": 1,
+                "subject": "내부조작",
+                "content": [
+                    [
+                        "https://paillo.tistory.com",
+                        "문석이 블로그"
+                    ],
+                    [
+                        "https://youtube.com",
+                        "네이버"
+                    ]
+                ]
+            },{
+                "itemId": "d1i2",
+                "day": 1,
+                "subject": "내부조작",
+                "content": [
+                    [
+                        "https://paillo.tistory.com",
+                        "문석이 블로그"
+                    ],
+                    [
+                        "https://youtube.com",
+                        "네이버"
+                    ]
+                ]
+            },
+            {
+                "itemId": "d1i2",
+                "day": 1,
+                "subject": "내부조작",
+                "content": [
+                    [
+                        "https://paillo.tistory.com",
+                        "문석이 블로그"
+                    ],
+                    [
+                        "https://youtube.com",
+                        "네이버"
+                    ]
+                ]
+            },
+            {
+                "itemId": "d1i2",
+                "day": 1,
+                "subject": "내부조작",
                 "content": [
                     [
                         "https://paillo.tistory.com",
@@ -213,30 +273,25 @@ const Teacher = () => {
     const [curriculum, allitems ,checked] = data;   
     const [cookies,,] = useCookies([]);
 
-   
-    // 선생님 페이지 get api
+    function setScreenSize() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
     
+   //공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기.
+   const get_gueryInfo = () => {
+
+   }
+
+    // 선생님 페이지 get api
     const loadTeacherdata = async() =>{
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
-            console.log(response);
+            console.log('선생님데이터 다시불러오기.',response);
         })
         .catch(function (error) {
-            console.log(error);
-          });  
-    }
-
-    const body = {
-        token : cookies.teacherToken,
-        item : 'd1i2'
-    }
-
-    const postdata = async() =>{
-        axios.post("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/check",body)
-        .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
             console.log(error);
           });  
     }
@@ -260,7 +315,6 @@ const Teacher = () => {
             }
             return <Toggleitem {...prop}/>
         })}
-        <button onClick={postdata} style={{width: '40px', height:'40px'}}>post 체크</button>
     </section>
   );
 }

@@ -15,12 +15,6 @@ const Section = () => {
   // 체크된 아이템을 outletContext에서 추출한다.
   const checkedItem = useOutletContext().checked.checkedItem;
   
-  const navigate=useNavigate();
-
-  const goToDetail = (content,subject) => {
-    navigate('/detail', {state:{content:content, title:subject}})
-  }
-
     return(
       <div className='common_list_container'>
           <TopNavi title={`Section ${id}`}/>
