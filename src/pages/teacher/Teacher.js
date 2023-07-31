@@ -291,7 +291,7 @@ const Teacher = () => {
         axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             TeacherPageData= response.data;
-            console.log(TeacherPageData)
+            console.log(TeacherPageData.length)
         })
         .catch(function (error) {
             console.log(error);
