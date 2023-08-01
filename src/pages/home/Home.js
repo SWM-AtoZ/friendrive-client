@@ -2,6 +2,7 @@ import React, { useEffect,useRef,useState } from 'react';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
+import styled from "styled-components";
 import axios from 'axios';
 
 //slick-slider import
@@ -61,14 +62,14 @@ function Home() {
     centerPadding: "50px",
     adaptiveHeight: true,
     slidesToShow: 1,
-    speed: 500
+    speed: 500,
   };
   
   return (
     <section id={style.home_section}>
       {/* 현재 카드섹션 설명칸 */}
       <div className={style.section_explain}>
-        <Slider 
+        <ExplainSlider 
         asNavFor={nav2} 
         ref={(slider1) => setNav1(slider1)}
         fade={true}
@@ -80,12 +81,12 @@ function Home() {
             <div className={style.section_explain_discription}>{item.explain}</div>
           </div>
         ))}
-        </Slider>
+        </ExplainSlider>
       </div>
       {/* 카드섹션 슬라이드 */}
       <div className={style.section_card_container}>
         <div>
-          <Slider 
+          <CardSlider 
           {...settings} 
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}>
@@ -95,7 +96,7 @@ function Home() {
                     <div>{item.title}</div>
                   </div>
                 </div> ))}
-          </Slider>
+          </CardSlider>
         </div>           
       </div>
      <button onClick={isLogin} className={style.request_button}>요청하기</button>
@@ -105,3 +106,28 @@ function Home() {
 
 export default Home;
 
+const ExplainSlider = styled(Slider)`
+  position: relative;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+  .slick-slide div {
+    cursor: pointer;
+  }
+`;
+const CardSlider = styled(Slider)`
+  position: relative;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+  .slick-slide div {
+    cursor: pointer;
+  }
+  .slick-dots li {
+    margin:0;
+  }
+`;
