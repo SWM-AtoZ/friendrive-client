@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useRef } from 'react';
 import DetailList from '../../componenets/detailList/DetailList';
 import TopNavi from '../../componenets/topNavi/TopNavi';
+import '../home/slidecustom.css';
 
 //slick-slider import
 import Slider from "react-slick";
@@ -46,6 +47,21 @@ const Detail = ()=>{
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        appendDots: (dots) => (
+          <div
+            style={{
+              width: '100%',
+              position:'absolute',
+              bottom:'-8%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <ul> {dots} </ul>
+          </div>
+        ),
+        dotsClass: 'dots_custom'
       };
 
     // location객체로부터 클릭한 아이템의 정보 추출
