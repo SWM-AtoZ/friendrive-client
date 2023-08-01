@@ -63,6 +63,20 @@ function Home() {
     adaptiveHeight: true,
     slidesToShow: 1,
     speed: 500,
+    appendDots: (dots) => (
+      <div
+        style={{
+          width: '100%',
+          position: 'absolute',
+          bottom: '2%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <ul> {dots} </ul>
+      </div>
+    )
   };
   
   return (
@@ -128,6 +142,12 @@ const CardSlider = styled(Slider)`
     cursor: pointer;
   }
   .slick-dots li {
+    margin:0;
+
+    width:2rem;
+    height:2rem;
+  }
+  .slick-dots li button {
     margin:0;
   }
 `;
