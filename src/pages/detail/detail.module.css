@@ -15,8 +15,8 @@
 }
 
 .next_btn{
-    width:8%;
-    height: 8%;
+    width:10%;
+    height: 10%;
     position:absolute;
     right:3%;
     bottom: 40%;
@@ -28,8 +28,8 @@
 
 .prev_btn{
     transform: rotate(180deg);
-    width:8%;
-    height:8%;
+    width:10%;
+    height:10%;
     position:absolute;
     left: 3%;
     bottom: 40%;
