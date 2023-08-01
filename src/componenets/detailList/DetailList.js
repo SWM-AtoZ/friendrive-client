@@ -6,7 +6,7 @@ const temp_img='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbS
     return(
         <div className={style.content_inner_box}>
                 <div className={style.img_content} style={{backgroundImage:`url(${temp_img})`, backgroundRepeat:'no-repeat', backgroundSize :'100% 100%'}}></div>
-                <div className={style}>{description}</div>
+                <div className={style.content_description}>{description}</div>
         </div>
     )
 }
