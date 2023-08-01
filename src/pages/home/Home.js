@@ -67,7 +67,8 @@ function Home() {
       <div
         style={{
           width: '100%',
-          position: 'absolute',
+          position:'absolute',
+          bottom:'-8%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -107,7 +108,7 @@ function Home() {
               {curriculum.map((item,idx)=>(
                 <div onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
-                    <div>{item.title}</div>
+                    <div></div>
                   </div>
                 </div> ))}
           </CardSlider>
