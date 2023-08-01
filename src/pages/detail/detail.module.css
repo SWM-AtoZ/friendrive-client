@@ -15,13 +15,11 @@
 }
 
 .next_btn{
-    background-color: #F5DD00;
-    width:80px;
-    height: 40px;
-    border-radius: 6px;
+    width:8%;
+    height: 8%;
     position:absolute;
-    right: 13vw;
-    bottom: -15vh;
+    right:3%;
+    bottom: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,18 +27,19 @@
 }
 
 .prev_btn{
-    background-color: #F5DD00;
-    width:80px;
-    height: 40px;
-    border-radius: 6px;
+    transform: rotate(180deg);
+    width:8%;
+    height:8%;
     position:absolute;
-    left: 13vw;
-    bottom: -15vh;
+    left: 3%;
+    bottom: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .btn_text{
-    margin: auto;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }

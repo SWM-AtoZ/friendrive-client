@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import DetailList from '../../componenets/detailList/DetailList';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import '../home/slidecustom.css';
+import next from './next.png';
 
 //slick-slider import
 import Slider from "react-slick";
@@ -15,7 +16,7 @@ const PrevBtn = (props) =>{
   
 return(
     <div onClick={props.prev} className={style.prev_btn}>
-        <div className={style.btn_text}>이전</div>
+        <img src={next} className={style.btn_text}/>
     </div>
 )
 }
@@ -23,7 +24,7 @@ return(
 const NextBtn = (props) =>{
     return(
         <div onClick={props.next} className={style.next_btn}>
-            <div className={style.btn_text}>다음</div>
+            <img src={next} className={style.btn_text}/>
         </div>
     )
 }
