@@ -68,7 +68,7 @@ function Home() {
         style={{
           width: '100%',
           position: 'absolute',
-          bottom: '2%',
+          bottom: '5%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
