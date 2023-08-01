@@ -2,6 +2,7 @@ import React, { useEffect,useRef,useState } from 'react';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
+import './slidecustom.css';
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -74,7 +75,8 @@ function Home() {
       >
         <ul> {dots} </ul>
       </div>
-    )
+    ),
+    dotsClass: 'dots_custom'
   };
   
   return (
