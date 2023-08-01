@@ -110,7 +110,7 @@ function Home() {
               {curriculum.map((item,idx)=>(
                 <div onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
-                    <div className={style.card_button}>More Info</div>
+                    <div></div>
                   </div>
                 </div> ))}
           </CardSlider>
