@@ -84,6 +84,7 @@ function Home() {
     <section id={style.home_section}>
       {/* 현재 카드섹션 설명칸 */}
       <div className={style.section_explain}>
+        <div>
         <ExplainSlider 
         asNavFor={nav2} 
         ref={(slider1) => setNav1(slider1)}
@@ -97,6 +98,7 @@ function Home() {
           </div>
         ))}
         </ExplainSlider>
+        </div>
       </div>
       {/* 카드섹션 슬라이드 */}
       <div className={style.section_card_container}>
@@ -108,7 +110,7 @@ function Home() {
               {curriculum.map((item,idx)=>(
                 <div onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
-                    <div></div>
+                    <div className={style.card_button}>More Info</div>
                   </div>
                 </div> ))}
           </CardSlider>
