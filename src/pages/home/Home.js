@@ -59,7 +59,6 @@ function Home() {
     dots:true,
     centerMode: true,
     infinite: false,
-    centerPadding: "50px",
     adaptiveHeight: true,
     slidesToShow: 1,
     speed: 500,
@@ -68,7 +67,6 @@ function Home() {
         style={{
           width: '100%',
           position: 'absolute',
-          bottom: '5%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
