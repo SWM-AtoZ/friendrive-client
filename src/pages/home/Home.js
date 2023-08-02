@@ -92,7 +92,11 @@ function Home() {
         infinite={false}>
         {curriculum.map((item)=>(
           <div className={style.explain_container}>
-            <div className={style.section_explain_number}><div>{item.days}</div> 운전, 그게 뭔데?</div>
+            <div className={style.section_explain_number}>
+              <div className={style.days}>{item.days}
+            </div>
+               운전, 그게 뭔데?
+            </div>
             <div className={style.section_explain_title}><h1>{item.summary}</h1></div>
             <div className={style.section_explain_discription}>{item.explain}</div>
           </div>
