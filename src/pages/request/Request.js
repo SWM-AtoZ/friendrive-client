@@ -9,7 +9,7 @@ const Request = () => {
 const curriculum = useOutletContext().curriculum.curriculum;
 const checkRef = useRef([]);
 const [cookies,,] = useCookies([]);
-
+console.log(navigator.userAgent)
 //섹션의 수만큼의 크기를 가진 배열을 생성 추후에 해당 배열의 true 섹션만 쿼리스트링으로 표기
 const itemCheck = new Array(curriculum.length).fill(false);
 
@@ -68,7 +68,7 @@ const ShareTeacher = (checkArr) => {
         });
     }else{
         window.AndroidShareHandler.share(url);
-        alert("공유하기가 지원되지 않는 환경 입니다.")
+        alert("공유하기가 지원되지 않는 환경 입니다.");
     }
   }
 
