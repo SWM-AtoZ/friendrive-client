@@ -1,17 +1,24 @@
 import style from './request.module.css';
 import '../../global.css';
 import { useOutletContext } from 'react-router-dom';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import {CopyToClipboard} from "react-copy-to-clipboard/src";
 import TopNavi from '../../componenets/topNavi/TopNavi';
 
 const Request = () => {
 const curriculum = useOutletContext().curriculum.curriculum;
 const checkRef = useRef([]);
 const [cookies,,] = useCookies([]);
-console.log(navigator.userAgent)
+const [sharebtn, setSharebtn] = useState('true');
+
 //섹션의 수만큼의 크기를 가진 배열을 생성 추후에 해당 배열의 true 섹션만 쿼리스트링으로 표기
 const itemCheck = new Array(curriculum.length).fill(false);
+useEffect(()=>{
+    if(!navigator.canShare){
+        setSharebtn(false)
+    }
+},[])
 
 const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹션의 체크상태 itemCheck에 표시. 
     var click_section;        
@@ -26,7 +33,6 @@ const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹�
               
             }
             itemCheck[click_section] = !itemCheck[click_section];
-            console.log(itemCheck);
         }
         else{
             click_section = e.target.parentElement.id;
@@ -39,7 +45,7 @@ const clickbox = (e) =>{ //섹션박스 누르면 체크상태 변경, 각 섹�
               
             }
             itemCheck[click_section] = !itemCheck[click_section];
-            console.log(itemCheck);
+           
         }
         
     
@@ -55,6 +61,7 @@ function getSection(arr){
     return temp.join(',');
 }
 
+
 const ShareTeacher = (checkArr) => {
     //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
     const teachertoken=cookies.teacherToken;
@@ -67,7 +74,6 @@ const ShareTeacher = (checkArr) => {
             url: url,
         });
     }else{
-        window.AndroidShareHandler.share(url);
         alert("공유하기가 지원되지 않는 환경 입니다.");
     }
   }
@@ -84,7 +90,9 @@ const ShareTeacher = (checkArr) => {
            </div> 
         ))}
         </div>    
-        <button className={style.share_button} onClick={()=>{ShareTeacher(itemCheck)}}>공유하기</button>
+        {sharebtn?(<button className={style.share_button} onClick={()=>{ShareTeacher(itemCheck)}}>공유하기</button>):
+        (<CopyToClipboard text={'zzzzz'} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+        <button className={style.share_button}> 공유하기</button></CopyToClipboard>)}
     </div>)
 }
 
