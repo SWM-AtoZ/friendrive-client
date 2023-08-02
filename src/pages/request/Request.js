@@ -67,13 +67,8 @@ const ShareTeacher = (checkArr) => {
             url: url,
         });
     }else{
-        try {
-            navigator.clipboard.writeText(url);
-            alert('초대코드가 복사되었습니다!');
-        } catch (e) {
-            alert('초대코드 복사에 실패했습니다ㅜㅜ');
-        }
-        //alert("공유하기가 지원되지 않는 환경 입니다.")
+        window.AndroidShareHandler.share(url);
+        alert("공유하기가 지원되지 않는 환경 입니다.")
     }
   }
 
