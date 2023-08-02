@@ -59,15 +59,21 @@ const ShareTeacher = (checkArr) => {
     //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
     const teachertoken=cookies.teacherToken;
     const section =getSection(checkArr);
-    
+    const url = `https://friendrive.net/teacher?section=${section}&teachertoken=${teachertoken}`
     if (navigator.share) {
         navigator.share({
             title: '기록하며 성장하기',
             text: 'Hello World',
-            url: `https://friendrive.net/teacher?section=${section}&teachertoken=${teachertoken}`,
+            url: url,
         });
     }else{
-        alert("공유하기가 지원되지 않는 환경 입니다.")
+        try {
+            navigator.clipboard.writeText(url);
+            alert('초대코드가 복사되었습니다!');
+        } catch (e) {
+            alert('초대코드 복사에 실패했습니다ㅜㅜ');
+        }
+        //alert("공유하기가 지원되지 않는 환경 입니다.")
     }
   }
 
