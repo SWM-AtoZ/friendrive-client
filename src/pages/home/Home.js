@@ -14,6 +14,7 @@ import '../../slick-carousel/slick/slick-theme.css';
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
+  const [teacherToken, setTeacherToken] = useState();
   const navigate = useNavigate();
 
   const expires = new Date();
@@ -30,6 +31,7 @@ function Home() {
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
         setCookie('token', response.data.jwt.accessToken, expires);
+        getTeacherToken();
       })
       .catch(function (error) {
         alert('로그인에 실패하셨습니다.');
@@ -56,8 +58,21 @@ function Home() {
   }
 
   const ShareTeacher = () => {
-    console.log(cookies.teacherToken);
-    const url = `https://friendrive.net/teacher?teachertoken=${cookies.teacherToken}`;
+    axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
+      headers:{
+        Authorization: `Bearer ${cookies.token}`
+      }
+    })
+    .then((response)=>{
+      console.log(response);
+      setTeacherToken((response.data.token));
+      console.log(teacherToken);
+    })
+    .catch((response)=>{
+      console.log(response);
+    })
+
+    const url = `https://friendrive.net/teacher?teachertoken=${teacherToken}`;
   
     const handleCopyClipBoard = async (uri) => {
         try {
@@ -95,9 +110,9 @@ function Home() {
   }
 
   useEffect(()=>{
-    if(cookies.token){
-      getTeacherToken();
-    }
+    // if(cookies.token){
+    //   getTeacherToken();
+    // }
     if(code !== null){
       console.log(code);
          Login();
