@@ -102,7 +102,7 @@ function Home() {
       console.log(code);
          Login();
     }
-  },[cookies])
+  },[])
 
   const settings = {
     dots:true,
