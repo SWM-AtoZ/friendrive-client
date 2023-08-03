@@ -31,7 +31,7 @@ function Home() {
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
         setCookie('token', response.data.jwt.accessToken, expires);
-        getTeacherToken();
+        // getTeacherToken();
       })
       .catch(function (error) {
         alert('로그인에 실패하셨습니다.');
