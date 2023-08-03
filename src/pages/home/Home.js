@@ -30,8 +30,6 @@ function Home() {
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
         setCookie('token', response.data.jwt.accessToken, expires);
-        // window.location.href = 'http://localhost:3000/';
-        alert('로그인이 되었습니다.');
       })
       .catch(function (error) {
         alert('로그인에 실패하셨습니다.');
