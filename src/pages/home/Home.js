@@ -80,7 +80,7 @@ function Home() {
     if(cookies.token){
       getTeacherToken();
     }
-  },[])
+  },[cookies])
 
   const settings = {
     dots:true,
