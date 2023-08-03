@@ -271,12 +271,9 @@ const Teacher = () => {
     const data = useLoaderData(); //loader로 인해 반환된 값을 받는다.
     const [curriculum, allitems ,checked] = data;   
 
-    const [cookies,setCookie,] = useCookies([]);
     const [TeacherPageData, setTeacherPageData] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    const expires = new Date();
-    expires.setMonth(expires.getMonth+1);
-
+ 
     var teacherToken = '';
 
     function setScreenSize() {
@@ -286,12 +283,6 @@ const Teacher = () => {
     setScreenSize();
     window.addEventListener('resize', setScreenSize);
     
-   //로더에서 해당 컴포넌트 공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기. 
-   const get_gueryInfo = () => {
-    teacherToken = searchParams.get("teachertoken");
-    setCookie('teacherToken',teacherToken,expires);
-   }
-
     // 선생님 페이지 get api
     const loadTeacherdata = async() =>{
         teacherToken = searchParams.get("teachertoken");
@@ -318,7 +309,6 @@ const Teacher = () => {
     }
     
     useEffect(()=>{
-    //get_gueryInfo();
     loadTeacherdata();
     getCurriculum();
     },[])
