@@ -277,7 +277,6 @@ const Teacher = () => {
     const expires = new Date();
     expires.setMonth(expires.getMonth+1);
 
-    var section = [];
     var teacherToken = '';
 
     function setScreenSize() {
@@ -289,7 +288,6 @@ const Teacher = () => {
     
    //로더에서 해당 컴포넌트 공유 uri 쿼리스트링에서 선생님 토큰과 학생 선택 섹션 가져오기. 
    const get_gueryInfo = () => {
-    section = searchParams.get("section").split(',');
     teacherToken = searchParams.get("teachertoken");
     setCookie('teacherToken',teacherToken,expires);
    }
@@ -318,7 +316,7 @@ const Teacher = () => {
     }
     
     useEffect(()=>{
-    //get_gueryInfo();
+    get_gueryInfo();
     loadTeacherdata();
     getCurriculum();
     },[])
