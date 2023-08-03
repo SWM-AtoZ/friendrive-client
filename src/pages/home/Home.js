@@ -57,9 +57,9 @@ function Home() {
     })
   }
 
-  const ShareTeacher = () => {
+  const ShareTeacher = async () => {
     let teacherToken = ""
-    axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
+    await axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
       headers:{
         Authorization: `Bearer ${cookies.token}`
       }
