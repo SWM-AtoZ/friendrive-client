@@ -45,9 +45,9 @@ const Nav = () => {
             </div>
         ):
         (<div onClick={goHome} className={style.link} >
-        <svg  xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 29 30" fill="none">
-        <path d="M2.71875 15L13.5388 3.8069C14.0696 3.25773 14.9304 3.25773 15.4612 3.8069L26.2812 15M5.4375 12.1875V24.8438C5.4375 25.6204 6.04611 26.25 6.79688 26.25H11.7812V20.1563C11.7812 19.3796 12.3899 18.75 13.1406 18.75H15.8594C16.6101 18.75 17.2188 19.3796 17.2188 20.1563V26.25H22.2031C22.9539 26.25 23.5625 25.6204 23.5625 24.8438V12.1875M9.96875 26.25H19.9375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 22 21" fill="none">
+        <path d="M1 10.284L9.9545 1.32951C10.3938 0.890165 11.1062 0.890165 11.5455 1.3295L20.5 10.284M3.25 8.03401V18.159C3.25 18.7803 3.75368 19.284 4.375 19.284H8.5V14.409C8.5 13.7877 9.00368 13.284 9.625 13.284H11.875C12.4963 13.284 13 13.7877 13 14.409V19.284H17.125C17.7463 19.284 18.25 18.7803 18.25 18.159V8.03401M7 19.284H15.25" stroke="#D6D6D6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>  
         <div className={style.img_description}>홈</div>
         </div>)}
         {activeNav==='2'?(
