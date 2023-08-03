@@ -37,9 +37,7 @@ function Home() {
   }
 
   const ShareTeacher = () => {
-    //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
-    const teachertoken=cookies.teacherToken;
-    const url = `https://friendrive.net/teacher?teachertoken=${teachertoken}`;
+    const url = `https://friendrive.net/teacher?teachertoken=${cookies.teacherToken}`;
 
     const handleCopyClipBoard = async (uri) => {
         try {
