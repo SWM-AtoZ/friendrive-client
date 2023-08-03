@@ -1,37 +1,13 @@
-import style from './user.module.css';
-import KakaoLogin from '../../componenets/kakaoLogin/KakaoLogin';
-import { useNavigate } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 const User = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [cookies, setCookie, removeCookie] = useCookies(['']);
     const [user, setUser] = useState();
     
-    const params= new URL(window.location.href).searchParams;
-    const code = params.get('code');
-    const body = {
-        code:code,
-        domain:'https://friendrive.net'
-    }
-
-    //쿠키의 유효기간 한달로 지정
-    const expires = new Date();
-    expires.setMonth(expires.getMonth+1);
-
-    const Login = async () =>{
-      axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
-      .then(function (response) {
-        setCookie('token', response.data.jwt.accessToken, expires);
-        //window.location.href = 'http://localhost:3000/';
-        alert('로그인이 되었습니다.');
-      })
-      .catch(function (error) {
-        alert('로그인에 실패하셨습니다.');
-        console.log(error);
-      }); 
-    }
+   
 
     const getUserData = async () =>{ //유저 데이터 얻는 함수.
         axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
@@ -59,11 +35,6 @@ const User = () => {
     if(cookies.token){
       getUserData();
     }     
-    
-    // if(code !== null){
-    //   console.log(code);
-    //      Login();
-    // }
 },[])
     return (<div>
         <h1>유저페이지입니다.</h1>
