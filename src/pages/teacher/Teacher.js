@@ -273,7 +273,7 @@ const Teacher = () => {
 
     const [TeacherPageData, setTeacherPageData] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
- 
+    const [cookies,setCookie] = useCookies('teacher');
     var teacherToken = '';
 
     function setScreenSize() {
@@ -286,6 +286,9 @@ const Teacher = () => {
     // 선생님 페이지 get api
     const loadTeacherdata = async() =>{
         teacherToken = searchParams.get("teachertoken");
+       
+        // setCookie('teacher',teacherToken); // 쿠키값에 바로 안들어가고 searchParams앞에 await키워드를 붙여주면 바로 들어감 teacherToken에는 바로 들어가지는데 왜 await키워드를 붙이면 문제없이 되는건지 이해가 안됨.
+        
         await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${teacherToken}`)
         .then(function (response) {
             console.log(response.data);

@@ -14,7 +14,10 @@ import '../../slick-carousel/slick/slick-theme.css';
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
+  const [testcookies,setTestCookie,] = useCookies(['test']);
   const navigate = useNavigate();
+  setTestCookie('test','asdasdasd');
+  console.log(testcookies.text);
 
   const [nav1,setNav1] = useState(null)
   const [nav2,setNav2] = useState(null)
