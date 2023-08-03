@@ -56,8 +56,9 @@ function Home() {
   }
 
   const ShareTeacher = () => {
+    console.log(cookies.teacherToken);
     const url = `https://friendrive.net/teacher?teachertoken=${cookies.teacherToken}`;
-    console.log(url)
+  
     const handleCopyClipBoard = async (uri) => {
         try {
           await navigator.clipboard.writeText(uri);
@@ -80,7 +81,6 @@ function Home() {
   }
 
   const isLogin = () => {
-    
     if(cookies.token){
      ShareTeacher();
     }
