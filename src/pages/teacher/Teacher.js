@@ -294,6 +294,8 @@ const Teacher = () => {
 
     // 선생님 페이지 get api
     const loadTeacherdata = async() =>{
+        teacherToken = searchParams.get("teachertoken");
+        setCookie('teacherToken',teacherToken,expires);
         await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             console.log(response.data);
@@ -317,7 +319,7 @@ const Teacher = () => {
     }
     
     useEffect(()=>{
-    get_gueryInfo();
+    //get_gueryInfo();
     loadTeacherdata();
     getCurriculum();
     },[])
