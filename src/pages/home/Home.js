@@ -35,8 +35,10 @@ function Home() {
       console.log(response);
     })
   }
+
   const ShareTeacher = () => {
     //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
+    console.log(cookies.teacherToken);
     const teachertoken=cookies.teacherToken;
     const url = `https://friendrive.net/teacher?teachertoken=${teachertoken}`;
 
