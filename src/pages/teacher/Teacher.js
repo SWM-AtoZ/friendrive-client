@@ -296,6 +296,7 @@ const Teacher = () => {
     const loadTeacherdata = async() =>{
         await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
+            console.log(response.data);
             setTeacherPageData(response.data);
         })
         .catch(function (error) {
