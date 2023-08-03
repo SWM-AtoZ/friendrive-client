@@ -272,7 +272,7 @@ const Teacher = () => {
     const [curriculum, allitems ,checked] = data;   
 
     const [cookies,setCookie,] = useCookies([]);
-    const [TeacherPageData, setTeacherPageData] = useState();
+    const [TeacherPageData, setTeacherPageData] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const expires = new Date();
     expires.setMonth(expires.getMonth+1);
