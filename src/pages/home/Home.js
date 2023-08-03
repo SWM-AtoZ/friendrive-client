@@ -14,7 +14,7 @@ import '../../slick-carousel/slick/slick-theme.css';
 function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
-  const [teacherToken, setTeacherToken] = useState();
+  // const [teacherToken, setTeacherToken] = useState();
   const navigate = useNavigate();
 
   const expires = new Date();
@@ -58,14 +58,16 @@ function Home() {
   }
 
   const ShareTeacher = () => {
+    let teacherToken = ""
     axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
       headers:{
         Authorization: `Bearer ${cookies.token}`
       }
     })
     .then((response)=>{
-      console.log(response);
-      setTeacherToken((response.data.token));
+      console.log(response.data.token);
+      teacherToken = response.data.token;
+      // setTeacherToken((response.data.token));
       console.log(teacherToken);
     })
     .catch((response)=>{
