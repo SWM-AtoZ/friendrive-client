@@ -15,8 +15,29 @@ function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
   const navigate = useNavigate();
+
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
+
+  const params= new URL(window.location.href).searchParams;
+    const code = params.get('code');
+    const body = {
+        code:code,
+        domain:'https://friendrive.net'
+    }
+
+    const Login = async () =>{
+      axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
+      .then(function (response) {
+        setCookie('token', response.data.jwt.accessToken, expires);
+        // window.location.href = 'http://localhost:3000/';
+        alert('로그인이 되었습니다.');
+      })
+      .catch(function (error) {
+        alert('로그인에 실패하셨습니다.');
+        console.log(error);
+      }); 
+    }
 
   const [nav1,setNav1] = useState(null)
   const [nav2,setNav2] = useState(null)
@@ -38,7 +59,7 @@ function Home() {
 
   const ShareTeacher = () => {
     const url = `https://friendrive.net/teacher?teachertoken=${cookies.teacherToken}`;
-
+    console.log(url)
     const handleCopyClipBoard = async (uri) => {
         try {
           await navigator.clipboard.writeText(uri);
@@ -61,6 +82,7 @@ function Home() {
   }
 
   const isLogin = () => {
+    
     if(cookies.token){
      ShareTeacher();
     }
@@ -77,6 +99,10 @@ function Home() {
   useEffect(()=>{
     if(cookies.token){
       getTeacherToken();
+    }
+    if(code !== null){
+      console.log(code);
+         Login();
     }
   },[cookies])
 

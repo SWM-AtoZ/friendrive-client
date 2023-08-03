@@ -13,7 +13,7 @@ const User = () => {
     const code = params.get('code');
     const body = {
         code:code,
-        domain:'https://friendrive.net/user'
+        domain:'https://friendrive.net'
     }
 
     //쿠키의 유효기간 한달로 지정
@@ -24,7 +24,7 @@ const User = () => {
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
         setCookie('token', response.data.jwt.accessToken, expires);
-        window.location.href = 'https://friendrive.net';
+        // window.location.href = 'http://localhost:3000/';
         alert('로그인이 되었습니다.');
       })
       .catch(function (error) {
@@ -60,10 +60,10 @@ const User = () => {
       getUserData();
     }     
     
-    if(code !== null){
-      console.log(code);
-         Login();
-    }
+    // if(code !== null){
+    //   console.log(code);
+    //      Login();
+    // }
 },[])
     return (<div>
         <h1>유저페이지입니다.</h1>
