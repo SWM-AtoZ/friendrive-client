@@ -16,6 +16,9 @@ function Home() {
   const [cookies,setCookie,] = useCookies(['token']);
   const navigate = useNavigate();
 
+  const [nav1,setNav1] = useState(null)
+  const [nav2,setNav2] = useState(null)
+
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
 
@@ -36,9 +39,6 @@ function Home() {
         console.log(error);
       }); 
     }
-
-  const [nav1,setNav1] = useState(null)
-  const [nav2,setNav2] = useState(null)
 
   const ShareTeacher = async () => {
     let teacherToken = ""
