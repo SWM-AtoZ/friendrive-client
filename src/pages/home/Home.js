@@ -35,10 +35,35 @@ function Home() {
       console.log(response);
     })
   }
+  const ShareTeacher = () => {
+    //티처토큰과, 체크된 섹션의 숫자 구해서 쿼리스트링에 담아주기.
+    const teachertoken=cookies.teacherToken;
+    const url = `https://friendrive.net/teacher?teachertoken=${teachertoken}`;
+
+    const handleCopyClipBoard = async (uri) => {
+        try {
+          await navigator.clipboard.writeText(uri);
+          alert('클립보드에 링크가 복사되었습니다.');
+        } catch (e) {
+          alert('복사에 실패하였습니다');
+          console.log(e);
+        }
+    };
+
+    if (navigator.share) {
+        navigator.share({
+            title: '운전연수 요청',
+            text: '운전연수 요청을 받아주세요!',
+            url: url,
+        });
+    }else{
+       handleCopyClipBoard(url);
+    }
+  }
 
   const isLogin = () => {
     if(cookies.token){
-      navigate('/request')
+     ShareTeacher();
     }
     else{
       alert('로그인이 필요힌 서비스입니다');

@@ -9,7 +9,6 @@ import { CookiesProvider } from 'react-cookie';
 import App from './App';
 import Home from './pages/home/Home';
 import Detail from './pages/detail/Detail';
-import Request from './pages/request/Request';
 import Section from './pages/section/Section';
 import Supplyment from './pages/supplyment/Supplyment';
 import User from './pages/user/User';
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
       {
         path:'detail',
         element:<Detail/>,
-      },
-      {
-        path:'request',
-        element:<Request/>,
       },
       {
         path:'section',
