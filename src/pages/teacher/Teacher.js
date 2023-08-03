@@ -293,8 +293,8 @@ const Teacher = () => {
    }
 
     // 선생님 페이지 get api
-    const loadTeacherdata = () =>{
-        axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
+    const loadTeacherdata = async() =>{
+        await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${cookies.teacherToken}`)
         .then(function (response) {
             setTeacherPageData(response.data);
         })
