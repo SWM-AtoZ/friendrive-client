@@ -9,10 +9,10 @@ const CommonList = ({content, subject, check}) => {
     //체크 되어있으면 연습필요로 체크
     
     return(
-        <div onClick={()=>{navigate('/detail', {state:{content:content, title:subject}})}} className={style.section_list_item}>
+        <div onClick={()=>{window.location.href = `${content}`;}} className={style.section_list_item}>
                     <div className={style.subject_item_box}>
                     <div className={style.pass_box}>
-                        {check?(<div></div>):(<img className={style.pass_img} src={pass}/>)}
+                        {check?(<img className={style.pass_img} src={pass}/>):(<div></div>)}
                     </div>
                     <div className={style.subject_img_box}>
                         <img className={style.subject_img} src={temp}/>

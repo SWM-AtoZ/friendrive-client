@@ -18,19 +18,19 @@ import '../../slick-carousel/slick/slick-theme.css';
 
 function Home() {
   const dayImg = [day1,day2,day3,day4,day5];
-  const {curriculum} = useOutletContext().curriculum;
+  const  curriculumData= useOutletContext().curriculum;
+  const curriculum = curriculumData.curriculum;
+
   const [cookies,setCookie,] = useCookies(['token']);
-  const [testcookies,setTestCookie,] = useCookies(['test']);
   var user='';
   const navigate = useNavigate();
-  setTestCookie('test','asdasdasd');
-  console.log(testcookies.text);
 
   const [nav1,setNav1] = useState(null)
   const [nav2,setNav2] = useState(null)
 
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
+
 
   const params= new URL(window.location.href).searchParams;
     const code = params.get('code');
@@ -160,7 +160,7 @@ function Home() {
               <div className={style.days}>
                 <div>{item.days}</div>
                 </div>
-               <div>운전, 그게 뭔데?</div>
+               <div>{item.question}</div>
             </div>
             <div className={style.section_explain_title}><h1>{item.summary}</h1></div>
             <div className={style.section_explain_discription}>{item.explain}</div>
