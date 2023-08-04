@@ -83,7 +83,6 @@ box-sizing: border-box;
     height: 100%;
     position: relative;
     padding: 0.5rem;
-    border: 2px solid #c3c6ce;
     margin: auto;
     display: flex;
     flex-direction: column;
