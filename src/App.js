@@ -14,12 +14,13 @@ function App() {
     const[cookies,,] = useCookies([]);
     const [curriculum, setCurriculum] = useState();
     const [checked,setChecked] = useState();
+    
 
     // API 받아오기.
     const getCurriculum = async() =>{
         await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
         .then(function (response) {
-            setCurriculum(response.data);
+            setTimeout(()=>{setCurriculum(response.data)},600)
           })
           .catch(function (error) {
             console.log(error);
@@ -45,7 +46,9 @@ function App() {
 
     
   	useEffect(() => {
+      if(!curriculum){
         getCurriculum();
+      }   
         if(cookies.token){
             getChecked();
         }
