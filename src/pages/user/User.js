@@ -58,7 +58,7 @@ const User = () => {
           <div className={style.profile_email}></div>
         </div>)}
         {user?(<button className={style.profile_logout} onClick={Logout}>로그아웃</button>):
-        (<button className={style.profile_logout} onClick={SignUp}>회원가입</button>)}        
+        (<button className={style.profile_logout} onClick={SignUp}>로그인</button>)}        
       </div>
       <div className={style.banner}>
         <img className={style.banner_img} src={banner} />
