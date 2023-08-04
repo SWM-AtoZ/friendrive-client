@@ -5,6 +5,11 @@ import style from './home.module.css';
 import './slidecustom.css';
 import styled from "styled-components";
 import axios from 'axios';
+import day1 from './dayimg/day1.png';
+import day2 from './dayimg/day2.png';
+import day3 from './dayimg/day3.png';
+import day4 from './dayimg/day4.png';
+import day5 from './dayimg/day5.png';
 
 //slick-slider import
 import Slider from "react-slick";
@@ -12,6 +17,7 @@ import '../../slick-carousel/slick/slick.css';
 import '../../slick-carousel/slick/slick-theme.css';
 
 function Home() {
+  const dayImg = [day1,day2,day3,day4,day5];
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
   const [testcookies,setTestCookie,] = useCookies(['test']);
@@ -115,7 +121,7 @@ function Home() {
         style={{
           width: '100%',
           position:'absolute',
-          bottom:'-8%',
+          bottom:'-35%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -140,7 +146,9 @@ function Home() {
         {curriculum.map((item)=>(
           <div className={style.explain_container}>
             <div className={style.section_explain_number}>
-              <div className={style.days}>{item.days}</div>
+              <div className={style.days}>
+                <div>{item.days}</div>
+                </div>
                <div>운전, 그게 뭔데?</div>
             </div>
             <div className={style.section_explain_title}><h1>{item.summary}</h1></div>
@@ -160,7 +168,14 @@ function Home() {
               {curriculum.map((item,idx)=>(
                 <div onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
-                    <div></div>
+                    <div className={style.day_days}>Day {item.days}</div>
+                    <div className={style.day_img}>
+                      <img src={dayImg[idx]}/>
+                    </div>
+                    <div className={style.day_info}>
+                      <div className={style.day_title}>{item.title}</div>
+                      <button className={style.go_section}>GO</button>
+                    </div>
                   </div>
                 </div> ))}
           </CardSlider>
@@ -196,9 +211,8 @@ const CardSlider = styled(Slider)`
   }
   .slick-dots li {
     margin:0;
-
-    width:2rem;
-    height:2rem;
+    width:90px;
+    height:90px;
   }
   .slick-dots li button {
     margin:0;

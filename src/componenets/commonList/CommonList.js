@@ -1,21 +1,28 @@
 import style from'./commonlist.module.css';
 import { useNavigate } from 'react-router-dom';
-import sad from './sad.png';
-import smile from './smile.png';
+import temp from './subject_temp.png';
+import pass from './pass.png';
 
 const CommonList = ({content, subject, check}) => {
 
     const navigate = useNavigate();
-
+    //체크 되어있으면 연습필요로 체크
     
     return(
-        <li onClick={()=>{navigate('/detail', {state:{content:content, title:subject}})}} className={style.section_list_item}>
-                  <div>{subject}</div>
-                  <div className={style.icon_box}>
-                    <img className={style.img} src={check?sad:smile}/>
-                    <div className={style.img_description}>{check?'연습필요':'잘했어요'}</div>
-                </div>
-        </li>
+        <div onClick={()=>{navigate('/detail', {state:{content:content, title:subject}})}} className={style.section_list_item}>
+                    <div className={style.subject_item_box}>
+                    <div className={style.pass_box}>
+                        {check?(<div></div>):(<img className={style.pass_img} src={pass}/>)}
+                    </div>
+                    <div className={style.subject_img_box}>
+                        <img className={style.subject_img} src={temp}/>
+                    </div>
+                    <div className={style.subject_title}>{subject}</div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M8.59003 7.41L13.17 12L8.59003 16.59L10 18L16 12L10 6L8.59003 7.41Z" fill="black"/>
+                    </svg>
+        </div>
     )
 }
 
