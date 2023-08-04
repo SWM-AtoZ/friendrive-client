@@ -1,4 +1,5 @@
 import React,{useState,useRef, useEffect} from 'react';
+import Loading from './pages/loading/Loading';
 import { Outlet } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -62,7 +63,7 @@ function App() {
   return (
     <>
     <section className='section_container'>
-      {curriculum?<Outlet context={{curriculum, checked}}/>:<div></div>}
+      {curriculum?<Outlet context={{curriculum, checked}}/>:<Loading/>}
     </section>
     <Nav/>
     </>

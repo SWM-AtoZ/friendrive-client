@@ -8,9 +8,8 @@ import { CookiesProvider } from 'react-cookie';
 //페이지 임포트
 import App from './App';
 import Home from './pages/home/Home';
-import Detail from './pages/detail/Detail';
 import Section from './pages/section/Section';
-import Supplyment from './pages/supplyment/Supplyment';
+import Loading from './pages/loading/Loading';
 import User from './pages/user/User';
 import Login from './pages/login/Login';
 import TeacherDetail from './pages/teacher/TeacherDetail';
@@ -27,10 +26,6 @@ const router = createBrowserRouter([
       {
         index : true, 
         element: <Home />,
-      },
-      {
-        path:'detail',
-        element:<Detail/>,
       },
       {
         path:'section',
@@ -54,6 +49,10 @@ const router = createBrowserRouter([
   {
     path:'teacherdetail',
     element:<TeacherDetail/>
+  },
+  {
+    path:'loading',
+    element:<Loading/>
   }
 ]);
 
