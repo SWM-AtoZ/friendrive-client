@@ -13,14 +13,15 @@ const Nav = () => {
         navigate('/');
     }
     const goToSupplyment = () => {
-        if(cookies.token){
-                navigate('/supplyment');
-                setActiveNav('2');
-        }
-        else{
-            alert('로그인이 필요한 서비스입니다.');
-            navigate('/login');
-        }
+        // if(cookies.token){
+        //         navigate('/supplyment');
+        //         setActiveNav('2');
+        // }
+        // else{
+        //     alert('로그인이 필요한 서비스입니다.');
+        //     navigate('/login');
+        // }
+        alert('준비중인 서비스입니다!');
     }
     const goToUser = () => {
         if(cookies.token){
