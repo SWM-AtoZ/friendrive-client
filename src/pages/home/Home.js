@@ -21,6 +21,7 @@ function Home() {
   const {curriculum} = useOutletContext().curriculum;
   const [cookies,setCookie,] = useCookies(['token']);
   const [testcookies,setTestCookie,] = useCookies(['test']);
+  var user='';
   const navigate = useNavigate();
   setTestCookie('test','asdasdasd');
   console.log(testcookies.text);
@@ -48,6 +49,16 @@ function Home() {
         console.log(error);
       }); 
     }
+    
+    const handleCopyClipBoard = async (uri) => {
+      try {
+        await navigator.clipboard.writeText(uri);
+        alert('클립보드에 링크가 복사되었습니다.');
+      } catch (e) {
+        alert('복사에 실패하였습니다');
+        console.log(e);
+      }
+   };
 
   const ShareTeacher = async () => {
     let teacherToken = ""
@@ -57,30 +68,18 @@ function Home() {
       }
     })
     .then((response)=>{
-      console.log(response.data.token);
       teacherToken = response.data.token;
-      console.log(teacherToken);
     })
     .catch((response)=>{
       console.log(response);
     })
 
     const url = `https://friendrive.net/teacher?teachertoken=${teacherToken}`;
-  
-    const handleCopyClipBoard = async (uri) => {
-        try {
-          await navigator.clipboard.writeText(uri);
-          alert('클립보드에 링크가 복사되었습니다.');
-        } catch (e) {
-          alert('복사에 실패하였습니다');
-          console.log(e);
-        }
-    };
 
     if (navigator.share) {
         navigator.share({
-            title: '운전연수 요청',
-            text: '운전연수 요청을 받아주세요!',
+            title: `${user}님의 운전연수 요청!`,
+            text: `${user}님의 초보 탈출을 도와주세요!`,
             url: url,
         });
     }else{
@@ -88,9 +87,21 @@ function Home() {
     }
   }
 
-  const isLogin = () => {
+  const isLogin = async() => {
     if(cookies.token){
-     ShareTeacher();
+
+   await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
+          headers: {
+              Authorization: `Bearer ${cookies.token}`
+          }
+      }).then(function (response) {
+          user = response.data.nickName;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });  
+
+    await ShareTeacher();
     }
     else{
       alert('로그인이 필요힌 서비스입니다');
