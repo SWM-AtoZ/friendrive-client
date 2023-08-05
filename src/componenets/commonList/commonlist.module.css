@@ -13,21 +13,21 @@
     color: black;
     font-size:1.5rem;
     font-weight:900;
+    position: relative;
 }
 
 .subject_item_box{
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .pass_box{
-    width: 3rem;
-    height: 3rem;
+    width: 15vw;
+    height: 15vw;
     position:absolute;
-    left:-15%;
-    top: -25%;
+    left: 0;
+    top: 10%;
 }
 
 .pass_box img{
