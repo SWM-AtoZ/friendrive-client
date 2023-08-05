@@ -15,7 +15,6 @@ const Teacher = () => {
     const [allitems, setAllitems] = useState();
     const [StudentName, setStudentName] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [cookies,setCookie] = useCookies('teacher');
     var teacherToken = '';
 
     function setScreenSize() {
@@ -30,7 +29,6 @@ const Teacher = () => {
         teacherToken = searchParams.get("teachertoken");
         await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${teacherToken}`)
         .then(function (response) {
-            console.log(response.data);
             setStudentName(response.data.name);
             setChecked(response.data.checkedItem);
         })
@@ -60,7 +58,7 @@ const Teacher = () => {
 
   return (
     <section className={style.teacher_section}>
-        {curriculum?(<>
+        {StudentName !==''?curriculum?(<>
         <div className={style.title}>{StudentName?(<div className={style.font}>{StudentName}님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
         {curriculum.map((item, idx)=>{
             //해당 섹션에 관련된 아이템 필터링
@@ -76,7 +74,7 @@ const Teacher = () => {
                 checked : checked,
             }
             return <Toggleitem {...prop}/>
-        })}</>):(<Loading/>)}   
+        })}</>):(<Loading/>) : (<div className={style.nonAuthority}>페이지 열람 권한이 없습니다.</div>)}   
     </section>
   );
 }
