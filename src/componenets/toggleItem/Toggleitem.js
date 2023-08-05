@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import style from './toggleitem.module.css';
 import TeacherListItem from '../teacherListItem/TeacherListItem';
 import toggle from './toggle.png';
-const Toggleitem = ({ day, summary, filterdItem, checked})=> {
+const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
     
     const listRef = useRef();
     const toggleRef = useRef(false);
@@ -29,8 +29,13 @@ const Toggleitem = ({ day, summary, filterdItem, checked})=> {
     return(
     <section className={style.section_container}>
         <div className={style.section_innerbox} onClick={toggleControl}>
-            <div className={style.item_title}>Section {day}</div>
+             <div className={style.item_img}>
+                <img src={img}/>
+            </div>
+            <div className={style.item_info_box}>
+            <div className={style.item_title}>Day {day}</div>
             <div className={style.item_summary}>{summary}</div>
+            </div>
             <div ref={toggleBtn} className={style.item_imgbox}>
                 <img src={toggle} className={style.toggle_img}/>
             </div>
@@ -40,13 +45,15 @@ const Toggleitem = ({ day, summary, filterdItem, checked})=> {
                 filterdItem.map((item)=>{
                     var check = false;
                     // 해당 아이템 체크 되어있는지 검사.
-                    for(var i=0; i<checked.checkedItem.length; i++){
-                        if(checked.checkedItem[i]===item.itemId){
+                    for(var i=0; i<checked.length; i++){
+                        if(checked[i]===item.itemId){
                             check = true;
                             break;
                         }
                     }
                     const props = {
+                        //여기에 filteredItem의 iconLink 넣어주기.
+                        key : item.itemId,
                         subject : item.subject,
                         content : item.content,
                         checked : check,

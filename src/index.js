@@ -15,7 +15,7 @@ import Login from './pages/login/Login';
 import TeacherDetail from './pages/teacher/TeacherDetail';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
-import {Teacher, loader as loadData} from './pages/teacher/Teacher';
+import Teacher from './pages/teacher/Teacher';
 import './reset.css';
 
 const router = createBrowserRouter([
@@ -43,7 +43,6 @@ const router = createBrowserRouter([
   },
   {
     path: "teacher",
-    loader: loadData,
     element: <Teacher />,
   },
   {
