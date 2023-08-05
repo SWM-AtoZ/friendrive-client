@@ -72,6 +72,7 @@ const Teacher = () => {
                 img : item.imgLink,
                 filterdItem : filteredItem,
                 checked : checked,
+                teacherToken : teacherToken
             }
             return <Toggleitem {...prop}/>
         })}</>):(<Loading/>) : (<div className={style.nonAuthority}>페이지 열람 권한이 없습니다.</div>)}   

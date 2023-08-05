@@ -5,14 +5,14 @@ import { useCookies } from 'react-cookie';
 import pass from './pass.png';
 import axios from 'axios';
 
-const TeacherListItem = ({subject, content, checked, itemId, icon}) =>{
+const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken}) =>{
     const navigate = useNavigate();
     const [checkState, setCheckState] = useState(checked);
     const [cookies,,] = useCookies([]);
     const passRef = useRef();
 
     const body = {
-        token : cookies.teacherToken,
+        token : teacherToken,
         item : itemId.toString()
     }
 

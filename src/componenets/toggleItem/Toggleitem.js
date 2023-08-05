@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import style from './toggleitem.module.css';
 import TeacherListItem from '../teacherListItem/TeacherListItem';
 import toggle from './toggle.png';
-const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
+const Toggleitem = ({ day, summary, filterdItem, checked, img, teacherToken})=> {
     
     const innerRef = useRef();
     const listRef = useRef();
@@ -71,7 +71,8 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
                         content : item.content,
                         checked : check,
                         itemId : item.itemId,
-                        icon : item.iconLink
+                        icon : item.iconLink,
+                        teacherToken : teacherToken
                     } 
                     return <TeacherListItem {...props}></TeacherListItem>
                 })
