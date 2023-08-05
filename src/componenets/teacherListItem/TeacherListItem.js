@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import pass from './pass.png';
 import axios from 'axios';
 
-const TeacherListItem = ({subject, content, checked, itemId, icon, maxHeight}) =>{
+const TeacherListItem = ({subject, content, checked, itemId, icon}) =>{
     const navigate = useNavigate();
     const [checkState, setCheckState] = useState(checked);
     const [cookies,,] = useCookies([]);

@@ -8,7 +8,7 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
     const listRef = useRef();
     const toggleRef = useRef(false);
     const toggleBtn = useRef();
-    const [toggleHeight, setToggleHeight] = useState(0);
+    
 
     const toggleControl = () => { // 토글이벤트 함수
         if(!listRef || !listRef.current){ // 아직 userRef에 값이 없을 때 예외처리.
@@ -18,17 +18,17 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
         if(toggleRef.current){
             listRef.current.style.maxHeight = 0;
             listRef.current.style.pointerEvents = 'none';
-            setToggleHeight(0);
             listRef.current.style.opacity = 0;
             innerRef.current.style.borderRadius = '1rem';
             toggleBtn.current.style.transform = 'rotate(180deg)';
+            //listRef.current.style.display = 'none';
         }
         else if(!toggleRef.current){
             // maxHeight = scroll 길이가 되고 메뉴가 열린다.
             innerRef.current.style.borderRadius = '1rem 1rem 0 0';
+            //listRef.current.style.display = 'block';
             listRef.current.style.maxHeight = `${listRef.current.scrollHeight}px`;
             listRef.current.style.pointerEvents = 'all';
-            setToggleHeight(listRef.current.scrollHeight);
             listRef.current.style.opacity = 1;
             toggleBtn.current.style.transform = 'rotate(0deg)';
         }
@@ -71,8 +71,7 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
                         content : item.content,
                         checked : check,
                         itemId : item.itemId,
-                        icon : item.iconLink,
-                        maxHeight : toggleHeight
+                        icon : item.iconLink
                     } 
                     return <TeacherListItem {...props}></TeacherListItem>
                 })

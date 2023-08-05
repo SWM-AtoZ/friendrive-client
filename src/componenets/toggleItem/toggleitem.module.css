@@ -8,7 +8,7 @@
 .container_innerbox{
     background-color: #FFD83A;
     border-radius: 1rem;
-
+    padding-top: 2%;
 }
 
 .section_innerbox{
@@ -19,7 +19,8 @@
     color: black;
     border-radius: 1rem;
     box-sizing: border-box;
-    padding: 0.6rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
     transition: border-radius 0.1s ease-in-out;
     display: flex;
     align-items: center;
@@ -27,8 +28,9 @@
 }
 .item_img{
     width: 4.7rem;
-    height: 4.7rem;
+    height: 100%;
     border-radius: 1rem;
+    overflow: hidden;
 }
 
 .item_img img{
@@ -77,6 +79,7 @@
     background-color: #FFD83A;
     border-radius: 0 0 1rem 1rem;
     padding-top:5px;
+    /* display: none; */
     padding-bottom:3%;
     margin-bottom: 5px;
     pointer-events: none;
