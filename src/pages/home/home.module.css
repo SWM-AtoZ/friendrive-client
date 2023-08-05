@@ -97,8 +97,8 @@ box-sizing: border-box;
 }
 
 .day_img{
-    width : 100%;
-    height : 70%;
+    /* width : 100%; */
+    /* height : 70%; */
     border-radius: 1rem;
 }
 
