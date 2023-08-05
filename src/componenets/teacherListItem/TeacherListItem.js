@@ -17,6 +17,7 @@ const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken})
     }
 
     const postdata = async() =>{
+        console.log(body);
         axios.post("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/check",body)
         .then(function (response) {
             console.log(response);
