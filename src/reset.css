@@ -49,6 +49,7 @@ table {
 
 html{
 	height: 100vh;
+	background-color: white;
 }
 
 body{
@@ -57,6 +58,7 @@ body{
 	max-width: 450px;
 	margin: 0 auto;
 	overflow: hidden;
+	background-color: #202632;
 }
 
 #root{
