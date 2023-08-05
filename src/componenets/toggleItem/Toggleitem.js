@@ -4,6 +4,7 @@ import TeacherListItem from '../teacherListItem/TeacherListItem';
 import toggle from './toggle.png';
 const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
     
+    const innerRef = useRef();
     const listRef = useRef();
     const toggleRef = useRef(false);
     const toggleBtn = useRef();
@@ -15,10 +16,14 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
 
         if(toggleRef.current){
             listRef.current.style.maxHeight = 0;
+            listRef.current.style.opacity = 0;
+            innerRef.current.style.borderRadius = '1rem';
             toggleBtn.current.style.transform = 'rotate(180deg)';
         }
         else if(!toggleRef.current){
             // maxHeight = scroll 길이가 되고 메뉴가 열린다.
+            innerRef.current.style.borderRadius = '1rem 1rem 0 0';
+            listRef.current.style.opacity = 1;
             listRef.current.style.maxHeight = `${listRef.current.scrollHeight}px`;
             toggleBtn.current.style.transform = 'rotate(0deg)';
         }
@@ -28,7 +33,9 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
 
     return(
     <section className={style.section_container}>
-        <div className={style.section_innerbox} onClick={toggleControl}>
+        <div className={style.container_innerbox}>
+            
+        <div ref={innerRef} className={style.section_innerbox} onClick={toggleControl}>
              <div className={style.item_img}>
                 <img src={img}/>
             </div>
@@ -39,16 +46,18 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
             <div ref={toggleBtn} className={style.item_imgbox}>
                 <img src={toggle} className={style.toggle_img}/>
             </div>
-        </div>
-        <div ref={listRef} className={style.toggle}>
+            </div>
+            <div ref={listRef} className={style.toggle}>
             {
                 filterdItem.map((item)=>{
                     var check = false;
                     // 해당 아이템 체크 되어있는지 검사.
-                    for(var i=0; i<checked.length; i++){
-                        if(checked[i]===item.itemId){
-                            check = true;
-                            break;
+                    if(checked){
+                        for(var i=0; i<checked.length; i++){
+                            if(checked[i]===item.itemId){
+                                check = true;
+                                break;
+                            }
                         }
                     }
                     const props = {
@@ -62,6 +71,7 @@ const Toggleitem = ({ day, summary, filterdItem, checked, img})=> {
                     return <TeacherListItem {...props}></TeacherListItem>
                 })
             }
+        </div>
         </div>
     </section>
     )
