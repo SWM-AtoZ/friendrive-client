@@ -132,7 +132,7 @@ function Home() {
         style={{
           width: '100%',
           position:'absolute',
-          bottom:'-20%',
+          bottom:'-15%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
