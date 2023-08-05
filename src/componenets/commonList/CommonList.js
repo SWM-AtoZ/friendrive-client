@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import temp from './subject_temp.png';
 import pass from './pass.png';
 
-const CommonList = ({content, subject, check}) => {
+const CommonList = ({content, subject, check, icon}) => {
 
     const navigate = useNavigate();
     //체크 되어있으면 연습필요로 체크
@@ -15,7 +15,7 @@ const CommonList = ({content, subject, check}) => {
                         {check?(<img className={style.pass_img} src={pass}/>):(<div></div>)}
                     </div>
                     <div className={style.subject_img_box}>
-                        <img className={style.subject_img} src={temp}/>
+                        <img className={style.subject_img} src={icon}/>
                     </div>
                     <div className={style.subject_title}>{subject}</div>
                     </div>

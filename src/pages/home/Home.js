@@ -110,7 +110,7 @@ function Home() {
   }
 
   const goToSection = (days) => {
-    navigate(`/section`,{state:{section:days}})
+    navigate(`/section`,{state:{day:days}})
   }
 
   useEffect(()=>{
