@@ -15,7 +15,7 @@ const Teacher = () => {
     const [allitems, setAllitems] = useState();
     const [StudentName, setStudentName] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    var teacherToken = '';
+    const teacherToken = searchParams.get("teachertoken");
 
     function setScreenSize() {
         let vh = window.innerHeight * 0.01;
@@ -26,7 +26,6 @@ const Teacher = () => {
     
     // 선생님 페이지 get api
     const loadTeacherdata = async() =>{
-        teacherToken = searchParams.get("teachertoken");
         await axios.get(`https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher?token=${teacherToken}`)
         .then(function (response) {
             setStudentName(response.data.name);
