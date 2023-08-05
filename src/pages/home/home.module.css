@@ -1,12 +1,12 @@
 #home_section{
 height: 100%;
 position: relative;
-overflow: hidden;
+overflow-x:hidden;
 }
 
 .section_explain{
 width: 100%;
-height: 35%;
+height: 30%;
 padding-top: 10%;
 padding-left: 4%;
 padding-right: 4%;
@@ -60,14 +60,14 @@ padding-left: 5px;
 /* 슬라이드섹션 css */
 .section_card_container{
 width:100%;
-height: 65%;
+height: 70%;
 padding-top: 8%;
 box-sizing: border-box;
 }
 
 .section_card_item{
     width: 100%;
-    height:calc(var(--vh, 1vh) * 37);
+    height: calc(var(--vh, 1vh) * 45);
     display: flex;
     align-items: center;
     justify-content: center;
