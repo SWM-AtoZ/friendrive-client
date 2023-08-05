@@ -50,6 +50,7 @@ table {
 html{
 	height: 100vh;
 	background-color: white;
+	white-space: pre-wrap;
 }
 
 body{

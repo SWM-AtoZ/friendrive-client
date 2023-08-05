@@ -192,7 +192,9 @@ function Home() {
           </CardSlider>
         </div>           
       </div>
-     <button onClick={isLogin} className={style.request_button}>요청하기</button>
+     <div onClick={isLogin} className={style.request_button}>
+      <div>{`요청\n하기`}</div>
+     </div>
     </section>
   );
 }

@@ -144,4 +144,8 @@ box-sizing: border-box;
     height: 50px;
     border-radius: 50%;
     border-style: 0;
+    background-color: #FF9900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
