@@ -10,8 +10,6 @@
 .common_list_innerbox{
     width: 100%;
     height: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
