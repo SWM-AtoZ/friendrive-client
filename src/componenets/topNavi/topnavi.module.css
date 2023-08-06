@@ -1,17 +1,15 @@
 .topNavi{
     display: flex;
     align-items: center;
-    justify-content: space-between;    
+    justify-content: center;    
     height: 5%;
-    box-sizing: border-box;
     margin-bottom: 2vh;
+    position:relative;
 }
 
 .back{
-    padding-left: 4vw;
-}
-.blank{
-    padding-right: 4vw;
+ position:absolute;
+ left: 5%;
 }
 
 .naviTitle{

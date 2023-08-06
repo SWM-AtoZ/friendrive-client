@@ -13,7 +13,6 @@ const TopNavi = ({title}) => {
           </svg>
           </div>
           <div className={style.naviTitle}>{title}</div>
-          <div className={style.blank}></div>
         </div>
     )
 }
