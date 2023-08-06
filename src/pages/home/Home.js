@@ -58,7 +58,17 @@ function Home() {
         await navigator.clipboard.writeText(uri);
         alert('클립보드에 링크가 복사되었습니다.');
       } catch (e) {
-        alert('복사에 실패하였습니다');
+        // alert('복사에 실패하였습니다');
+        const element = document.createElement('textarea');
+        element.value = uri;
+element.setAttribute('readonly', '');
+element.style.position = 'fixed';
+element.style.opacity = '0';
+document.body.appendChild(element);
+element.select();
+const copyValue = document.execCommand('copy');
+document.body.removeChild(element);
+alert(`주소 복사가 완료되었습니다.`);
         console.log(e);
       }
    };
