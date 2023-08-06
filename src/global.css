@@ -13,7 +13,7 @@
     box-sizing: border-box;
     padding: 0 2% 0 2%;
     overflow-x: hidden;
-    overflow-y:overlay;
+    overflow-y: auto;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none;
 }
