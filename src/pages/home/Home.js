@@ -1,5 +1,5 @@
 import React, { useEffect,useRef,useState } from 'react';
-import {useOutletContext, useNavigate } from 'react-router-dom';
+import {useOutletContext, useNavigate, useLocation } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
 import './slidecustom.css';
@@ -26,8 +26,11 @@ function Home() {
   const navigate = useNavigate();
 
   const [nav1,setNav1] = useState(null)
-  const [nav2,setNav2] = useState(null)
-
+  const [nav2,setNav2] = useState(null) 
+  
+  // const location = useLocation();
+  // const day = location.state?location.state.day:0;
+  
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
 
@@ -110,6 +113,7 @@ function Home() {
   }
 
   const goToSection = (days) => {
+    localStorage.setItem('initialSlide',`${days-1}`);
     navigate(`/section`,{state:{day:days}})
   }
 
@@ -118,6 +122,7 @@ function Home() {
       console.log(code);
          Login();
     }
+
   },[])
 
   const settings = {
@@ -127,6 +132,7 @@ function Home() {
     adaptiveHeight: true,
     slidesToShow: 1,
     speed: 500,
+    initialSlide: +localStorage.getItem('initialSlide')?+localStorage.getItem('initialSlide'):0,
     appendDots: (dots) => (
       <div
         style={{
