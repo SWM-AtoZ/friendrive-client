@@ -56,7 +56,7 @@ function Home() {
     const handleCopyClipBoard = async (uri) => {
       try {
         await navigator.clipboard.writeText(uri);
-        alert('클립보드에 링크가 복사되었습니다.');
+        alert('클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!');
       } catch (e) {
         // alert('복사에 실패하였습니다');
         const element = document.createElement('textarea');
@@ -68,7 +68,7 @@ document.body.appendChild(element);
 element.select();
 const copyValue = document.execCommand('copy');
 document.body.removeChild(element);
-alert(`주소 복사가 완료되었습니다.`);
+alert(`클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!`);
         console.log(e);
       }
    };
