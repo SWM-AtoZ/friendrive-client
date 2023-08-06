@@ -2,15 +2,20 @@ import style from './section.module.css';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import CommonList from '../../componenets/commonList/CommonList';
-import { useLocation, useOutletContext} from 'react-router-dom';
+import { useLocation, useOutletContext,useSearchParams} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Section = () => {
   const [cookies,,] = useCookies(['token']);
   const location = useLocation();
   const checkedData = useOutletContext().checked;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const day = Number(searchParams.get("day"));
+
+
   //선택된 섹션의 몇번째 섹션인지 location 객체에서 추출
-  const day = location.state.day;
+  // const day = location.state.day;
+
 
   // outlet context의 전역 객체의 items에서 id에 대응하는 항목만 추출
   const Arryitem = useOutletContext().curriculum.items.filter(item=>item.day===day );

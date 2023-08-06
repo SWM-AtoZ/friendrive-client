@@ -1,5 +1,5 @@
-import React, { useEffect,useRef,useState } from 'react';
-import {useOutletContext, useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
+import {useOutletContext, useNavigate, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
 import './slidecustom.css';
@@ -27,9 +27,6 @@ function Home() {
 
   const [nav1,setNav1] = useState(null)
   const [nav2,setNav2] = useState(null) 
-  
-  // const location = useLocation();
-  // const day = location.state?location.state.day:0;
   
   const expires = new Date();
   expires.setMonth(expires.getMonth+1);
@@ -122,10 +119,6 @@ function Home() {
     }
   }
 
-  const goToSection = (days) => {
-    //localStorage.setItem('initialSlide',`${days-1}`);
-    navigate(`/section`,{state:{day:days}})
-  }
 
   useEffect(()=>{
     if(code !== null){
@@ -193,7 +186,8 @@ function Home() {
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}>
               {curriculum.map((item,idx)=>(
-                <div key={item.days} onClick={()=>{goToSection(item.days)}} className={style.section_card_item}>
+                <Link to={`/day?day=${item.days}`}>
+                   <div key={item.days}  className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
                     <div className={style.day_days}>Day {item.days}</div>
                     <div className={style.day_img}>
@@ -204,7 +198,9 @@ function Home() {
                       <button className={style.go_section}>GO</button>
                     </div>
                   </div>
-                </div> ))}
+                </div>
+                </Link>
+                 ))}
           </CardSlider>
         </div>           
       </div>

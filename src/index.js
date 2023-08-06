@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:'section',
+        path:'day',
         element:<Section/>,
       },
       {
