@@ -13,5 +13,5 @@
     box-sizing: border-box;
     padding: 0 2% 0 2%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y:overlay;
 }
