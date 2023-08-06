@@ -27,8 +27,9 @@ const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken})
           });  
     }
 
-    const chagestate = () =>{
+    const chagestate = (e) =>{
         //  체크 할 때마다 서버에 전송.
+        e.stopPropagation();
        setCheckState(prev => !prev);
         if(checkState){
             passRef.current.style.opacity = 0;
@@ -57,7 +58,9 @@ const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken})
     },[])
 
     return(
-    <div className={style.list_container}>
+    <div onClick={(e)=>{
+        goToGuide(content)
+    }} className={style.list_container}>
         <div className={style.info_box}>
         <div className={style.subject_icon_box}>
             <div className={style.subject_icon}> 
@@ -69,7 +72,7 @@ const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken})
         </div>
         <div className={style.subject_title}>{subject}</div>
         </div>
-        <div onClick={chagestate} >
+        <div className={style.stateBtn} onClick={chagestate} >
         {checkState?
         (
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -85,11 +88,7 @@ const TeacherListItem = ({subject, content, checked, itemId, icon,teacherToken})
             </svg>
         )}
         </div>
-        <div onClick={(e)=>{
-            console.log(e.target);
-            
-                goToGuide(content)
-            }} className={style.icon_box}>
+        <div className={style.icon_box}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M8.59003 7.41L13.17 12L8.59003 16.59L10 18L16 12L10 6L8.59003 7.41Z" fill="black"/>
                 </svg>

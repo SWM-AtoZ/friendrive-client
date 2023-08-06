@@ -113,7 +113,7 @@ function Home() {
   }
 
   const goToSection = (days) => {
-    localStorage.setItem('initialSlide',`${days-1}`);
+    //localStorage.setItem('initialSlide',`${days-1}`);
     navigate(`/section`,{state:{day:days}})
   }
 
@@ -129,10 +129,10 @@ function Home() {
     dots:true,
     centerMode: true,
     infinite: false,
+    slidesToScroll:1,
     adaptiveHeight: true,
     slidesToShow: 1,
     speed: 500,
-    initialSlide: +localStorage.getItem('initialSlide')?+localStorage.getItem('initialSlide'):0,
     appendDots: (dots) => (
       <div
         style={{
