@@ -20,7 +20,7 @@ const Section = () => {
   
     return(
       <div className='common_list_container'>
-          <TopNavi title={`Section ${day}`}/>
+          <TopNavi title={`Day ${day}`}/>
           {cookies.token?(<ul className='common_list_innerbox'>
               {Arryitem.map((item)=>{
                 var check = checkedItem.includes(item.itemId);
