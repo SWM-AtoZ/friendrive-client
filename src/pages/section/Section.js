@@ -25,13 +25,13 @@ const Section = () => {
               {Arryitem.map((item)=>{
                 var check = checkedItem.includes(item.itemId);
                 return(
-                <CommonList content={item.content} subject={item.subject} check={check} icon={item.iconLink}/>
+                <CommonList key={item.itemId} content={item.content} subject={item.subject} check={check} icon={item.iconLink}/>
               )})}
           </ul>):(<ul className='common_list_innerbox'>
               {Arryitem.map((item)=>{
                 var check = false;
                 return(
-                <CommonList content={item.content} subject={item.subject} check={check} icon={item.iconLink}/>
+                <CommonList key={item.itemId} content={item.content} subject={item.subject} check={check} icon={item.iconLink}/>
               )})}
           </ul>)}
           
