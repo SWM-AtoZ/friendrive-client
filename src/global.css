@@ -14,4 +14,10 @@
     padding: 0 2% 0 2%;
     overflow-x: hidden;
     overflow-y:overlay;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none;
+}
+
+.common_list_innerbox::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
