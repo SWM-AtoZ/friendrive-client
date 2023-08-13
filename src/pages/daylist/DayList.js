@@ -1,11 +1,11 @@
-import style from './section.module.css';
+import style from './daylist.module.css';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import CommonList from '../../componenets/commonList/CommonList';
 import { useLocation, useOutletContext,useSearchParams} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-const Section = () => {
+const DayList = () => {
   const [cookies,,] = useCookies(['token']);
   const location = useLocation();
   const checkedData = useOutletContext().checked;
@@ -44,4 +44,4 @@ const Section = () => {
    )
 }
 
-export default Section;
+export default DayList;

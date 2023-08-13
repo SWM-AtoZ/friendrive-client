@@ -186,7 +186,7 @@ function Home() {
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}>
               {curriculum.map((item,idx)=>(
-                <Link to={`/day?day=${item.days}`}>
+                <Link to={`/daylist?day=${item.days}`}>
                    <div key={item.days}  className={style.section_card_item}>
                   <div className={style.setction_innerbox}>
                     <div className={style.day_days}>Day {item.days}</div>
