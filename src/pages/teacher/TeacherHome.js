@@ -1,3 +1,4 @@
+import style from './teacherhome.module.css';
 
 const TeacherHome = () =>{
     

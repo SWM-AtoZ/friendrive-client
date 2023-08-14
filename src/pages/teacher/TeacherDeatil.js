@@ -1,3 +1,4 @@
+import style from './teacherdetail.module.css';
 
 const TeacherDetail = () =>{
     
