@@ -11,13 +11,15 @@ import Home from './pages/home/Home';
 import Curriculum from './pages/curriculum/Curriculum';
 import DayList from './pages/daylist/DayList';
 import Detail from './pages/detail/Detail';
+import ServiceFeedback from './pages/servicefeedback/ServiceFeedback';
 import Loading from './pages/loading/Loading';
 import User from './pages/user/User';
 import Login from './pages/login/Login';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
 import Teacher from './pages/teacher/Teacher';
-import TeacherDetail from './pages/teacher/TeacherDetail';
+import TeacherHome from './pages/teacher/TeacherHome';
+import TeacherDetail from './pages/teacher/TeacherDeatil';
 import TeacherDayList from './pages/teacher/TeacherDayList'
 import './reset.css';
 
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
         element:<Detail/>
       },
       {
+        path:'serviceFeedback',
+        element:<ServiceFeedback/>,
+      },
+      {
         path:'user',
         element:<User/>,
       },
@@ -55,14 +61,20 @@ const router = createBrowserRouter([
   {
     path: "teacher",
     element: <Teacher />,
-  },
-  {
-    path: "teacherDayList",
-    element : <TeacherDayList/>,
-  },
-  {
-    path:'teacherdetail',
-    element:<TeacherDetail/>
+    children :[
+      {
+        element: <TeacherHome/>,
+        index : true,
+      },
+      {
+        path: "teacherDayList",
+        element : <TeacherDayList/>,
+      },
+      {
+        path : "teacherDetail",
+        element : <TeacherDetail/>,
+      }
+    ]
   },
   {
     path:'loading',

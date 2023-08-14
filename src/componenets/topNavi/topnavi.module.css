@@ -5,6 +5,8 @@
     height: 5%;
     margin-bottom: 2vh;
     position:relative;
+    top: 0;
+    left: 0;
 }
 
 .back{

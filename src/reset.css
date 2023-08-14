@@ -52,7 +52,7 @@ a{
 
 html{
 	height: 100vh;
-	background-color: white;
+	background-color: #F8FBFC;
 }
 
 body{
@@ -61,13 +61,13 @@ body{
 	max-width: 450px;
 	margin: 0 auto;
 	overflow: hidden;
-	background-color: #202632;
+	background-color: #FFFFFF;
 }
 
 #root{
-	background-color: #202632;
+	background-color: #FFFFFF;
 	width: 100%;
 	height: 100%;
-	color: white;
+	color: black;
 	white-space: pre-wrap;
 }

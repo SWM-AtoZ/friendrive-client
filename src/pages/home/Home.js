@@ -2,43 +2,30 @@ import React, { useEffect,useState } from 'react';
 import {useOutletContext, useNavigate, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
-import './slidecustom.css';
-import styled from "styled-components";
 import axios from 'axios';
-import day1 from './dayimg/day1.png';
-import day2 from './dayimg/day2.png';
-import day3 from './dayimg/day3.png';
-import day4 from './dayimg/day4.png';
-import day5 from './dayimg/day5.png';
 
-//slick-slider import
-import Slider from "react-slick";
-import '../../slick-carousel/slick/slick.css';
-import '../../slick-carousel/slick/slick-theme.css';
-
+//커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
-  const dayImg = [day1,day2,day3,day4,day5];
   const  curriculumData= useOutletContext().curriculum;
+  const checked = useOutletContext().checked;
   const curriculum = curriculumData.curriculum;
-
   const [cookies,setCookie,] = useCookies(['token']);
   var user='';
+
   const navigate = useNavigate();
 
-  const [nav1,setNav1] = useState(null)
-  const [nav2,setNav2] = useState(null) 
-  
   const expires = new Date();
-  expires.setMonth(expires.getMonth+1);
+  expires.setMonth(expires.getMonth+3);
 
 
   const params= new URL(window.location.href).searchParams;
-    const code = params.get('code');
-    const body = {
+  const code = params.get('code');
+  const body = {
         code:code,
         domain:'https://friendrive.net'
-    }
+      }
 
+    // 로그인 후 토큰 셋팅
     const Login = async () =>{
       axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
       .then(function (response) {
@@ -50,6 +37,7 @@ function Home() {
       }); 
     }
     
+    // 공유하기 기능 안되는 환경에서 클립보드에 복사
     const handleCopyClipBoard = async (uri) => {
       try {
         await navigator.clipboard.writeText(uri);
@@ -69,7 +57,7 @@ function Home() {
         console.log(e);
       }
    };
-
+   // 공유기능 되는 환경에서 공유기능 활성화
   const ShareTeacher = async () => {
     let teacherToken = ""
     await axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
@@ -95,11 +83,10 @@ function Home() {
     }else{
        handleCopyClipBoard(url);
     }
-  }
-
+  } 
+  // 로그연 여부 확인 후 공유 또는 로그인 화면 이동.
   const isLogin = async() => {
     if(cookies.token){
-
    await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
           headers: {
               Authorization: `Bearer ${cookies.token}`
@@ -125,85 +112,12 @@ function Home() {
       console.log(code);
          Login();
     }
-
   },[])
 
-  const settings = {
-    dots:true,
-    centerMode: true,
-    infinite: false,
-    slidesToScroll:1,
-    adaptiveHeight: true,
-    slidesToShow: 1,
-    speed: 500,
-    appendDots: (dots) => (
-      <div
-        style={{
-          width: '100%',
-          position:'absolute',
-          bottom:'-15%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <ul> {dots} </ul>
-      </div>
-    ),
-    dotsClass: 'dots_custom'
-  };
   
   return (
     <section id={style.home_section}>
-      {/* 현재 카드섹션 설명칸 */}
-      <div className={style.section_explain}>
-        <div>
-        <ExplainSlider 
-        asNavFor={nav2} 
-        ref={(slider1) => setNav1(slider1)}
-        fade={true}
-        infinite={false}>
-        {curriculum.map((item)=>(
-          <div key={item.days} className={style.explain_container}>
-            <div className={style.section_explain_number}>
-              <div className={style.days}>
-                <div>{item.days}</div>
-                </div>
-               <div>{item.question}</div>
-            </div>
-            <div className={style.section_explain_title}><h1>{item.summary}</h1></div>
-            <div className={style.section_explain_discription}>{item.explain}</div>
-          </div>
-        ))}
-        </ExplainSlider>
-        </div>
-      </div>
-      {/* 카드섹션 슬라이드 */}
-      <div className={style.section_card_container}>
-        <div>
-          <CardSlider 
-          {...settings} 
-          asNavFor={nav1}
-          ref={(slider2) => setNav2(slider2)}>
-              {curriculum.map((item,idx)=>(
-                <Link to={`/daylist?day=${item.days}`}>
-                   <div key={item.days}  className={style.section_card_item}>
-                  <div className={style.setction_innerbox}>
-                    <div className={style.day_days}>Day {item.days}</div>
-                    <div className={style.day_img}>
-                      <img src={dayImg[idx]}/>
-                    </div>
-                    <div className={style.day_info}>
-                      <div className={style.day_title}>{item.title}</div>
-                      <button className={style.go_section}>GO</button>
-                    </div>
-                  </div>
-                </div>
-                </Link>
-                 ))}
-          </CardSlider>
-        </div>           
-      </div>
+      
      <div onClick={isLogin} className={style.request_button}>
       <div>{`요청\n하기`}</div>
      </div>
@@ -213,33 +127,3 @@ function Home() {
 
 export default Home;
 
-const ExplainSlider = styled(Slider)`
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-slide div {
-    cursor: pointer;
-  }
-`;
-const CardSlider = styled(Slider)`
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-slide div {
-    cursor: pointer;
-  }
-  .slick-dots li {
-    margin:0;
-    width:90px;
-    height:90px;
-  }
-  .slick-dots li button {
-    margin:0;
-  }
-`;

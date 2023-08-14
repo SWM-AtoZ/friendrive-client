@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     padding-top: 5%;
-    background-color: #202632;
+    background-color: white;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
@@ -11,23 +11,4 @@
 }
 .teacher_section::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
-}
-
-.title{
-    padding-left: 6%;
-    box-sizing: border-box;
-    height: 10%;
-    font-size: larger;
-    font-weight: bold;
-}
-
-.font{
-    position: relative;
-    top:20%;
-}
-.nonAuthority{
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    left: 25%;
 }

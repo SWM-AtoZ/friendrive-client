@@ -1,8 +1,6 @@
 import { useState,useEffect } from "react";
-import { useLoaderData,useSearchParams } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import {useSearchParams, Outlet } from "react-router-dom";
 import style from './teacher.module.css';
-import Toggleitem from "../../componenets/toggleItem/Toggleitem";
 import Loading from '../loading/Loading';
 import axios, { all } from "axios";
 
@@ -57,24 +55,7 @@ const Teacher = () => {
 
   return (
     <section className={style.teacher_section}>
-        {StudentName !==''?curriculum?(<>
-        <div className={style.title}>{StudentName?(<div className={style.font}>{StudentName}님과 함께하는 연수!</div>):(<div className={style.font}>상일님과 함께하는 연수!</div>)}</div>
-        {curriculum.map((item, idx)=>{
-            //해당 섹션에 관련된 아이템 필터링
-            const filteredItem = allitems.filter(nonfiltereditem => 
-                nonfiltereditem.day === item.days
-            );
-            const prop = {
-                key : item.days,
-                day: item.days,
-                summary : item.title,
-                img : item.imgLink,
-                filterdItem : filteredItem,
-                checked : checked,
-                teacherToken : teacherToken
-            }
-            return <Toggleitem {...prop}/>
-        })}</>):(<Loading/>) : (<div className={style.nonAuthority}>페이지 열람 권한이 없습니다.</div>)}   
+        <Outlet context={{checked, curriculum, allitems, StudentName}}/>
     </section>
   );
 }

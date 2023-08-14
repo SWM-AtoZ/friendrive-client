@@ -4,15 +4,12 @@ import { Outlet } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-// 컴포넌트 임포트
-import Nav from './componenets/nav/Nav';
-
 // css파일 임포트
 import './App.css';
 
 function App() {
     const[cookies,,] = useCookies([]);
-    const [curriculum, setCurriculum] = useState();
+    const [curriculum, setCurriculum] = useState([]);
     const [checked,setChecked] = useState();
     
 
@@ -20,7 +17,9 @@ function App() {
     const getCurriculum = async() =>{
         await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
         .then(function (response) {
-            setTimeout(()=>{setCurriculum(response.data)},600)
+            // setTimeout(()=>{setCurriculum(response.data)},600)
+            console.log(response)
+            setCurriculum(response.data)
           })
           .catch(function (error) {
             console.log(error);
@@ -49,9 +48,9 @@ function App() {
       if(!curriculum){
         getCurriculum();
       }   
-        if(cookies.token){
+      if(cookies.token){
             getChecked();
-        }
+      }
     }, []);
 
   
@@ -68,7 +67,6 @@ function App() {
     <section className='section_container'>
       {curriculum?<Outlet context={{curriculum, checked}}/>:<Loading/>}
     </section>
-    <Nav/>
     </>
 
   );
