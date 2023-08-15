@@ -27,54 +27,42 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    children: [
-      {
-        index : true, 
-        element: <Home />,
-      },
-      {
-        path : 'curriculum',
-        element: <Curriculum/>,
-      },
-      {
-        path:'daylist',
-        element:<DayList/>,
-      },
-      {
-        path:'detail',
-        element:<Detail/>
-      },
-      {
-        path:'serviceFeedback',
-        element:<ServiceFeedback/>,
-      },
-      {
-        path:'user',
-        element:<User/>,
-      },
-      {
-        path:'login',
-        element:<Login/>,
-      }
-    ],
   },
   {
-    path: "teacher",
-    element: <Teacher />,
-    children :[
-      {
-        element: <TeacherHome/>,
-        index : true,
-      },
-      {
-        path: "teacherDayList",
-        element : <TeacherDayList/>,
-      },
-      {
-        path : "teacherDetail",
-        element : <TeacherDetail/>,
-      }
-    ]
+    path : 'curriculum',
+    element: <Curriculum/>,
+  },
+  {
+    path:'daylist',
+    element:<DayList/>, 
+  },
+  {
+    path:'detail',
+    element:<Detail/>
+  },
+  {
+    path:'serviceFeedback',
+    element:<ServiceFeedback/>,
+  },
+  {
+    path:'user',
+    element:<User/>,
+  },
+  {
+    path:'login',
+    element:<Login/>,
+  },
+  {
+    path:"teacherhome",
+    element: <TeacherHome/>,
+  },
+  {
+    path: "teacherDayList",
+    element : <TeacherDayList/>,
+  },
+  {
+    path : "teacherDetail",
+    element : <TeacherDetail/>,
   },
   {
     path:'loading',

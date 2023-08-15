@@ -6,9 +6,7 @@ import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
-  const  curriculumData= useOutletContext().curriculum;
-  const checked = useOutletContext().checked;
-  const curriculum = curriculumData.curriculum;
+  
   const [cookies,setCookie,] = useCookies(['token']);
   var user='';
 

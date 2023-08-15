@@ -1,12 +1,21 @@
 import style from './curriculum.module.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
+import { Outlet } from 'react-router-dom';
 
 const Curriculum = () => {
+    
+    //쿠키에 담겨진 jwt토근을 이용하여 로그인 유무를 검사 
+
+    //로그인 유무에 따라 각 데이의 진행율을 표기
+
+    //로그인이 되어있다면 context에서 cheked를 가져와 데이별 진행정도를 프로그래스 바에 표기. 
+    console.log('여긴 커리큘럼')
     return(
         <section className={style.curruculumSection}>
         <TopNavi title={'커리큘럼'}/>
         {/* 데이 리스트마다 프로그레스 바 추가., 각 curriculumList 클릭하면 해당 Daylist로 이동. */}
         <div className={style.curriculum_list_container}>
+        <Outlet/>
         <div  className={style.curriculum_list}>
                     <div className={style.curriculum_progress}>
                     

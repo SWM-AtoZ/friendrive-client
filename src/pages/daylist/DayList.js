@@ -1,22 +1,19 @@
 import style from './daylist.module.css';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import { useLocation, useOutletContext,useSearchParams} from 'react-router-dom';
+import { useLocation, useOutletContext,useSearchParams, Outlet,useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useEffect, useState } from 'react';
 
 const DayList = () => {
   const [cookies,,] = useCookies(['token']);
-  const location = useLocation();
-  const checkedData = useOutletContext().checked;
   const [searchParams, setSearchParams] = useSearchParams();
   const day = Number(searchParams.get("day"));
+  const navigate = useNavigate();
 
 
-  //api로 메모,피드백 불러오기 함수
-  const callMemo = () =>{}
-
-  //체크된 아이템 불러오는 api
-  const callChecked = () =>{}
+  //쿠키의 정보를 이용해 로그인 유무를 확인하고 확인 여부에 따라 UI를 다르게 보여준다. 
+  //로그인이 되어있다면 context에서 checked와 memo,feedback을 가져와 메모,피드백과 각 항목의 패스 여부를 기재해준다.
 
   //추가버튼 누르면 모달창 띄워주는 이벤트함수
   const addMemo = () =>{}
@@ -31,16 +28,16 @@ const DayList = () => {
   const changeProgress = () =>{}
 
 
+ 
   // outlet context의 전역 객체의 items에서 id에 대응하는 항목만 추출
-  const Arryitem = useOutletContext().curriculum.items.filter(item=>item.day===day );
-  
+
   // 체크된 아이템을 outletContext에서 추출한다.
-  const checkedItem = checkedData?checkedData.checkedItem:[];
   
     return(
       <div className='common_list_container'>
           <TopNavi title={`Day ${day}`}/>
-          
+          <div>
+          </div>
         </div>
    )
 }
