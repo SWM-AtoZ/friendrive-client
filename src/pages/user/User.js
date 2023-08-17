@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import TopNavi from '../../componenets/topNavi/TopNavi';
 import style from './user.module.css';
 import axios from 'axios';
 import banner from './banner.png';
@@ -44,6 +45,8 @@ const User = () => {
     }     
 },[])
     return (
+    <div className={style.user}>
+    <TopNavi title={'내정보'}/>
     <div className={style.user_section}>
       <div className={style.profile}>
       <svg xmlns="http://www.w3.org/2000/svg" width="3.5rem" height="3.5rem" viewBox="0 0 20 20" fill="none">
@@ -82,6 +85,7 @@ const User = () => {
         <div style={{color:'rgba(255,255,255,0.7)', paddingRight:'4%'}}>v1.0</div>
         </div>
       </div>
+  </div>
   </div>)
 }
 
