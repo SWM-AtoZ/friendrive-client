@@ -1,0 +1,9 @@
+.daylist{
+    width: 100%;
+    box-sizing: border-box;
+    height: 4.375rem;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #F8FBFC;
+    margin-bottom: 5%;
+}

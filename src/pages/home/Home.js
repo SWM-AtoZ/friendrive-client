@@ -6,7 +6,7 @@ import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
-  
+  const total = 28; // 총 커리큘럼 갯수
   const [cookies,setCookie,] = useCookies(['token']);
   var user='';
 
@@ -14,7 +14,7 @@ function Home() {
 
   const expires = new Date();
   expires.setMonth(expires.getMonth+3);
-
+  
 
   const params= new URL(window.location.href).searchParams;
   const code = params.get('code');
@@ -24,18 +24,9 @@ function Home() {
       }
 
     // 로그인 후 토큰 셋팅
-    const Login = async () =>{
-      axios.post('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/login/kakao', body)
-      .then(function (response) {
-        setCookie('token', response.data.jwt.accessToken, expires);
-      })
-      .catch(function (error) {
-        alert('로그인에 실패하셨습니다.');
-        console.log(error);
-      }); 
-    }
+
     
-    // 공유하기 기능 안되는 환경에서 클립보드에 복사
+  // 공유하기 기능 안되는 환경에서 클립보드에 복사
     const handleCopyClipBoard = async (uri) => {
       try {
         await navigator.clipboard.writeText(uri);
@@ -104,21 +95,56 @@ function Home() {
     }
   }
 
+  const goToUser = () => {
+    //유저페이지로 이동하는 함수.
+    navigate('user');
+  }
 
-  useEffect(()=>{
-    if(code !== null){
-      console.log(code);
-         Login();
-    }
-  },[])
+  const goToCurriculum = () => {
+    navigate('curriculum');
+  }
 
-  
+  const goToCommunity = () => {
+    // navigate('community');
+    alert('준비중이다 인마');
+  }
+
+  const goToEventPage = () => {
+    navigate('serviceFeedback');
+  }
+ 
   return (
     <section id={style.home_section}>
-      
-     <div onClick={isLogin} className={style.request_button}>
-      <div>{`요청\n하기`}</div>
+      <header className={style.home_header}>
+        <div className={style.header_logo}>
+        <div>프렌드라이브</div>
+        </div>
+        <div onClick={goToUser} className={style.header_userbtn}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 25 25" fill="none">
+          <path d="M20.1431 21.0928C18.3933 18.7834 15.6208 17.2917 12.5 17.2917C9.37916 17.2917 6.60675 18.7834 4.85692 21.0928M20.1431 21.0928C22.5095 18.9864 24 15.9173 24 12.5C24 6.14873 18.8513 1 12.5 1C6.14873 1 1 6.14873 1 12.5C1 15.9173 2.49053 18.9864 4.85692 21.0928M20.1431 21.0928C18.1114 22.9013 15.434 24 12.5 24C9.56601 24 6.88865 22.9013 4.85692 21.0928M16.3333 9.625C16.3333 11.7421 14.6171 13.4583 12.5 13.4583C10.3829 13.4583 8.66667 11.7421 8.66667 9.625C8.66667 7.50791 10.3829 5.79167 12.5 5.79167C14.6171 5.79167 16.3333 7.50791 16.3333 9.625Z" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        </div>
+      </header>
+      <article className={style.home_article}>
+      <div onClick={goToCurriculum} className={style.curriculum_btn}>
+        {cookies.token?(<div>커리큘럼 이어하기</div>):(<div>커리큘럼 시작하기</div>)}
+      </div>
+     <div onClick={isLogin} className={style.curriculum_request_btn}>
+      <div>커리큘럼 같이하기</div>
+      <div>공유 링크 보내고 지인에게 요청하기</div>
      </div>
+     <div className={style.etc_box}>
+      <div onClick={goToCommunity} className={style.community_btn}>
+        <div>커뮤니티</div>
+        <div>픽토그램</div>
+      </div>
+      <div onClick={goToEventPage} className={style.event_btn}>
+        <div>이벤트</div>
+        <div>서비스 피드백을 남겨주세요</div>
+        <div>추첨을 통해 기프티콘을 드립니다.</div>
+      </div>
+     </div>
+      </article>
     </section>
   );
 }

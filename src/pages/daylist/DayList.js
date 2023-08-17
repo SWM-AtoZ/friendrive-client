@@ -1,19 +1,34 @@
 import style from './daylist.module.css';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import { useLocation, useOutletContext,useSearchParams, Outlet,useNavigate} from 'react-router-dom';
+import {useSearchParams,useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
+import Loading from '../loading/Loading';
+import DaylistComponent from '../../componenets/daylist_list/DaylistComponent';
+import axios from 'axios';
 
 const DayList = () => {
   const [cookies,,] = useCookies(['token']);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [curriculum, setCurriculum] = useState();
+  const [allItems, setAllItems] = useState();
   const day = Number(searchParams.get("day"));
   const navigate = useNavigate();
-
+  console.log(curriculum)
+  const getCurriculum = async() =>{
+    await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
+    .then(function (response) {
+        setCurriculum(...response.data.curriculum.filter(item => item.days==day));
+        setAllItems(response.data.items.filter((item)=>item.day==day));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });  
+}
 
   //쿠키의 정보를 이용해 로그인 유무를 확인하고 확인 여부에 따라 UI를 다르게 보여준다. 
-  //로그인이 되어있다면 context에서 checked와 memo,feedback을 가져와 메모,피드백과 각 항목의 패스 여부를 기재해준다.
+  //로그인이 되어있다면 checked와 memo,feedback, curriculum을 api로 요청하여 가져와 UI상에 표기해준다.
 
   //추가버튼 누르면 모달창 띄워주는 이벤트함수
   const addMemo = () =>{}
@@ -27,7 +42,9 @@ const DayList = () => {
   //pass 버튼 체크/해지시 진행률 반영하는 함수.
   const changeProgress = () =>{}
 
-
+ useEffect(()=>{
+  getCurriculum();
+ },[])
  
   // outlet context의 전역 객체의 items에서 id에 대응하는 항목만 추출
 
@@ -36,8 +53,21 @@ const DayList = () => {
     return(
       <div className='common_list_container'>
           <TopNavi title={`Day ${day}`}/>
-          <div>
-          </div>
+          <section className={style.day_list_section}>
+          <article className={style.day_info_box}>
+            <div className={style.day_info}>
+              {curriculum&&curriculum.title}
+            </div>
+            <div className={style.day_memo}>
+
+            </div>
+          </article>
+          <article className={style.daylist_box}>
+            {allItems?allItems.map((item)=>(
+              <DaylistComponent key={item.itenId} subject={item.subject} contents={item.content}/>
+            )):<Loading/>}
+          </article>
+          </section>
         </div>
    )
 }

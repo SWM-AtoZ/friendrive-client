@@ -1,152 +1,68 @@
 #home_section{
 height: 100%;
+width: 100%;
+padding: 0 5% 0 5%;
+box-sizing: border-box;
 position: relative;
 overflow-x:hidden;
 }
 
-.section_explain{
-width: 100%;
-height: 30%;
-padding-top: 5%;
-padding-left: 4%;
-padding-right: 4%;
-box-sizing: border-box;
+/* 버튼 css */
+.home_header{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.explain_container{
-    width: 100%;
-    height: 100%;
-    line-height: 1.2;
-}
-.section_explain_number{
-    padding-left: 5px;
-    margin-top: 1px;
+.header_logo{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home_article{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
-
-.days{
-    background-color: white;
-    color: black;
-    width: 3vh;
-    height: 3vh;
-    border-radius: 50%;
-    font-size: smaller;
-    text-align: center;
-    margin-right: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
-    font-weight: bold;
-}
-
-
-
-.section_explain_title{    
-font-size: x-large;
-font-weight: bold;
-padding-left: 5px;
-margin-top: 6%;
-width:100%;
-}
-
-.section_explain_discription{
-margin-top: 6%;
-padding-left: 5px;
-}
-
-/* 슬라이드섹션 css */
-.section_card_container{
-width:100%;
-height: 70%;
-padding-top: 8%;
-box-sizing: border-box;
-}
-
-.section_card_item{
+.curriculum_btn{
     width: 100%;
-    height: calc(var(--vh, 1vh) * 50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 13rem;
+    background-color: #F8FBFC;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);  
 }
 
-.setction_innerbox{
-    /* background-color: #FEFEFE; */
-    background-color: #FFD83A;
-    border-radius: 1rem;
-    box-sizing: border-box;
-    width: 90%;
-    height: 100%;
-    position: relative;
-    padding: 0.5rem;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.day_days{
+.curriculum_request_btn{
     width: 100%;
-    color:black;
-    font-size: 1.4rem;
-    font-weight:900;
+    height: 5rem;
+    margin-top: 5%;
+    background-color: #F8FBFC;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);  
 }
-
-.day_img{
-    /* width : 100%; */
-    height : 70%;
-    border-radius: 1rem;
-}
-
-.day_img img{
+.etc_box{
     width: 100%;
-    height: 100%;
-    object-fit:contain;
-    border-radius: 1rem;
-}
-
-.day_info{
-    box-sizing: border-box;
-    padding-left: 2%;
-    padding-right: 2%;
-    width: 100%;
-    color: black;
+    padding-top: 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-.day_title{
-    font-size: 1.2rem;
-    font-weight:800;
+.community_btn{
+    width: 47.5%;
+    height: 9rem;
+    background-color: #F8FBFC;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);  
+}
+.event_btn{
+    width: 47.5%;
+    height: 9rem;
+    background-color: #F8FBFC;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);  
 }
 
-.go_section{
-    color: white;
-    background-color: #FF9900;
-    border: 0;
-    border-radius: 1rem;
-    width: 4.3rem;
-    height: 1.7rem;
-    font-size: large;
-    font-weight: 600;
-}
-/* 버튼 css */
-
-.request_button{
-    position: absolute;
-    bottom: 3%;
-    right:5%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border-style: 0;
-    background-color: #FF9900;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
