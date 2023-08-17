@@ -16,11 +16,13 @@ const DayList = () => {
   const day = Number(searchParams.get("day"));
   const navigate = useNavigate();
   console.log(curriculum)
+
   const getCurriculum = async() =>{
-    await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/curriculum")
+    await axios.get("https://api.friendrive.net/curriculum")
     .then(function (response) {
         setCurriculum(...response.data.curriculum.filter(item => item.days==day));
         setAllItems(response.data.items.filter((item)=>item.day==day));
+        console.log(response)
       })
       .catch(function (error) {
         console.log(error);

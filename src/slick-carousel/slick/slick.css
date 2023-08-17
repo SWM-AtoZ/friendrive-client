@@ -4,6 +4,7 @@
     position: relative;
 
     display: block;
+
     box-sizing: border-box;
 
     -webkit-user-select: none;
@@ -21,7 +22,7 @@
 .slick-list
 {
     position: relative;
-
+    
     display: block;
     overflow: hidden;
 
