@@ -1,18 +1,60 @@
+import { useEffect, useRef, useState } from 'react';
+import { useCookies, Cookies } from 'react-cookie';
 import style from './curriculumList.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const CurriculumList = ({day, title, dayprocess}) => {
+    const DaysItemsTotalNumb = [7,8,6,4,3];
+    const TotalNumb = DaysItemsTotalNumb[day-1];
+    const [percentage, setPercentage] = useState('');
+    const cookies = new Cookies();
     const navigate = useNavigate();
+    const circleRef = useRef();
     const goTodayList = () =>{
         navigate(`/daylist?day=${day}`)
     }
+
+    useEffect(()=>{
+        //체크 목록 불러와서 몇개 체크되어있는지 확인하기.
+        const chekedItemNumb = 1;
+
+        //로그인 유무에 따라 퍼센테이지 다르게 그려주기
+       const outline = circleRef.current.getTotalLength();
+       circleRef.current.style.strokeDasharray = outline;
+    
+       if(cookies.get('token')){
+        // 로그인이 된 경우
+        circleRef.current.style.strokeDashoffset = outline * (1 - Math.floor((chekedItemNumb/TotalNumb) * 100) / 100);
+        setPercentage(Math.floor((chekedItemNumb/TotalNumb) * 100));
+        if(Math.floor((chekedItemNumb/TotalNumb) * 100)<=15){
+            circleRef.current.style.stroke = "#FF0000";
+        }
+        else if(Math.floor((chekedItemNumb/TotalNumb) * 100)<=75){
+            circleRef.current.style.stroke = "#FFE300";
+        }
+        else{
+            circleRef.current.style.stroke = "#389300";
+        }
+       }
+       else{
+        // 로그인이 되지 않은 경우
+        circleRef.current.style.strokeDashoffset = outline;
+        setPercentage(0);
+       }
+    },[])
     return(
         <div onClick={goTodayList} className={style.curriculum_list}>
                     <div className={style.curriculum_progress}>
                     {/* dayprocess 의 값에 따라 진행율 적용하여 보여줌 */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem" viewBox="0 0 65 65" fill="none">
-                        <path d="M65 32.5C65 50.4493 50.4493 65 32.5 65C14.5507 65 0 50.4493 0 32.5C0 14.5507 14.5507 0 32.5 0C50.4493 0 65 14.5507 65 32.5Z" fill="#BDBDBD"/>
+                    <div className={style.circle_box}> 
+                    <svg className={style.circle_inner_box}  width="100%" height="100%" viewBox="0 0 200 200" fill="none">
+                        <circle  cx="100" cy="100" r="88" fill="none" stroke="#BDBDBD" stroke-width="12" />
+                        <circle ref={circleRef} cx="100" cy="100" r="88" fill="none" stroke="#018EBA" stroke-width="12" />
                     </svg>
+                    <div>
+                        {percentage}%
+                    </div>
+                    </div>
                     <div className={style.title}>
                     <div>Day {day}</div>
                     <div>{title}</div>

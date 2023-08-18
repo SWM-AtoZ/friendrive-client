@@ -1,5 +1,6 @@
 import style from './login.module.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
+import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
@@ -10,6 +11,9 @@ const Login = () => {
     const [certification, setCertification] = useState("");
     const [IsphoneNumberBtn, setIsPhoneNumberBtn] = useState(true);
     const [IsJwtBtn, setIsJwtBtn] = useState(true);
+    const [cookies,setCookies,] = useCookies(['token']);
+    const expires = new Date();
+    expires.setMonth(expires.getMonth+3);
 
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
@@ -36,6 +40,10 @@ const Login = () => {
 
     const sendPhoneumber = () =>{
     certiToggle.current.style.maxHeight = `${certiToggle.current.scrollHeight}px`;
+    loginbtnRef.current.innerText = '인증문자 다시 받기';
+    setCookies('token', 'tempKey', {
+        expires: expires
+  });
     axios.post('https://api.friendrive.net/login/number',{
         phoneNumber : phonenumber
     }).then(function (response) {
@@ -67,11 +75,12 @@ const Login = () => {
     //인증코드, 폰번호, 이름 입력받아 서버로 보내어 jwt토큰 반환받는 함수
     const getJWT = () => {
         axios.post('https://api.friendrive.net/login/verification',{
-            verification_code : certification,
-            phone_number : phonenumber,
-            name : name
+                code : certification,
+                phoneNumber : phonenumber,
+                name : name
         }).then(function (response) {
             console.log(response)
+            
           })
           .catch(function (error) {
             console.log(error);

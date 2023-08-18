@@ -24,6 +24,24 @@
     width: 8rem;
     line-height: 1.5;
 }
+.circle_box{
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+}
+.circle_box div{
+    font-size: 0.6rem;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.circle_inner_box{
+    transform: rotateZ(270deg);
+}
+
 
 .go_daylist{
 

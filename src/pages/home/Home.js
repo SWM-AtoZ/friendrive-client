@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import {useOutletContext, useNavigate, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
+import curriculumImg from './curriculum_btnimg.png';
 import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
@@ -127,7 +128,22 @@ function Home() {
       </header>
       <article className={style.home_article}>
       <div onClick={goToCurriculum} className={style.curriculum_btn}>
-        {cookies.token?(<div>커리큘럼 이어하기</div>):(<div>커리큘럼 시작하기</div>)}
+        {cookies.token?(
+        <div className={style.login_activation}>
+          <div className={style.login_textArea}>
+            <div>
+              <div>운전 가이드</div>
+            </div>
+            <div>
+            <div className={style.progress_bar}>
+              <div className={style.progress}></div>
+            </div>
+            </div>
+          </div>
+          <div className={style.login_pictogramArea}>
+            <img src={curriculumImg}/>
+          </div>
+        </div>):(<div className={style.login_deactivation}>커리큘럼 시작하기</div>)}
       </div>
      <div onClick={isLogin} className={style.curriculum_request_btn}>
       <div>커리큘럼 같이하기</div>
