@@ -135,9 +135,9 @@ function Home() {
               <div>운전 가이드</div>
             </div>
             <div>
-            <div className={style.progress_bar}>
-              <div className={style.progress}></div>
-            </div>
+              <div>{`${4} / 28 과목 (완주까지${50}%)`}</div>
+            <div className={style.progress_bar}></div>
+            <div>완주율 확인은 로그인이 필요해요!</div>
             </div>
           </div>
           <div className={style.login_pictogramArea}>

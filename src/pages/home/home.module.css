@@ -50,7 +50,7 @@ overflow-x:hidden;
     flex-direction: column;
 }
 
-.login_textArea div{
+.login_textArea >div{
     height: 50%;
 }
 
@@ -69,19 +69,20 @@ overflow-x:hidden;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .progress_bar{
     width: 80%;
-    flex-basis: 8%;
+    height: 8%;
+    background-color: black;
     border-radius: 1rem;
+    margin: 2% 0 2% 0;
 }
 
-.progress_bar::after{
-    height: inherit;
-    width: 40%;
-    background-color: black;
-}
+
 
 .login_pictogramArea{
     height: 100%;
