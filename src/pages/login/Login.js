@@ -14,7 +14,7 @@ const Login = () => {
     const [cookies,setCookies,] = useCookies(['token']);
     const expires = new Date();
     expires.setMonth(expires.getMonth()+3);
-
+    
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
     const certiToggle = useRef();
@@ -41,14 +41,27 @@ const Login = () => {
     const sendPhoneumber = () =>{
     certiToggle.current.style.maxHeight = `${certiToggle.current.scrollHeight}px`;
     loginbtnRef.current.innerText = '인증문자 다시 받기';
-    setCookies('token', 'tempKey', {
-        expires: expires,
-        path:'/',
-  });
     axios.post('https://api.friendrive.net/login/number',{
         phoneNumber : phonenumber
     }).then(function (response) {
         console.log(response)
+
+        axios.post('https://api.friendrive.net/login/verification',{
+                code : `${response.data}`,
+                phoneNumber : phonenumber,
+                name : name
+        }).then(function (response) {
+            console.log(response)
+            setCookies('token', `${response.data.accessToken
+            }`, {
+                    expires: expires,
+                    path:'/',
+                });
+          })
+          .catch(function (error) {
+            console.log(error);
+          }); 
+        
       })
       .catch(function (error) {
         console.log(error);

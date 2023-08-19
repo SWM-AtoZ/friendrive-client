@@ -11,6 +11,7 @@ import axios from 'axios';
 const DayList = () => {
   const [cookies,,] = useCookies(['token']);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [checkedItem, setChecked] = useState();
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
   const day = Number(searchParams.get("day"));
@@ -26,6 +27,21 @@ const DayList = () => {
       .catch(function (error) {
         console.log(error);
       });  
+}
+const getChecked = async() =>{
+  await axios.get(`https://api.friendrive.net/curriculum/checked/${day}`,{
+      headers:{
+          Authorization: `Bearer ${cookies.token}`
+      }
+  })
+  .then((response)=>{
+      console.log('체크데이터를 불러왔습니다.');
+      console.log(response.data)
+      setChecked(response.data.checkedItem);
+  })
+  .catch((response)=>{
+      console.log(response);
+  })
 }
 
   //쿠키의 정보를 이용해 로그인 유무를 확인하고 확인 여부에 따라 UI를 다르게 보여준다. 
@@ -45,6 +61,9 @@ const DayList = () => {
 
  useEffect(()=>{
   getCurriculum();
+  if(cookies.token){
+    getChecked();
+  }
  },[])
  
   // outlet context의 전역 객체의 items에서 id에 대응하는 항목만 추출
@@ -55,7 +74,8 @@ const DayList = () => {
       <div className='common_list_container'>
           <TopNavi title={`Day ${day}`}/>
           <section className={style.day_list_section}>
-          <article className={style.day_info_box}>
+            <div className={style.info_container}>
+            <article className={style.day_info_box}>
             <div className={style.day_info}>
               {curriculum&&curriculum.title}
             </div>
@@ -63,10 +83,18 @@ const DayList = () => {
 
             </div>
           </article>
+            </div>
+
           <article className={style.daylist_box}>
-            {allItems?allItems.map((item)=>(
-              <DaylistComponent key={item.itenId} subject={item.subject} contents={item.content} icon={item.iconLink}/>
-            )):<Loading/>}
+            {allItems?checkedItem&&allItems.map((item)=>{
+              var check=false;
+              if(cookies.token && checkedItem.includes(item.itemId)){
+                check = true;
+              }
+              console.log(checkedItem)
+              return (
+              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId}/>
+            )}):<Loading/>}
           </article>
           </section>
         </div>
