@@ -12,7 +12,7 @@ function App() {
     const[cookies,,] = useCookies([]);
     //const [curriculum, setCurriculum] = useState([]);
     const [checked,setChecked] = useState();
-    console.log(checked);
+
     //curriculum 임시 더미데이터 
     const curriculum = {
       "curriculum": [
@@ -277,7 +277,6 @@ function App() {
             }
         })
         .then((response)=>{
-           console.log(response)
             console.log('체크데이터를 불러왔습니다.');
             setChecked(response.data);
         })
@@ -289,14 +288,12 @@ function App() {
 
     
   	useEffect(() => {
-      console.log('안녕2')
       setChecked([]);
-      console.log(checked);
       if(!curriculum){
         getCurriculum();
       }   
       if(cookies.token){
-            getChecked();
+           // getChecked();
       }
       //setChecked([0,1]);
     }, []);

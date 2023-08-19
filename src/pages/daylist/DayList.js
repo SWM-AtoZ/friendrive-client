@@ -15,7 +15,6 @@ const DayList = () => {
   const [allItems, setAllItems] = useState();
   const day = Number(searchParams.get("day"));
   const navigate = useNavigate();
-  console.log(curriculum)
 
   const getCurriculum = async() =>{
     await axios.get("https://api.friendrive.net/curriculum")
@@ -66,7 +65,7 @@ const DayList = () => {
           </article>
           <article className={style.daylist_box}>
             {allItems?allItems.map((item)=>(
-              <DaylistComponent key={item.itenId} subject={item.subject} contents={item.content}/>
+              <DaylistComponent key={item.itenId} subject={item.subject} contents={item.content} icon={item.iconLink}/>
             )):<Loading/>}
           </article>
           </section>

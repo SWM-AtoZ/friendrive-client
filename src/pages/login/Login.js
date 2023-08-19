@@ -13,7 +13,7 @@ const Login = () => {
     const [IsJwtBtn, setIsJwtBtn] = useState(true);
     const [cookies,setCookies,] = useCookies(['token']);
     const expires = new Date();
-    expires.setMonth(expires.getMonth+3);
+    expires.setMonth(expires.getMonth()+3);
 
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
@@ -42,7 +42,8 @@ const Login = () => {
     certiToggle.current.style.maxHeight = `${certiToggle.current.scrollHeight}px`;
     loginbtnRef.current.innerText = '인증문자 다시 받기';
     setCookies('token', 'tempKey', {
-        expires: expires
+        expires: expires,
+        path:'/',
   });
     axios.post('https://api.friendrive.net/login/number',{
         phoneNumber : phonenumber

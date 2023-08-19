@@ -1,7 +1,7 @@
 import style from './daylistcomponent.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const DaylistComponent = ({subject,contents}) => {
+const DaylistComponent = ({subject,contents,icon}) => {
     const navigate = useNavigate();
 
     const goToDetail = () => {

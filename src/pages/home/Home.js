@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import {useOutletContext, useNavigate, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
@@ -8,7 +8,10 @@ import axios from 'axios';
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
   const total = 28; // 총 커리큘럼 갯수
-  const [cookies,setCookie,] = useCookies(['token']);
+  const TotalCheckedNumb = 6;
+  const [color, setColor] = useState('');
+  const [progress, setProgress] = useState(0);
+  const [cookies,setCookie,removeCookie] = useCookies(['token']);
   var user='';
 
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ function Home() {
         domain:'https://friendrive.net'
       }
 
-    // 로그인 후 토큰 셋팅
+  // 로그인 후 토큰 셋팅
 
     
   // 공유하기 기능 안되는 환경에서 클립보드에 복사
@@ -113,6 +116,21 @@ function Home() {
   const goToEventPage = () => {
     navigate('serviceFeedback');
   }
+
+  useEffect(()=>{
+    //로그인이 되있는 경우 chekedItem 갯수를 불러와 진행율 계산
+    setProgress(Math.floor((TotalCheckedNumb/total*100)));
+
+    if(Math.floor((TotalCheckedNumb/total*100<=15))){
+      setColor('#FF0000');
+    }
+    else if(Math.floor((TotalCheckedNumb/total*100<=15))<=75){
+      setColor('#FFE300');
+    }
+    else{
+      setColor('#389300');
+    }
+  },[])
  
   return (
     <section id={style.home_section}>
@@ -128,22 +146,24 @@ function Home() {
       </header>
       <article className={style.home_article}>
       <div onClick={goToCurriculum} className={style.curriculum_btn}>
-        {cookies.token?(
+        
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
               <div>운전 가이드</div>
             </div>
             <div>
-              <div>{`${4} / 28 과목 (완주까지${50}%)`}</div>
-            <div className={style.progress_bar}></div>
-            <div>완주율 확인은 로그인이 필요해요!</div>
+              <div>{cookies.token?`${TotalCheckedNumb} / 28 과목 (완주까지 ${progress}%)`:`0 / 28 과목`}</div>
+            <div className={style.progress_bar}>
+              <div style={{backgroundColor:`${color}`, width:`${progress}%`}}></div>
+            </div>
+            <div>{cookies.token?'':'완주율 확인은 로그인이 필요해요!'}</div>
             </div>
           </div>
           <div className={style.login_pictogramArea}>
             <img src={curriculumImg}/>
           </div>
-        </div>):(<div className={style.login_deactivation}>커리큘럼 시작하기</div>)}
+        </div>
       </div>
      <div onClick={isLogin} className={style.curriculum_request_btn}>
       <div>커리큘럼 같이하기</div>
