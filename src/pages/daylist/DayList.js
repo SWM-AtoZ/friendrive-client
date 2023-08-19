@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import Loading from '../loading/Loading';
 import DaylistComponent from '../../componenets/daylist_list/DaylistComponent';
+import DayinfoTitle from '../../componenets/daylist_day_info/DayinfoTitle';
 import axios from 'axios';
 
 const DayList = () => {
@@ -77,7 +78,9 @@ const getChecked = async() =>{
             <div className={style.info_container}>
             <article className={style.day_info_box}>
             <div className={style.day_info}>
-              {curriculum&&curriculum.title}
+              {cookies.token?(//chekedItem을 넣어준다.
+                <DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={checkedItem&&checkedItem.length}/>
+              ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0}/>)}
             </div>
             <div className={style.day_memo}>
 
@@ -88,12 +91,13 @@ const getChecked = async() =>{
           <article className={style.daylist_box}>
             {allItems?checkedItem&&allItems.map((item)=>{
               var check=false;
+              console.log(checkedItem);
               if(cookies.token && checkedItem.includes(item.itemId)){
                 check = true;
               }
               console.log(checkedItem)
-              return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId}/>
+              return (//여기에 setCheked함수를 전달하여 state값을 조절해준다.
+              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
             )}):<Loading/>}
           </article>
           </section>

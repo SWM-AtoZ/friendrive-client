@@ -5,15 +5,17 @@ import { useRef } from 'react';
 import { Cookies, useCookies } from 'react-cookie';
 import axios from 'axios';
 
-const DaylistComponent = ({subject,contents,icon, check, itemId}) => {
+const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem,setChecked}) => {
     const navigate = useNavigate();
     const [passBtn, setPassBtn] = useState(check);
     const passRef = useRef();
     const [cookies,,] = useCookies();
 
+
     const goToDetail = () => {
         navigate(`/detail?content=${subject}`, {state:{contents,subject}})
     }
+
     const pressPass = (e) =>{
       e.stopPropagation();
       if(cookies.token){
@@ -24,8 +26,16 @@ const DaylistComponent = ({subject,contents,icon, check, itemId}) => {
       else{
         passRef.current.style.setProperty('opacity', '1');
       }
+
+      if(checkedItem.includes(itemId)){
+        setChecked(prev=>prev.filter(item=>item!==itemId));
+      }
+      else{
+        const temp = [itemId,...checkedItem];
+        setChecked(prev=>temp);
+      }
       //check toggle API 호출하여 체크된 아이템 서버에 전달.
-      console.log(itemId)
+      
       axios.put("https://api.friendrive.net/curriculum/check",{
         item : itemId
       },{
