@@ -1,12 +1,18 @@
 import style from './daylist.module.css';
+import { styled } from 'styled-components';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import {useSearchParams,useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Loading from '../loading/Loading';
 import DaylistComponent from '../../componenets/daylist_list/DaylistComponent';
 import DayinfoTitle from '../../componenets/daylist_day_info/DayinfoTitle';
+import MemoComponent from '../../componenets/memo_component/MemoComponent';
+import AddMemoComponent from '../../componenets/memo_component/AddMemoComponent';
+import Slider from 'react-slick';
+import '../../slick-carousel/slick/slick.css';
+import '../../slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
 const DayList = () => {
@@ -15,15 +21,17 @@ const DayList = () => {
   const [checkedItem, setChecked] = useState();
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
+  const memoBoxRef = useRef();
+  const [memoBoxWidth, setmemoBoxWidth] = useState(0);
+  const [memoBoxHeight,setmemoBoxHeight] = useState(0);
+  const [memos, setMemo] = useState([]);
   const day = Number(searchParams.get("day"));
-  const navigate = useNavigate();
 
   const getCurriculum = async() =>{
     await axios.get("https://api.friendrive.net/curriculum")
     .then(function (response) {
         setCurriculum(...response.data.curriculum.filter(item => item.days==day));
         setAllItems(response.data.items.filter((item)=>item.day==day));
-        console.log(response)
       })
       .catch(function (error) {
         console.log(error);
@@ -36,41 +44,102 @@ const getChecked = async() =>{
       }
   })
   .then((response)=>{
-      console.log('체크데이터를 불러왔습니다.');
-      console.log(response.data)
       setChecked(response.data.checkedItem);
   })
   .catch((response)=>{
       console.log(response);
   })
 }
-
-  //쿠키의 정보를 이용해 로그인 유무를 확인하고 확인 여부에 따라 UI를 다르게 보여준다. 
-  //로그인이 되어있다면 checked와 memo,feedback, curriculum을 api로 요청하여 가져와 UI상에 표기해준다.
-
-  //추가버튼 누르면 모달창 띄워주는 이벤트함수
-  const addMemo = () =>{}
-
-  //추가 메모를 입력하고 완료를 누르면 서버로 메모내용을 보내고 카드를 최신화 해주는 함수.
-  const sendMemo = () =>{}
-
-  //삭제버튼 누르면 카드에서 메모/피드백 삭제하는 함수
-  const removeInfo = () =>{}
-
-  //pass 버튼 체크/해지시 진행률 반영하는 함수.
-  const changeProgress = () =>{}
+const getMemo = () =>{
+    axios.get(`https://api.friendrive.net/record/${day}`,{
+      headers : {
+        Authorization: `Bearer ${cookies.token}`
+      }
+    })
+    .then((response)=>{
+      console.log(response)
+      setMemo(response.data);
+    })
+    .catch((response)=>{
+      console.log(response);
+    })
+  }
 
  useEffect(()=>{
   getCurriculum();
+  setmemoBoxWidth(prev=>memoBoxRef.current.offsetWidth);
+  setmemoBoxHeight(prev=>memoBoxRef.current.offsetHeight);
   if(cookies.token){
     getChecked();
+    getMemo();
   }
  },[])
  
-  // outlet context의 전역 객체의 items에서 id에 대응하는 항목만 추출
-
-  // 체크된 아이템을 outletContext에서 추출한다.
+  const Settings = {
+    infinite: true,
+    speed: 500,
+    slideToShow: 1,
+    slideToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 4000,
+    dots: true,
+    appendDots: (dots) => (
+      <div
+        style={{
+          width: '100%',
+          position: 'absolute',
+          bottom: '2%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <ul> {dots} </ul>
+      </div>
+    ),
+    dotsClass: 'dots_custom'
+  }
+  const StyledSlider = styled(Slider)`
+  .slick-arrow{
+    display:none;
+  }
+  .slick-prev,
+  .slick-next{
+    opacity: 0;
+    display: none;
+  }
+  .dots_custom {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 0;
+    padding: 0;
+  }
   
+  .dots_custom li {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 2px;
+    padding: 0;
+  }
+  
+  .dots_custom li button {
+    border: none;
+    background: #d1d1d1;
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    padding: 0;
+  }
+  
+  .dots_custom li.slick-active button {
+    background-color: #08c1ce;
+  }
+} 
+`;
     return(
       <div className='common_list_container'>
           <TopNavi title={`Day ${day}`}/>
@@ -83,19 +152,32 @@ const getChecked = async() =>{
               ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0}/>)}
             </div>
             <div className={style.day_memo}>
-
+              {cookies.token?
+                (
+                <div ref={memoBoxRef} className={style.memoBox_container}>
+                    {memos.length>0?(
+                    <StyledSlider {...Settings}>
+                      {memos.map((item)=><MemoComponent key={item.id} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
+                      <div>
+                        <AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`메모 추가하기`}/>
+                      </div>
+                    </StyledSlider>
+                    ):(<AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모 또는 피드백이 없습니다.'}/>)
+                    }
+                </div>
+                ):
+                (
+                  <AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모, 피드백 보기는 로그인 이후 이용가능합니다.'}/>
+                )}
             </div>
           </article>
             </div>
-
           <article className={style.daylist_box}>
             {allItems?checkedItem&&allItems.map((item)=>{
               var check=false;
-              console.log(checkedItem);
               if(cookies.token && checkedItem.includes(item.itemId)){
                 check = true;
               }
-              console.log(checkedItem)
               return (//여기에 setCheked함수를 전달하여 state값을 조절해준다.
               <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
             )}):<Loading/>}

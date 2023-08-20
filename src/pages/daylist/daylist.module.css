@@ -42,3 +42,25 @@
     box-sizing: border-box;
 }
 
+/* 메모 css */
+.memoBox_container{
+    width: 100%;
+    height: 100%;
+}
+
+.add_memo{
+    width: 100%;
+    height: 100%;
+    font-size: 0.7rem;
+    color:rgba(0, 0, 0, 0.50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_memo > button{
+    margin-top: 1%;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
