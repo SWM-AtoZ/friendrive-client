@@ -1,0 +1,41 @@
+.navi_section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.topNavi{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    height: 5%;
+    padding-top: 2%;
+    margin-bottom: 5%;
+    position:relative;
+    top: 0;
+    left: 0;
+}
+
+.back{
+ position:absolute;
+ left: 3%;
+}
+
+.wiriting_complete{
+ position:absolute;
+ right: 3%;
+ background-color: rgba(255, 255, 255, 1);
+ border: 0;
+ font-size: 1.1rem;
+ color: rgba(0, 0, 0, 0.5);
+}
+
+.naviTitle{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.writing_area{
+    height: 95%;
+    flex-grow: 1;
+}

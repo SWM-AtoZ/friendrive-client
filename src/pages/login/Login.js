@@ -52,11 +52,11 @@ const Login = () => {
                 name : name
         }).then(function (response) {
             console.log(response)
-            setCookies('token', `${response.data.accessToken
-            }`, {
-                    expires: expires,
-                    path:'/',
-                });
+            // setCookies('token', `${response.data.accessToken
+            // }`, {
+            //         expires: expires,
+            //         path:'/',
+            //     });
           })
           .catch(function (error) {
             console.log(error);
