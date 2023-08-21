@@ -45,9 +45,6 @@
 
 }
 
-.login_inputBox input:nth-child(1){
-    margin-bottom: 5%;
-}
 
 .login_input{
     width: 100%;
@@ -73,7 +70,9 @@
     width: 100%;
     margin-top: 5%;
 }
-
+.certification_inputBox > .login_input{
+    margin-bottom: 5%;
+}
 .certification_input{
     width: 100%;
     height: 2.3rem;

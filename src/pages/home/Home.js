@@ -1,17 +1,18 @@
-import React, { useEffect,useRef,useState } from 'react';
-import {useOutletContext, useNavigate, Link } from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
+import {useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
 import curriculumImg from './curriculum_btnimg.png';
+import Loading from '../loading/Loading';
 import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
   const total = 28; // 총 커리큘럼 갯수
-  const TotalCheckedNumb = 6;
+  const [TotalCheckedNumb, setTotalCheckedNumb] = useState();
   const [color, setColor] = useState('');
   const [progress, setProgress] = useState(0);
-  const [cookies,setCookie,removeCookie] = useCookies(['token']);
+  const [cookies,,] = useCookies(['token']);
   var user='';
 
   const navigate = useNavigate();
@@ -27,7 +28,20 @@ function Home() {
         domain:'https://friendrive.net'
       }
 
-  // 로그인 후 토큰 셋팅
+    const getChecked = async() =>{
+        await axios.get(`https://api.friendrive.net/curriculum/checked`,{
+            headers:{
+                Authorization: `Bearer ${cookies.token}`
+            }
+        })
+        .then((response)=>{
+          setTotalCheckedNumb(prev=>response.data.checkedItem.length);
+          
+        })
+        .catch((response)=>{
+            console.log(response);
+        })
+    }
 
     
   // 공유하기 기능 안되는 환경에서 클립보드에 복사
@@ -119,18 +133,21 @@ function Home() {
 
   useEffect(()=>{
     //로그인이 되있는 경우 chekedItem 갯수를 불러와 진행율 계산
-    setProgress(Math.floor((TotalCheckedNumb/total*100)));
+    if(cookies.token){
+      getChecked();
+    }
+    setProgress(prev=>Math.floor((TotalCheckedNumb/total*100)));
 
-    if(Math.floor((TotalCheckedNumb/total*100<=15))){
-      setColor('#FF0000');
-    }
-    else if(Math.floor((TotalCheckedNumb/total*100<=15))<=75){
-      setColor('#FFE300');
-    }
-    else{
-      setColor('#389300');
-    }
-  },[])
+          if(Math.floor((TotalCheckedNumb/total*100<=15))){
+            setColor('#FF0000');
+          }
+          else if(Math.floor((TotalCheckedNumb/total*100<=15))<=75){
+            setColor('#FFE300');
+          }
+          else{
+            setColor('#389300');
+          }
+  },[TotalCheckedNumb])
  
   return (
     <section id={style.home_section}>
@@ -153,9 +170,9 @@ function Home() {
               <div>운전 가이드</div>
             </div>
             <div>
-              <div>{cookies.token?`${TotalCheckedNumb} / 28 과목 (완주까지 ${progress}%)`:`0 / 28 과목`}</div>
+              <div>{cookies.token&&TotalCheckedNumb?`${TotalCheckedNumb} / 28 과목 (완주까지 ${progress}%)`:`0 / 28 과목`}</div>
             <div className={style.progress_bar}>
-              <div style={{backgroundColor:`${color}`, width:`${progress}%`}}></div>
+              <div style={{backgroundColor:`${color}`, width:`${progress?progress:0}%`}}></div>
             </div>
             <div>{cookies.token?'':'완주율 확인은 로그인이 필요해요!'}</div>
             </div>

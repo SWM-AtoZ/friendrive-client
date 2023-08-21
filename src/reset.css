@@ -50,13 +50,13 @@ table {
 a{
 	text-decoration: none;
 }
-/* input, textarea { 
+input, textarea { 
 	-webkit-user-select : auto;
-  } */
+  }
 
 html{
-	height: 100vh;
 	background-color: #F8FBFC;
+	overflow: hidden;
 }
 
 body{

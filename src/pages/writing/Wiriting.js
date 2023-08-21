@@ -10,7 +10,7 @@ const Writing = () => {
     const [memoText, setMemoText] = useState('');
     const [cookies,,] = useCookies();
 
-    const day = location.state.day;
+    const day = 3;//!location.state.day&&'2';
     const Write = (e) => {
       setMemoText(e.target.value);
     }

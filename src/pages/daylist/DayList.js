@@ -151,10 +151,10 @@ const getMemo = () =>{
                 <DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={checkedItem&&checkedItem.length}/>
               ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0}/>)}
             </div>
-            <div className={style.day_memo}>
+            <div ref={memoBoxRef} className={style.day_memo}>
               {cookies.token?
                 (
-                <div ref={memoBoxRef} className={style.memoBox_container}>
+                <div className={style.memoBox_container}>
                     {memos.length>0?(
                     <StyledSlider {...Settings}>
                       {memos.map((item)=><MemoComponent key={item.id} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
@@ -173,10 +173,12 @@ const getMemo = () =>{
           </article>
             </div>
           <article className={style.daylist_box}>
-            {allItems?checkedItem&&allItems.map((item)=>{
+            {allItems?allItems.map((item)=>{
               var check=false;
-              if(cookies.token && checkedItem.includes(item.itemId)){
-                check = true;
+              if(checkedItem){
+                if(cookies.token && checkedItem.includes(item.itemId)){
+                  check = true;
+                }
               }
               return (//여기에 setCheked함수를 전달하여 state값을 조절해준다.
               <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>

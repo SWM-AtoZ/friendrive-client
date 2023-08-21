@@ -45,7 +45,7 @@ const DayinfoTitle = ({day, title, dayprocess}) => {
                     <div className={style.circle_box}> 
                     <svg className={style.circle_inner_box}  width="100%" height="100%" viewBox="0 0 200 200" fill="none">
                         <circle  cx="100" cy="100" r="88" fill="none" stroke="#BDBDBD" stroke-width="12" />
-                        <circle className={style.circle} ref={circleRef} cx="100" cy="100" r="88" fill="none" stroke="#018EBA" stroke-width="12" />
+                        <circle className={style.circle} ref={circleRef} cx="100" cy="100" r="88" fill="none" stroke-width="12" />
                     </svg>
                     <div>
                         {percentage?percentage:0}%
