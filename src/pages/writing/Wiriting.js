@@ -2,17 +2,21 @@ import { useCookies } from 'react-cookie';
 import style from './wirting.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { memo, useState } from 'react';
 
 const Writing = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [memoText, setMemoText] = useState('');
     const [cookies,,] = useCookies();
 
     const day = location.state.day;
-    console.log(window.history)
+    const Write = (e) => {
+      setMemoText(e.target.value);
+    }
     const sendMemo = () =>{
         axios.post('https://api.friendrive.net/record/memo',{
-          memo:'lflksjdlfkjlgornviernvjnvlkjdfnvlkjdfnlvkjsdlfkjvnlskdjfnvlksjdfvlkjsdflkvjsldkfjvslkdjfvlksjdfvlkjsdfvlkjsdlkvjnsdlkjvnsdlfkjvsdkl',
+          memo:`${memoText}`,
           day:`${day}`
         },{
           headers:{
@@ -41,8 +45,8 @@ const Writing = () => {
           <div className={style.naviTitle}>메모하기</div>
           <button onClick={sendMemo} className={style.wiriting_complete}>작성완료</button>
         </div>
-        <article className={style.writing_area}>
-
+        <article className={style.writing_area_box}>
+          <textarea className={style.writing_area} onChange={Write} value={memoText} placeholder='나에게 남길 메모를 입력해보세요'></textarea>
         </article>
         </section>
     )
