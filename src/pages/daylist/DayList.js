@@ -173,7 +173,7 @@ const getMemo = () =>{
           </article>
             </div>
           <article className={style.daylist_box}>
-            {allItems?allItems.map((item)=>{
+            {allItems||checkedItem?allItems.map((item)=>{
               var check=false;
               if(checkedItem){
                 if(cookies.token && checkedItem.includes(item.itemId)){
