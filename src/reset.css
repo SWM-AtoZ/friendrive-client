@@ -53,7 +53,9 @@ a{
 input, textarea { 
 	-webkit-user-select : auto;
   }
-
+input, textarea:focus{
+	outline-color: rgba(71, 178, 255, 0.6);
+}
 html{
 	background-color: #F8FBFC;
 	overflow: hidden;
