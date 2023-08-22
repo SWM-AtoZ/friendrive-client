@@ -18,6 +18,7 @@ const Detail = ()=>{
     const callContents = () =>{}
     const [searchParams, setSearchParams] = useSearchParams();
     const contentName = searchParams.get("content");
+    const [contentHeight, setContentHeight] = useState();
     const contentRef = useRef([]);
 
     //navigate로 props 전달받는 코드
@@ -34,6 +35,7 @@ const Detail = ()=>{
         for(var i=0; i<contentRef.current.length; i++){
             contentRef.current[i].style.height = `${content_height}px`;
         }
+        setContentHeight(content_height);
     },[])
     const settings = {
         dots: false,
@@ -52,13 +54,13 @@ const Detail = ()=>{
             <div>평가</div>
         </div>
         <StyledSlider {...settings}>
-            {[1,2,3].map((item,index)=>(
-                <div ref={(element) => {
-                    contentRef.current[index] = element;
+            <div>
+            <div ref={(element) => {
+                    contentRef.current[0] = element;
                   }} className={style.content}>
-                    <div className={style.content_inner}></div>
+                   <div className={style.content_inner}>컨텐츠 준비중입니다.</div>
                 </div>
-            ))}
+            </div>
         </StyledSlider>
         </article>
         <div className={style.s1_arrow}>

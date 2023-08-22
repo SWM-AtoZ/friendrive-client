@@ -4,17 +4,45 @@ import CurriculumList from '../../componenets/curriculumList/CurriculumList';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const Curriculum = () => {
     const curriculum = ['기본 조작하기','핸들링 배우기','주차 마스터하기','차선변경 익히기','주행 정복하기']
-    const [chekedItem, setCheckedItem] = useState();
-    //쿠키에 담겨진 jwt토근을 이용하여 로그인 유무를 검사 
-    //로그인이 되어있으면 chekedItem API 호출
-    //로그인 유무에 따라 각 데이의 진행율을 표기
-    //로그인이 되어있으면 각 데이의 체크표시율을 CurriculumList에 Props로 전달.
+    const [day1, setDay1] = useState(0);
+    const [day2, setDay2] = useState(0);
+    const [day3, setDay3] = useState(0);
+    const [day4, setDay4] = useState(0);
+    const [day5, setDay5] = useState(0);
+    const setCheckedItemsNumb = [setDay1,setDay2,setDay3,setDay4,setDay5];
+    const CheckedItemsNumb = [day1, day2, day3, day4, day5];
+    const [cookies,,] = useCookies(['token']);
+    const test = new Array(5).fill(0);
 
-    useEffect(()=>{
-        //day 표기 안하면 전체 체크리스트 보내게 할 수는 없나 물어보기.
+    useEffect( ()=>{
+            if(cookies.token){
+                axios.get('https://api.friendrive.net/curriculum/checked',{
+                    headers : {
+                        Authorization: `Bearer ${cookies.token}`
+                    }
+                })
+                .then(response =>{
+                    var TempCheckedItem  = response.data.checkedItem;
+                    //각 데이마다 몇개의 아이템이 체크되어있는지 확인.
+                    for(var i=0; i<setCheckedItemsNumb.length; i++){
+                        var day = i+1;
+                        for(var j=0; j<TempCheckedItem.length; j++){
+                            if(TempCheckedItem[j].includes(`d${day}`)){
+                                setCheckedItemsNumb[i](prev=>prev+1);
+                                test[i]++;
+                            }
+                        }
+                    }
+                    console.log(test)
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            }
     },[])
 
     return(
@@ -24,7 +52,7 @@ const Curriculum = () => {
         <div className={style.curriculum_list_container}>
         <div  className={style.curriculum_list}>
             {curriculum.map(
-                (item,idx)=>(<CurriculumList day={idx+1} title={item}/>)
+                (item,idx)=>(<CurriculumList day={idx+1} title={item} progress={CheckedItemsNumb[idx]}/>)
             )}
         </div>
         </div>
