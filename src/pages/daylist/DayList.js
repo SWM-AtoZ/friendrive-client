@@ -100,6 +100,10 @@ const getMemo = () =>{
     dotsClass: 'dots_custom'
   }
   const StyledSlider = styled(Slider)`
+  .slick-list{
+    z-index : 1;
+  }
+
   .slick-arrow{
     display:none;
   }
@@ -110,6 +114,7 @@ const getMemo = () =>{
   }
   .dots_custom {
     display: inline-block;
+    z-index : 0;
     vertical-align: middle;
     margin: auto 0;
     padding: 0;
@@ -173,16 +178,22 @@ const getMemo = () =>{
           </article>
             </div>
           <article className={style.daylist_box}>
-            {allItems||checkedItem?allItems.map((item)=>{
+            {cookies.token?
+            (allItems&&checkedItem?allItems.map((item)=>{
               var check=false;
               if(checkedItem){
                 if(cookies.token && checkedItem.includes(item.itemId)){
                   check = true;
                 }
               }
-              return (//여기에 setCheked함수를 전달하여 state값을 조절해준다.
+              return (
               <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
-            )}):<Loading/>}
+            )}):<Loading/>):
+            (allItems?allItems.map((item)=>{
+              var check=false;
+              return (
+              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
+            )}):<Loading/>)}
           </article>
           </section>
         </div>

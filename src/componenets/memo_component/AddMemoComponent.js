@@ -1,13 +1,19 @@
 import style from './addmemo_component.module.css';
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 const AddMemoComponent = ({setMemos,width,height,day,innertext}) => {
     const navigate = useNavigate();
-
+    const[cookies,,] = useCookies(['token']);
     const goToWrite = () =>{
-        navigate('/writing',{state : {
-            day : day
-        }});
+        if(cookies.token){
+            navigate('/writing',{state : {
+                day : day
+            }});
+        }
+        else{
+            alert('로그인이 필요한 서비스입니다.')
+        }
     }
 
     return(

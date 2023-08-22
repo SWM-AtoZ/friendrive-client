@@ -12,7 +12,7 @@ const User = () => {
     const navigate = useNavigate();
   
     const getUserData = async () =>{ //유저 데이터 얻는 함수.
-        axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
+        axios.get("https://api.friendrive.net/user/info", {
             headers: {
                 Authorization: `Bearer ${cookies.token}`
             }
@@ -30,7 +30,9 @@ const User = () => {
         removeCookie('teacherToken');
         //홈페이지로 이동하여 페이지를 새로고침해준다.
         alert('로그아웃 되었습니다.');
-        window.location.href = 'https://friendrive.net';
+        navigate('/',{
+          replace:true,
+        })
     }
     const SignUp = () =>{
       navigate('/Login');

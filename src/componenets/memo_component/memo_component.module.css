@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    z-index: 1;
 }
 
 .memoBox_top{
@@ -42,15 +41,15 @@
     font-size: 0.7rem;
     color:  rgba(0, 0, 0, 0.70);
     padding: 2% 2% 2% 2%;
+    box-sizing: border-box;
     word-break:break-all;
     line-height: 1rem;
+    position: relative;
 }
 
 .remove_memo{
     position: absolute;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     bottom: 2%;
     right: 2%;
+
 }
