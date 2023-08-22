@@ -67,6 +67,9 @@ body{
 	overflow: hidden;
 	background-color: #FFFFFF;
 }
+textarea{
+	font-family: 'Nanum Gothic', sans-serif;
+}
 
 #root{
 	background-color: #FFFFFF;
