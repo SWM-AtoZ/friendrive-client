@@ -65,6 +65,10 @@
     width: 100%;
     display: inline-block;
 }
+.page_description_inner span{
+    font-size: 0.6rem;
+    color:  rgba(0, 0, 0, 0.4);
+}
 
 .page_description span{
     font-weight: bold;

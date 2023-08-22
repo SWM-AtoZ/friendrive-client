@@ -1,15 +1,15 @@
 import style from './servicefeedback.module.css';
-import logo from './logo.png';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { memo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 const ServiceFeedback = () => {
     const navigate = useNavigate();
     const [feedBack, setMemoText] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [SubmitBtn, setSubmitBtn] = useState(true);
-
+    const [cookies,,] = useCookies(['token']);
     const onChangeWrite = (e) =>{
         setMemoText(e.target.value);
     }
@@ -73,14 +73,14 @@ const ServiceFeedback = () => {
           <div className={style.page_description}>
             <div>서비스의 <span>중심</span>은 언제나 <span>고객님</span>입니다.</div>
             <div className={style.page_description_inner}>
-            <div>이용하며 느끼신 불편한 점이나 바라는 점을 알려주세요. 소중한 의견으로 한뼘 더 자라는 FD가 되도록 하겠습니다.</div>
+            <div>이용하며 느끼신 불편한 점이나 바라는 점을 알려주세요. <br/>소중한 의견으로 한뼘 더 자라는 FD가 되도록 하겠습니다.<br/><span>{'( '}추첨을 통해 소정의 상품을 드립니다.{' )'}</span> </div>
             </div>
           </div>
           <textarea className={style.writing_area} onChange={onChangeWrite} value={feedBack} placeholder='(필수) 서비스에 대한 소중한 의견사항을 남겨주세요'></textarea>
-          <div className={style.phoneNumber_box}>
+          {!cookies.token&&<div className={style.phoneNumber_box}>
           <label for="phoneNumber">전화번호</label>
-          <input id="phoneNumber" className={style.login_input} type='number' placeholder='(선택) 소정의 선물을 원하시는 분은 전화번호를 남겨주세요' value={phoneNumber} onChange={onChangePhonenumber}></input>
-          </div>
+          <input id="phoneNumber" className={style.login_input} type='number' placeholder='(선택) 소정의 상품을 원하시는 분은 전화번호를 남겨주세요' value={phoneNumber} onChange={onChangePhonenumber}></input>
+          </div>}
           <button onClick={sendFeedback} className={style.send_btn} disabled={SubmitBtn}>작성 완료</button>
         </article>
         </section>
