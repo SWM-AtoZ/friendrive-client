@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
+import community from './community.png';
 import curriculumImg from './curriculum_btnimg.png';
 import Loading from '../loading/Loading';
 import axios from 'axios';
@@ -124,7 +125,7 @@ function Home() {
 
   const goToCommunity = () => {
     // navigate('community');
-    alert('준비중이다 인마');
+    alert('서비스 준비중입니다');
   }
 
   const goToEventPage = () => {
