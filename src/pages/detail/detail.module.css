@@ -12,17 +12,28 @@
 
 .contents_tab{
     border: 1px solid rgba(0, 0, 0, 0.10);
+    border-left: none;
+    border-right: none;
     height: 5%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
-.contents_tab div:nth-child(1){
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
+.contents_tab button{
+    background-color: white;
+    flex-grow: 1;
+    height: 100%;
+}
+.contents_tab button:nth-child(1){
+    border: none;
+    border-right: 0.5px solid rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.5s;
 }
 
-.contents_tab div:nth-child(2){
+.contents_tab button:nth-child(2){
     border: none;
+    border-left: 0.5px solid rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.5s;
 }
 .contents_tab div{
     flex-grow: 1;
@@ -40,7 +51,7 @@
 
 /* 화살표 애니메이션 */
 .s1_arrow{display:inline-block; position:absolute; bottom:5%; left:50%; margin-left:-10px; text-align:center; animation:arrow_down 1.5s 5;}
-.scroll_arrow {width:15px; height:15px; border-right: 3px solid white; border-bottom: 3px solid white; opacity: 0; transition: all 0.3s ease-in-out;
+.scroll_arrow {width:15px; height:15px; border-right: 3px solid rgba(0, 0, 0, 0.4);; border-bottom: 3px solid rgba(0, 0, 0, 0.4);; opacity: 0; transition: all 0.3s ease-in-out;
 transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg);  -ms-transform: rotate(45deg);
 animation: arrow-wave 1s 5; animation-direction: alternate;}
 .scroll_arrow:nth-child(1) {animation-delay: 0.3s;}

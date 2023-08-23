@@ -16,6 +16,8 @@ import Loading from './pages/loading/Loading';
 import User from './pages/user/User';
 import Login from './pages/login/Login';
 import Writing from './pages/writing/Wiriting';
+import Contents from './pages/detail/Contents';
+import FeedBack from './pages/detail/FeedBack';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
 import Teacher from './pages/teacher/Teacher';
@@ -43,7 +45,17 @@ const router = createBrowserRouter([
   },
   {
     path:'detail',
-    element:<Detail/>
+    element:<Detail/>,
+    children:[
+      {
+        index:true,
+        element:<Contents/>
+      },
+      {
+        path:'feedback',
+        element:<FeedBack/>
+      }
+    ]
   },
   {
     path:'serviceFeedback',
