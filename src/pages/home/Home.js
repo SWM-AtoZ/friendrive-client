@@ -168,7 +168,7 @@ function Home() {
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
-              <div>운전 가이드</div>
+              <div className={style.testArea_title}>운전 가이드</div>
             </div>
             <div>
               <div>{cookies.token&&TotalCheckedNumb?`${TotalCheckedNumb} / 28 과목 (완주까지 ${progress}%)`:`0 / 28 과목`}</div>
@@ -190,12 +190,16 @@ function Home() {
      <div className={style.etc_box}>
       <div onClick={goToCommunity} className={style.community_btn}>
         <div>커뮤니티</div>
-        <div>픽토그램</div>
+        <div>
+          <img src={community}/>
+        </div>
       </div>
       <div onClick={goToEventPage} className={style.event_btn}>
         <div>이벤트</div>
+        <div>
         <div>서비스 피드백을 남겨주세요</div>
         <div>추첨을 통해 기프티콘을 드립니다.</div>
+        </div>
       </div>
      </div>
       </article>
