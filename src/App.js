@@ -65,15 +65,10 @@ function App() {
 
   return (
     <>
-    {/* <section className='section_container'>
+    <section className='section_container'>
       {curriculum?<Outlet context={{curriculum, checked}}/>:<Loading/>}
     </section>
-    <Nav/> */}
-    <div className='temp_box'>
-      <div>{`서비스 준비중입니다!`}</div>
-      <div>{" "}</div>
-      <div>{`더 좋은 서비스로 찾아 뵙겠습니다.`}</div>
-    </div>
+    <Nav/> 
     </>
 
   );
