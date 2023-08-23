@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import style from './curriculumList.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const CurriculumList = ({day, title, progress}) => {
+const CurriculumList = ({day, title, progress, teacherToken, studentName}) => {
     const DaysItemsTotalNumb = [7,8,3,6,4];
     const TotalNumb = DaysItemsTotalNumb[day-1];
     const [percentage, setPercentage] = useState('');
@@ -11,7 +11,17 @@ const CurriculumList = ({day, title, progress}) => {
     const navigate = useNavigate();
     const circleRef = useRef();
     const goTodayList = () =>{
-        navigate(`/daylist?day=${day}`)
+        if(teacherToken){
+            navigate(`/teacherDayList?day=${day}`,{
+                state : {
+                    teacherToken : teacherToken,
+                    studentName : studentName
+                }
+            })
+        }
+        else{
+            navigate(`/daylist?day=${day}`)
+        }
     }
 
     useEffect(()=>{

@@ -2,7 +2,7 @@ import style from './daylist.module.css';
 import { styled } from 'styled-components';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import {useSearchParams,useNavigate} from 'react-router-dom';
+import {useSearchParams} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
 import Loading from '../loading/Loading';
@@ -10,6 +10,7 @@ import DaylistComponent from '../../componenets/daylist_list/DaylistComponent';
 import DayinfoTitle from '../../componenets/daylist_day_info/DayinfoTitle';
 import MemoComponent from '../../componenets/memo_component/MemoComponent';
 import AddMemoComponent from '../../componenets/memo_component/AddMemoComponent';
+
 import Slider from 'react-slick';
 import '../../slick-carousel/slick/slick.css';
 import '../../slick-carousel/slick/slick-theme.css';

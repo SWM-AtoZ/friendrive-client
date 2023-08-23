@@ -21,10 +21,10 @@ import FeedBack from './pages/detail/FeedBack';
 import CustomerPage from './pages/user/CustomerPage';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
-import Teacher from './pages/teacher/Teacher';
 import TeacherHome from './pages/teacher/TeacherHome';
 import TeacherDetail from './pages/teacher/TeacherDeatil';
 import TeacherDayList from './pages/teacher/TeacherDayList'
+import FeedbackWriting from './pages/teacher/FeedbackWriting';
 import './reset.css';
 
 const router = createBrowserRouter([
@@ -81,6 +81,10 @@ const router = createBrowserRouter([
   {
     path: "teacherDayList",
     element : <TeacherDayList/>,
+  },
+  {
+    path: "feedbackWriting",
+    element:<FeedbackWriting/>
   },
   {
     path : "teacherDetail",
