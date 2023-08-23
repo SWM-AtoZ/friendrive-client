@@ -68,7 +68,7 @@ function Home() {
    // 공유기능 되는 환경에서 공유기능 활성화
   const ShareTeacher = async () => {
     let teacherToken = ""
-    await axios.get('https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/teacher/token',{
+    await axios.get('https://api.friendrive.net/teacher/token',{
       headers:{
         Authorization: `Bearer ${cookies.token}`
       }
@@ -87,7 +87,13 @@ function Home() {
             title: `${user}님의 운전연수 요청!`,
             text: `${user}님의 초보 탈출을 도와주세요!`,
             url: url,
-        });
+        })
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(response=>{
+          console.log(response)
+        })
     }else{
        handleCopyClipBoard(url);
     }
@@ -95,18 +101,19 @@ function Home() {
   // 로그연 여부 확인 후 공유 또는 로그인 화면 이동.
   const isLogin = async() => {
     if(cookies.token){
-   await axios.get("https://41icjhls1i.execute-api.ap-northeast-2.amazonaws.com/dev/user/info", {
-          headers: {
-              Authorization: `Bearer ${cookies.token}`
-          }
-      }).then(function (response) {
-          user = response.data.nickName;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });  
+  //  await axios.get("https://api.friendrive.net/user/info", {
+  //         headers: {
+  //             Authorization: `Bearer ${cookies.token}`
+  //         }
+  //     }).then(function (response) {
+  //         user = response.data.name;
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });  
 
-    await ShareTeacher();
+  //   await ShareTeacher();
+      alert('서비스 준비중입니다.');
     }
     else{
       alert('로그인이 필요힌 서비스입니다');
