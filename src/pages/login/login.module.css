@@ -1,27 +1,99 @@
-.login_button_container{
+.login_section{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
+.login_container{
+    width: 100%;
+    height: 95%;
+    border-top: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    padding-top: 5%;
+    box-sizing: border-box;
+}
 .login_text{
     margin-bottom: 5%;
     font-size: larger;
+    text-align: center;
 }
 
-.login_innerbox{
+.login_description{
+    line-height: 1.8;
+}
+
+.login_description div:nth-child(1){
+    font-size: larger;
+    font-weight: bold;
+}
+
+.login_description div:nth-child(2){
+    line-height: 1.3;
+    font-size:0.7rem;
+}
+.form_box{
+    padding : 5% 2% 0 2%;
+    box-sizing: border-box;
+}
+.login_inputBox{
     width: 100%;
-    height: 50%;
-    border-top: 1px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.5);
-    padding-top: 7%;
-    padding-left: 2%;
-    padding-right: 2%;
+
+}
+
+
+.login_input{
+    width: 100%;
+    height: 2.3rem;
+    padding: 0 2% 0 2%;
+    box-sizing: border-box;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    
+}
+
+.receive_certification{
+    font-size: medium;
+    margin-top: 5%;
+    width: 100%;
+    height: 2.5rem;
+    box-sizing: border-box;
+    border-radius: 0.4375rem;
+    border: 0px solid rgba(0, 0, 0, 0.3);
+}
+
+.certification_inputBox{
+    width: 100%;
+    margin-top: 5%;
+}
+.certification_inputBox > .login_input{
+    margin-bottom: 5%;
+}
+.certification_input{
+    width: 100%;
+    height: 2.3rem;
+    padding: 0 2% 0 2%;
+    box-sizing: border-box;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.send_certification{
+    font-size: medium;
+    margin-top: 5%;
+    width: 100%;
+    height: 2.5rem;
+    box-sizing: border-box;
+    border-radius: 0.4375rem;
+    border: 0px solid rgba(0, 0, 0, 0.3);
+}
+
+.login_toggle {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; 
 }

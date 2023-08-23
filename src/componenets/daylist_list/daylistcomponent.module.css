@@ -1,0 +1,58 @@
+.daylist{
+    width: 100%;
+    box-sizing: border-box;
+    height: 4.375rem;
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #F8FBFC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding:0 3% 0 5%;
+    margin-bottom: 5%;
+    box-sizing: border-box;
+}
+
+/* .daylist:last-child{
+    margin-bottom: 0;
+} */
+
+.passBtn{
+    width: 3rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_box{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+.PASS{
+    display: inline-block;
+    border: 2.5px solid rgba(0, 147, 59, 1);
+    color: rgba(0, 147, 59, 1);
+    font-weight: 900;
+    position: absolute;
+    transform: rotate(-40deg);
+    top: 9%;
+    left: -1%;
+    transition: opacity ease-in-out 0.3s;
+    opacity: 0;
+}
+.icon_box{
+    width: 2.2rem;
+    height: 2.2rem;
+    box-sizing: border-box;
+    margin-right: 4%;
+}
+
+.icon_box > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

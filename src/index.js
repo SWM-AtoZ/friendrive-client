@@ -8,46 +8,83 @@ import { CookiesProvider } from 'react-cookie';
 //페이지 임포트
 import App from './App';
 import Home from './pages/home/Home';
-import Section from './pages/section/Section';
+import Curriculum from './pages/curriculum/Curriculum';
+import DayList from './pages/daylist/DayList';
+import Detail from './pages/detail/Detail';
+import ServiceFeedback from './pages/servicefeedback/ServiceFeedback';
 import Loading from './pages/loading/Loading';
 import User from './pages/user/User';
 import Login from './pages/login/Login';
-import TeacherDetail from './pages/teacher/TeacherDetail';
+import Writing from './pages/writing/Wiriting';
+import Contents from './pages/detail/Contents';
+import FeedBack from './pages/detail/FeedBack';
+import CustomerPage from './pages/user/CustomerPage';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
 import Teacher from './pages/teacher/Teacher';
+import TeacherHome from './pages/teacher/TeacherHome';
+import TeacherDetail from './pages/teacher/TeacherDeatil';
+import TeacherDayList from './pages/teacher/TeacherDayList'
 import './reset.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    children: [
+  },
+  {
+    path : 'curriculum',
+    element: <Curriculum/>,
+  },
+  {
+    path:'daylist',
+    element:<DayList/>, 
+  },
+  {
+    path:'writing',
+    element:<Writing/>,
+  },
+  {
+    path:'detail',
+    element:<Detail/>,
+    children:[
       {
-        index : true, 
-        element: <Home />,
+        index:true,
+        element:<Contents/>
       },
       {
-        path:'day',
-        element:<Section/>,
-      },
-      {
-        path:'user',
-        element:<User/>,
-      },
-      {
-        path:'login',
-        element:<Login/>,
+        path:'feedback',
+        element:<FeedBack/>
       }
-    ],
+    ]
   },
   {
-    path: "teacher",
-    element: <Teacher />,
+    path:'serviceFeedback',
+    element:<ServiceFeedback/>,
   },
   {
-    path:'teacherdetail',
-    element:<TeacherDetail/>
+    path:'customerpage',
+    element:<CustomerPage/>
+  },
+  {
+    path:'user',
+    element:<User/>,
+  },
+  {
+    path:'login',
+    element:<Login/>,
+  },
+  {
+    path:"teacherhome",
+    element: <TeacherHome/>,
+  },
+  {
+    path: "teacherDayList",
+    element : <TeacherDayList/>,
+  },
+  {
+    path : "teacherDetail",
+    element : <TeacherDetail/>,
   },
   {
     path:'loading',

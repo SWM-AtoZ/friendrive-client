@@ -1,0 +1,48 @@
+.curriculum_list{
+    border-radius: 0.4375rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: #F8FBFC;
+    background-color: #F8FBFC;
+    width: 100%;
+    height :5.375rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5% 0 5%;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+}
+
+.curriculum_progress{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title{
+    margin-left: 5%;
+    width: 8rem;
+    line-height: 1.5;
+}
+.circle_box{
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+}
+.circle_box div{
+    font-size: 0.6rem;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.circle_inner_box{
+    transform: rotateZ(270deg);
+}
+
+
+.go_daylist{
+
+}

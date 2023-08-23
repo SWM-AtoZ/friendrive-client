@@ -1,106 +1,59 @@
 import style from './detail.module.css';
-import { useLocation } from 'react-router-dom';
-import styled from "styled-components";
-import { useRef } from 'react';
-import DetailList from '../../componenets/detailList/DetailList';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import '../home/slidecustom.css';
-import next from './next.png';
+import { Outlet, useLocation,useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 //slick-slider import
-import Slider from "react-slick";
-import '../../slick-carousel/slick/slick.css';
-import '../../slick-carousel/slick/slick-theme.css';
+import { useEffect, useState } from 'react';
 
-const PrevBtn = (props) =>{
-  
-return(
-    <div onClick={props.prev} className={style.prev_btn}>
-        <img src={next} className={style.btn_text}/>
-    </div>
-)
-}
+const Detail = ()=>{   
+    //navigate로 props 전달받는 코드
+    const {state} = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [title, setTitle] = useState(searchParams.get("content"));
+    const [contents, setContents] = useState(state.contents);
+    const [subject, setSubject] = useState(state.subject);
+    const [contentHeight, setContentHeight] = useState();
+    const navigate = useNavigate();
 
-const NextBtn = (props) =>{
-    return(
-        <div onClick={props.next} className={style.next_btn}>
-            <img src={next} className={style.btn_text}/>
-        </div>
-    )
-}
+    //해당 컨텐츠 이름에 대응되는 컨텐츠 불러오는 함수, 링크로 접속할 경우 대비
+    const callContents = () =>{}
 
+    // 라우팅 함수
+    const goContents = () => {
+        navigate(`/detail?content=${title}`,{
+            replace:true,
+            state:{contents:contents, subject:subject}})
+    }
 
-const Detail = ()=>{
-    let sliderRef = useRef(null);
-
-    const next = () => {
-        sliderRef.slickNext();
-      };
-      const previous = () => {
-        sliderRef.slickPrev();
-      };
-
-    const location = useLocation();
-    const settings = {
-        dots: true,
-        arrow:false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        appendDots: (dots) => (
-          <div
-            style={{
-              width: '100%',
-              position:'absolute',
-              bottom:'-8%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <ul> {dots} </ul>
-          </div>
-        ),
-        dotsClass: 'dots_custom'
-      };
-
-    // location객체로부터 클릭한 아이템의 정보 추출
-    const item = location.state;
-    const title = item.title; // 디테일 페이지 제목
-    const contents = item.content; //디테일 페이지 콘텐츠
-
+    const goFeedback = () => {
+        // navigate(`feedback`, {
+        //     replace:true,
+        //     state:{contents:contents, subject:subject}})
+        alert('서비스 준비중입니다.')
+    }
     
+    useEffect(()=>{
+        //링크로 바로 들어온 경우에는 api로 커리큘럼 호출하여 컨텐트 보여주기.
+        const remainSpace = Math.round(document.getElementById('topNavi').getBoundingClientRect().height+document.getElementById('content_tab').getBoundingClientRect().height);
+        const content_height = Math.round(document.getElementById('detail_section').getBoundingClientRect().height)-remainSpace-30;
+        setContentHeight(content_height);
+    },[])
+   
     return(
-    <div className={style.detail_section}>
-      <TopNavi title={title}/>
-      <div className={style.content_container}>
-        <StyledSlider ref={slider => {
-          sliderRef = slider;
-        }}
-        {...settings}>
-            {contents.map((item)=>(
-                <DetailList img={item[0]} description={item[1]}/>
-            ))}
-        </StyledSlider>
-            <PrevBtn prev={previous}/>
-            <NextBtn next={next} />
+    <section id='detail_section' className={style.detail_section}>
+        <TopNavi title={title}/>
+        <article className={style.contents_box}>
+        <div id='content_tab' className={style.contents_tab}>
+            <button id='contents' onClick={goContents}>학습</button>
+            <button id='feedback' onClick={goFeedback}>평가</button>
         </div>
-    </div>)
+        <Outlet context={[contentHeight]}/>
+        </article>
+        <div id='arrow' className={style.s1_arrow}>
+            <div className={style.scroll_arrow}></div>
+        </div>
+    </section>)
 }
-const StyledSlider = styled(Slider)`
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-slide div {
-    //슬라이더  컨텐츠
-    cursor: pointer;
-  }
-`;
-
-
 
 export default Detail;
