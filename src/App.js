@@ -68,7 +68,7 @@ function App() {
     <section className='section_container'>
       {curriculum?<Outlet context={{curriculum, checked}}/>:<Loading/>}
     </section>
-    <Nav/> 
+    
     </>
 
   );
