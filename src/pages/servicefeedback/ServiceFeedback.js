@@ -21,32 +21,49 @@ const ServiceFeedback = () => {
     }
 
     const sendFeedback = () => {
-        if(phoneNumber.lenght>=10){
+        if(cookies.token){
             axios.post('https://api.friendrive.net/feedback',{
-            phoneNumber : `${phoneNumber}`,
-            feedback : `${feedBack}`
-        })
-        .then(response=>{
-            console.log(response);
-        })
-        .catch(response=>{
-            console.log(response);
-        })
+                feedback : `${feedBack}`
+            })
+            .then(response=>{
+                console.log(response);
+                navigate(-1);
+                alert('소중한 의견 감사합니다.');
+            })
+            .catch(response=>{
+                console.log(response);
+            })
         }
-        else{
-            if(phoneNumber.length>0){
-                alert('전화번호를 올바르게 입력해주세요')
+        else if(!cookies.token){
+            if(phoneNumber.lenght>=10){
+                axios.post('https://api.friendrive.net/feedback',{
+                phoneNumber : `${phoneNumber}`,
+                feedback : `${feedBack}`
+            })
+            .then(response=>{
+                console.log(response);
+                navigate(-1);
+                alert('소중한 의견 감사합니다.');
+            })
+            .catch(response=>{
+                console.log(response);
+            })
             }
             else{
-                axios.post('https://api.friendrive.net/feedback',{
-            feedback : `${feedBack}`
-        })
-        .then(response=>{
-            console.log(response);
-        })
-        .catch(response=>{
-            console.log(response);
-        })
+                if(phoneNumber.length>0){
+                    alert('전화번호를 올바르게 입력해주세요')
+                }
+                else{
+                    axios.post('https://api.friendrive.net/feedback',{
+                feedback : `${feedBack}`
+            })
+            .then(response=>{
+                console.log(response);
+            })
+            .catch(response=>{
+                console.log(response);
+            })
+                }
             }
         }
     }
