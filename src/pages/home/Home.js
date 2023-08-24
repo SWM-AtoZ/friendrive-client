@@ -47,10 +47,11 @@ function Home() {
   // 공유하기 기능 안되는 환경에서 클립보드에 복사
     const handleCopyClipBoard = async (uri) => {
       try {
+        //데스크탑 환경에서 사용하는경우
         await navigator.clipboard.writeText(uri);
         alert('클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!');
       } catch (e) {
-        // alert('복사에 실패하였습니다');
+        // 안드로이드 웹뷰 환경에서 사용하는경우
         const element = document.createElement('textarea');
         element.value = uri;
         element.setAttribute('readonly', '');
@@ -60,7 +61,6 @@ function Home() {
         element.select();
         const copyValue = document.execCommand('copy');
         document.body.removeChild(element);
-        //alert(`클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!`);
         console.log(e);
       }
    };
@@ -106,7 +106,7 @@ function Home() {
       }
     }
     else if(!isMobile){
-      //데스크탑 환경에서 실행하는 경우
+      //데스크탑 환경 또는 안드로이드웹뷰에서 실행하는 경우
       if (navigator.share) {
         navigator.share({
             title: `${user}님의 운전연수 요청!`,
