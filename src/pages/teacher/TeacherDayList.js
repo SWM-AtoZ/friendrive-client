@@ -19,6 +19,7 @@ const TeacherDayList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
+  const [checkedItem, setCheckedItem] = useState();
 
   const [day1, setDay1] = useState(0);
   const [day2, setDay2] = useState(0);
@@ -53,6 +54,7 @@ const getChecked = async() =>{
   await axios.get(`https://api.friendrive.net/teacher?teacherToken=${teacherToken}`)
   .then((response)=>{
     var TempCheckedItem  = response.data.checkedItem;
+    setCheckedItem(response.data.checkedItem);
     //각 데이마다 몇개의 아이템이 체크되어있는지 확인.
     for(var i=0; i<setCheckedItemsNumb.length; i++){
         var day = i+1;
@@ -181,8 +183,12 @@ const getFeedback = () =>{
           </article>
             </div>
           <article className={style.daylist_box}>
-            {(allItems?allItems.map((item)=>{
+            {(allItems&&checkedItem?allItems.map((item)=>{
               var check=false;
+                if(checkedItem.includes(item.itemId)){
+                  check = true;
+                }
+              
               return (
               <TeacherDaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} />
             )}):<Loading/>)}
