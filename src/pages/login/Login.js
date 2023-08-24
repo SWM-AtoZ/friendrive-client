@@ -2,6 +2,7 @@ import style from './login.module.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 //로그인 api열리면 jwt토큰 받아서 쿠키에 저장하고 홈페이지로 리턴하는 코드까지 작성 완료
@@ -15,6 +16,7 @@ const Login = () => {
     const [cookies,setCookies,] = useCookies(['token']);
     const expires = new Date();
     expires.setMonth(expires.getMonth()+3);
+    const navigate = useNavigate();
     
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
@@ -46,22 +48,6 @@ const Login = () => {
         console.log(response)
         setIsUser(response.data.isUser);
         certiToggle.current.style.maxHeight = `${certiToggle.current.scrollHeight}px`;
-        axios.post('https://api.friendrive.net/login/verification',{
-                code : `${response.data.code}`,
-                phoneNumber : phonenumber,
-                name : name
-        }).then(function (response) {
-    
-            setCookies('token', `${response.data.accessToken
-            }`, {
-                    expires: expires,
-                    path:'/',
-                });
-          })
-          .catch(function (error) {
-            console.log(error);
-          }); 
-        
       })
       .catch(function (error) {
         console.log(error);
@@ -99,17 +85,43 @@ const Login = () => {
 
     //인증코드, 폰번호, 이름 입력받아 서버로 보내어 jwt토큰 반환받는 함수
     const getJWT = () => {
-        axios.post('https://api.friendrive.net/login/verification',{
+        if(isUser){
+            axios.post('https://api.friendrive.net/login/verification',{
+                code : certification,
+                phoneNumber : phonenumber
+        }).then(function (response) {
+            console.log(response)
+            setCookies('token',response.data.accessToken,{
+                expires:expires
+            })
+            navigate('/',{
+                replace : true
+            })
+            alert('로그인에 성공하였습니다.')
+          })
+          .catch(function (error) {
+            console.log(error);
+          });     
+        }
+        else{
+            axios.post('https://api.friendrive.net/login/verification',{
                 code : certification,
                 phoneNumber : phonenumber,
                 name : name
         }).then(function (response) {
             console.log(response)
-            
+            setCookies('token',response.data.accessToken,{
+                expires:expires
+            })
+            navigate('/',{
+                replace : true
+            })
+            alert('로그인에 성공하였습니다.')
           })
           .catch(function (error) {
             console.log(error);
-          }); 
+          });
+        } 
     }
 
     return(<section className={style.login_section}>
@@ -123,15 +135,11 @@ const Login = () => {
                 프렌드라이브는 휴대폰 번호로 간편 가입해요. 번호는 안전하게 보관되며 어디에도 공개되지 않아요.
             </div>
             <article className={style.form_box}>
-            <form className={style.login_inputBox}>
                 <input className={style.login_input} type='number' placeholder='휴대폰 번호를 입력해 주세요 (필수)' value={phonenumber} onChange={onChangePhonenumber}></input>
-            </form>
             <button ref={loginbtnRef} className={style.receive_certification} onClick={sendPhoneumber} disabled={IsphoneNumberBtn}>인증문자 받기</button>
             <div ref={certiToggle} className={style.login_toggle}>
-            <form className={style.certification_inputBox}>
                 <input style={{opacity:isUser?`0`:`1`}} className={style.login_input} type='text' placeholder='이름을 입력해주세요 (필수)' value={name} onChange={onChangeName}></input>
                 <input className={style.certification_input} type='number' placeholder='인증 번호를 입력해 주세요' value={certification} onChange={onChangeCertification}></input>
-            </form>
             <button ref={certibtnRef} className={style.send_certification} onClick={getJWT} disabled={IsJwtBtn}>인증번호 확인</button>
             </div>
             </article>
