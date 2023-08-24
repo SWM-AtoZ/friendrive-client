@@ -3,13 +3,12 @@ import { styled } from 'styled-components';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import {useSearchParams, useLocation} from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
 import Loading from '../loading/Loading';
-import DaylistComponent from '../../componenets/daylist_list/DaylistComponent';
-import DayinfoTitle from '../../componenets/daylist_day_info/DayinfoTitle';
 import MemoComponent from '../../componenets/memo_component/MemoComponent';
-import TeacherAddMemoComponent from './TeacherAddMemoComponent';
+import TeacherAddMemoComponent from '../../componenets/teacher_components/teacherAddMemo/TeacherAddMemoComponent';
+import TeacherDayInfoComponent from '../../componenets/teacher_components/teacherDayInfo/TeacherDayInfoComponent';
+import TeacherDaylistComponent from '../../componenets/teacher_components/teacherDayListComponent/TeacherDaylistComponent';
 
 import Slider from 'react-slick';
 import '../../slick-carousel/slick/slick.css';
@@ -17,20 +16,27 @@ import '../../slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
 const TeacherDayList = () => {
-  const [cookies,,] = useCookies(['token']);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [checkedItem, setChecked] = useState();
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
+
+  const [day1, setDay1] = useState(0);
+  const [day2, setDay2] = useState(0);
+  const [day3, setDay3] = useState(0);
+  const [day4, setDay4] = useState(0);
+  const [day5, setDay5] = useState(0);
+  const setCheckedItemsNumb = [setDay1,setDay2,setDay3,setDay4,setDay5];
+  const CheckedItemsNumb = [day1, day2, day3, day4, day5];
+
   const memoBoxRef = useRef();
   const [memoBoxWidth, setmemoBoxWidth] = useState(0);
   const [memoBoxHeight,setmemoBoxHeight] = useState(0);
   const [memos, setMemo] = useState([]);
-  const day = Number(searchParams.get("day"));
 
+  const day = Number(searchParams.get("day"));
+  const teacherToken = searchParams.get("teacher");
+  console.log(teacherToken)
   const location = useLocation();
-  const teacherToken = location.state.teacherToken;
-  const studentName = location.state.studentName;
 
   const getCurriculum = async() =>{
     await axios.get("https://api.friendrive.net/curriculum")
@@ -42,25 +48,27 @@ const TeacherDayList = () => {
         console.log(error);
       });  
 }
+
 const getChecked = async() =>{
-  await axios.get(`https://api.friendrive.net/curriculum/checked/${day}`,{
-      headers:{
-          Authorization: `Bearer ${cookies.token}`
-      }
-  })
+  await axios.get(`https://api.friendrive.net/teacher?teacherToken=${teacherToken}`)
   .then((response)=>{
-      setChecked(response.data.checkedItem);
+    var TempCheckedItem  = response.data.checkedItem;
+    //각 데이마다 몇개의 아이템이 체크되어있는지 확인.
+    for(var i=0; i<setCheckedItemsNumb.length; i++){
+        var day = i+1;
+        for(var j=0; j<TempCheckedItem.length; j++){
+            if(TempCheckedItem[j].includes(`d${day}`)){
+                setCheckedItemsNumb[i](prev=>prev+1);
+            }
+        }
+    }
   })
   .catch((response)=>{
       console.log(response);
   })
 }
-const getMemo = () =>{
-    axios.get(`https://api.friendrive.net/record/${day}`,{
-      headers : {
-        Authorization: `Bearer ${cookies.token}`
-      }
-    })
+const getFeedback = () =>{
+    axios.get(`https://api.friendrive.net/teacher/feedback/${day}?teacherToken=${teacherToken}`)
     .then((response)=>{
       console.log(response)
       setMemo(response.data);
@@ -72,12 +80,10 @@ const getMemo = () =>{
 
  useEffect(()=>{
   getCurriculum();
+  getChecked();
+  getFeedback();
   setmemoBoxWidth(prev=>memoBoxRef.current.offsetWidth);
   setmemoBoxHeight(prev=>memoBoxRef.current.offsetHeight);
-  if(cookies.token){
-    getChecked();
-    getMemo();
-  }
  },[])
  
   const Settings = {
@@ -157,9 +163,7 @@ const getMemo = () =>{
             <div className={style.info_container}>
             <article className={style.day_info_box}>
             <div className={style.day_info}>
-              {cookies.token?(//chekedItem을 넣어준다.
-                <DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={checkedItem&&checkedItem.length}/>
-              ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0}/>)}
+                <TeacherDayInfoComponent day={day} title={curriculum&&curriculum.title} dayprocess={CheckedItemsNumb[day-1]}/>
             </div>
             <div ref={memoBoxRef} className={style.day_memo}>
                 <div className={style.memoBox_container}>
@@ -170,7 +174,7 @@ const getMemo = () =>{
                         <TeacherAddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`피드백 추가하기`} teacherToken={teacherToken}/>
                       </div>
                     </StyledSlider>
-                    ):(<TeacherAddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'보낸 피드백이 없습니다.'} teacherToken={teacherToken} studentName={studentName}/>)
+                    ):(<TeacherAddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'보낸 피드백이 없습니다.'} teacherToken={teacherToken} />)
                     }
                 </div>
             </div>
@@ -180,7 +184,7 @@ const getMemo = () =>{
             {(allItems?allItems.map((item)=>{
               var check=false;
               return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} history={'teacherDayList'} />
+              <TeacherDaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} />
             )}):<Loading/>)}
           </article>
           </section>

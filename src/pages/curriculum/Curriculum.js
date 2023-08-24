@@ -32,15 +32,20 @@ const Curriculum = () => {
                         for(var j=0; j<TempCheckedItem.length; j++){
                             if(TempCheckedItem[j].includes(`d${day}`)){
                                 setCheckedItemsNumb[i](prev=>prev+1);
-                                test[i]++;
                             }
                         }
                     }
-                    console.log(test)
                 })
                 .catch(response => {
                     console.log(response);
                 })
+            }
+
+            return () =>{
+                //언마운트는 업데이트 전에 실행된다.
+                for(var i=0; i<setCheckedItemsNumb.length; i++){
+                    setCheckedItemsNumb[i](0);
+                }
             }
     },[])
 

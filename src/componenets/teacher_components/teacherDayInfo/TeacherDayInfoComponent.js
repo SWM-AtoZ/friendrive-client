@@ -1,12 +1,10 @@
-import style from './dayinfotitle.module.css';
+import style from './teacher_day_info.module.css';
 import { useEffect, useRef, useState } from 'react';
-import { Cookies } from 'react-cookie';
 
 const DayinfoTitle = ({day, title, dayprocess}) => {
     const DaysItemsTotalNumb = [7,8,3,6,4];
     const TotalNumb = DaysItemsTotalNumb[day-1];
     const [percentage, setPercentage] = useState('');
-    const cookies = new Cookies();
     const circleRef = useRef();
 
     useEffect(()=>{
@@ -15,13 +13,11 @@ const DayinfoTitle = ({day, title, dayprocess}) => {
         //로그인 유무에 따라 퍼센테이지 다르게 그려주기
        const outline = circleRef.current.getTotalLength();
        circleRef.current.style.strokeDasharray = outline;
-    
-       if(cookies.get('token')){
-        // 로그인이 된 경우
+
         circleRef.current.style.strokeDashoffset = outline * (1 - Math.floor((dayprocess/TotalNumb) * 100) / 100);
         const tempPercent = Math.floor((dayprocess/TotalNumb) * 100);
         setPercentage(tempPercent);
-        if(tempPercent<=15&&tempPercent>0){
+        if(tempPercent<=15 && tempPercent>0){
             circleRef.current.style.stroke = "#FF0000";
         }
         else if(tempPercent>15 && tempPercent<100 ){
@@ -30,12 +26,7 @@ const DayinfoTitle = ({day, title, dayprocess}) => {
         else if(tempPercent===100){
             circleRef.current.style.stroke = "#389300";
         }
-       }
-       else{
-        // 로그인이 되지 않은 경우
-        circleRef.current.style.strokeDashoffset = outline;
-        setPercentage(0);
-       }
+       
     },[dayprocess])
 
     return(

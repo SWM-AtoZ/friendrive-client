@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import style from './daylistcomponent.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
-import { Cookies, useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, setChecked, history}) => {
@@ -51,7 +51,10 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
       }); 
       }
       else{
-        alert('로그인이 필요한 서비스입니다.')
+        const IsLogin = window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+        if(IsLogin){
+          navigate('/login');
+        }
       }
     }
     useEffect(()=>{
@@ -69,7 +72,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
                   {subject}
                 </div>
           </div>
-          {history!=='teacherDayList'&&<div onClick={pressPass} className={style.passBtn}>
+          {<div onClick={pressPass} className={style.passBtn}>
                   {passBtn?(
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 21 21" fill="none">
                     <path  d="M6.39001 16.2251V6.06508C6.39001 5.66508 6.51001 5.27508 6.73001 4.94508L9.46001 0.885083C9.89001 0.235083 10.96 -0.224917 11.87 0.115083C12.85 0.445083 13.5 1.54508 13.29 2.52508L12.77 5.79508C12.73 6.09508 12.81 6.36508 12.98 6.57508C13.15 6.76508 13.4 6.88508 13.67 6.88508H17.78C18.57 6.88508 19.25 7.20508 19.65 7.76508C20.03 8.30508 20.1 9.00508 19.85 9.71508L17.39 17.2051C17.08 18.4451 15.73 19.4551 14.39 19.4551H10.49C9.82001 19.4551 8.88001 19.2251 8.45001 18.7951L7.17001 17.8051C6.68001 17.4351 6.39001 16.8451 6.39001 16.2251Z" fill="#47B2FF"/>
