@@ -94,7 +94,8 @@ function Home() {
     else if (userAgent === 'iOS_App') {  
       window.webkit.messageHandlers.shareText(url);
     }
-    // if (navigator.share) {
+    else{
+      // if (navigator.share) {
     //     navigator.share({
     //         title: `${user}님의 운전연수 요청!`,
     //         text: `${user}님의 초보 탈출을 도와주세요!`,
@@ -109,6 +110,8 @@ function Home() {
     // }else{
     //    handleCopyClipBoard(url);
     // }
+    alert('공유하기 실패');
+    }
   } 
   // 로그연 여부 확인 후 공유 또는 로그인 화면 이동.
   const isLogin = async() => {
