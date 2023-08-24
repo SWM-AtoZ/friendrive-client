@@ -2,7 +2,7 @@ import style from './addmemo_component.module.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const AddMemoComponent = ({setMemos,width,height,day,innertext}) => {
+const AddMemoComponent = ({width,height,day,innertext}) => {
     const navigate = useNavigate();
     const[cookies,,] = useCookies(['token']);
 

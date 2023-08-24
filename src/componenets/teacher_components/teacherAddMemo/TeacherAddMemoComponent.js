@@ -1,5 +1,4 @@
-import style from './teacher_add_memo_component.module.css'
-import { useCookies } from 'react-cookie';
+import style from './teacher_add_memo_component.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const TeacherAddMemoComponent = ({width,height,day,innertext,teacherToken,studentName}) => {
@@ -9,7 +8,7 @@ const TeacherAddMemoComponent = ({width,height,day,innertext,teacherToken,studen
             navigate('/feedbackWriting',{state : {
                 day : day,
                 teacherToken : teacherToken,
-                name : studentName
+                studentName : studentName
             }});
     }
 
