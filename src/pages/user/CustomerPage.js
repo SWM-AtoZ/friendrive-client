@@ -30,6 +30,7 @@ const CustomerPage = () => {
         })
         .then(response=>{
             console.log(response);
+            navigate(-1);
             alert('문의사항이 제출되었습니다. 감사합니다.')
         })
         .catch(response=>{

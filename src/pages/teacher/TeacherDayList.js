@@ -192,9 +192,8 @@ const getFeedback = () =>{
                 if(checkedItem.includes(item.itemId)){
                   check = true;
                 }
-              
               return (
-              <TeacherDaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} />
+                  <TeacherDaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} />
             )}):<Loading/>)}
           </article>
           </section>

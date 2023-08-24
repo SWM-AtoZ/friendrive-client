@@ -8,7 +8,9 @@ const MemoComponent = ({setMemos, memo_article,writing_time,is_feedback,teacher_
    //삭제버튼 누르면 카드에서 메모/피드백 삭제하는 함수
     const removeMemo = (e) =>{
       console.log(e)
-      axios.delete(`https://api.friendrive.net/record/${memo_id}`,{
+      const removeConfirm = window.confirm('정말 삭제하시겠습니까?');
+      if(removeConfirm){
+        axios.delete(`https://api.friendrive.net/record/${memo_id}`,{
         headers:{
           Authorization: `Bearer ${cookies.token}`
         }
@@ -20,6 +22,7 @@ const MemoComponent = ({setMemos, memo_article,writing_time,is_feedback,teacher_
       .catch((response)=>{
         console.log(response);
       })
+      }
     }
 
     return(
@@ -29,7 +32,7 @@ const MemoComponent = ({setMemos, memo_article,writing_time,is_feedback,teacher_
                     <div className={style.memo_icon} style={{backgroundImage:`url(${is_feedback?teacher:memo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', }}></div>
                     <div>{is_feedback?teacher_name:'메모'}</div>
                     </div>
-                    <div className={style.writing_time}>{writing_time}</div>
+                    <div className={style.writing_time}>{writing_time.substr(0, 10)}</div>
                   </div>
                   <div className={style.memo_area}>
                   {memo_article}

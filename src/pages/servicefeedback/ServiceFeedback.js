@@ -35,7 +35,7 @@ const ServiceFeedback = () => {
             })
         }
         else if(!cookies.token){
-            if(phoneNumber.lenght>=10){
+            if(phoneNumber.length>=10){
                 axios.post('https://api.friendrive.net/feedback',{
                 phoneNumber : `${phoneNumber}`,
                 feedback : `${feedBack}`
