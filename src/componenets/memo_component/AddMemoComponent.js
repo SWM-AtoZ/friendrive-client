@@ -13,7 +13,10 @@ const AddMemoComponent = ({width,height,day,innertext}) => {
             }});
         }
         else{
-            alert('로그인이 필요한 서비스입니다.')
+            const loginConfirm = window.confirm('로그인이 필요한 서비스입니다, 로그인 하시겠습니까?');
+            if(loginConfirm){
+                navigate('/login');
+            }
         }
     }
 
