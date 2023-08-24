@@ -7,9 +7,7 @@ import axios from 'axios';
 
 const TeacherDaylistComponent = ({subject,contents,icon, check}) => {
     const navigate = useNavigate();
-    const [passBtn, setPassBtn] = useState(check);
     const passRef = useRef();
-    const [cookies,,] = useCookies();
 
 
     const goToDetail = () => {

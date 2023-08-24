@@ -5,7 +5,8 @@ import TopNavi from '../../componenets/topNavi/TopNavi';
 import {useSearchParams, useLocation} from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import Loading from '../loading/Loading';
-import MemoComponent from '../../componenets/memo_component/MemoComponent';
+
+import TeacherFeedbackComponent from '../../componenets/teacher_components/teacherFeedbackComponent/TeacherFeedbckComponent';
 import TeacherAddMemoComponent from '../../componenets/teacher_components/teacherAddMemo/TeacherAddMemoComponent';
 import TeacherDayInfoComponent from '../../componenets/teacher_components/teacherDayInfo/TeacherDayInfoComponent';
 import TeacherDaylistComponent from '../../componenets/teacher_components/teacherDayListComponent/TeacherDaylistComponent';
@@ -19,6 +20,8 @@ const TeacherDayList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
+  const [checkedItem, setCheckedItem] = useState();
+  const [studentName, setStudentName] = useState();
 
   const [day1, setDay1] = useState(0);
   const [day2, setDay2] = useState(0);
@@ -31,7 +34,7 @@ const TeacherDayList = () => {
   const memoBoxRef = useRef();
   const [memoBoxWidth, setmemoBoxWidth] = useState(0);
   const [memoBoxHeight,setmemoBoxHeight] = useState(0);
-  const [memos, setMemo] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
 
   const day = Number(searchParams.get("day"));
   const teacherToken = searchParams.get("teacher");
@@ -52,7 +55,10 @@ const TeacherDayList = () => {
 const getChecked = async() =>{
   await axios.get(`https://api.friendrive.net/teacher?teacherToken=${teacherToken}`)
   .then((response)=>{
+    console.log(response);
     var TempCheckedItem  = response.data.checkedItem;
+    setCheckedItem(response.data.checkedItem);
+    setStudentName(response.data.name);
     //각 데이마다 몇개의 아이템이 체크되어있는지 확인.
     for(var i=0; i<setCheckedItemsNumb.length; i++){
         var day = i+1;
@@ -71,7 +77,7 @@ const getFeedback = () =>{
     axios.get(`https://api.friendrive.net/teacher/feedback/${day}?teacherToken=${teacherToken}`)
     .then((response)=>{
       console.log(response)
-      setMemo(response.data);
+     setFeedbacks(response.data);
     })
     .catch((response)=>{
       console.log(response);
@@ -167,22 +173,26 @@ const getFeedback = () =>{
             </div>
             <div ref={memoBoxRef} className={style.day_memo}>
                 <div className={style.memoBox_container}>
-                    {memos.length>0?(
+                    {feedbacks.length>0?(
                     <StyledSlider {...Settings}>
-                      {memos.map((item)=><MemoComponent key={item.id} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
+                      {feedbacks.map((item)=><TeacherFeedbackComponent key={item.id} memo_article={item.feedbackAndMemo} writing_time={item.createdAt} width={memoBoxWidth} height={memoBoxHeight} />)}
                       <div>
-                        <TeacherAddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`피드백 추가하기`} teacherToken={teacherToken}/>
+                        <TeacherAddMemoComponent width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`피드백 추가하기`} teacherToken={teacherToken} studentName={studentName}/>
                       </div>
                     </StyledSlider>
-                    ):(<TeacherAddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'보낸 피드백이 없습니다.'} teacherToken={teacherToken} />)
+                    ):(<TeacherAddMemoComponent width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'보낸 피드백이 없습니다.'} teacherToken={teacherToken} studentName={studentName} />)
                     }
                 </div>
             </div>
           </article>
             </div>
           <article className={style.daylist_box}>
-            {(allItems?allItems.map((item)=>{
+            {(allItems&&checkedItem?allItems.map((item)=>{
               var check=false;
+                if(checkedItem.includes(item.itemId)){
+                  check = true;
+                }
+              
               return (
               <TeacherDaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} />
             )}):<Loading/>)}

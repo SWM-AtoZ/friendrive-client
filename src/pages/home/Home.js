@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import style from './home.module.css';
 import community from './community.png';
 import curriculumImg from './curriculum_btnimg.png';
-import Loading from '../loading/Loading';
+import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
@@ -15,13 +15,13 @@ function Home() {
   const [progress, setProgress] = useState(0);
   const [cookies,,] = useCookies(['token']);
   var user='';
-  var userAgent='';
+  // var userAgent='';
 
-  const iOS = navigator.userAgent.match(/iOS_App/i);
-  const Android = navigator.userAgent.match(/Android_App/i);
+  // const iOS = navigator.userAgent.match(/iOS_App/i);
+  // const Android = navigator.userAgent.match(/Android_App/i);
     // 전역으로 사용할 것이기 때문에 리덕스에 데이터를 보관해주었습니다. 
-  if (iOS) {userAgent = 'iOS_App'};
-  if (Android) {userAgent ='Android_App'};
+  // if (iOS) {userAgent = 'iOS_App'};
+  // if (Android) {userAgent ='Android_App'};
   const navigate = useNavigate();
 
   const expires = new Date();
@@ -88,30 +88,33 @@ function Home() {
     })
 
     const url = `https://friendrive.net/teacherhome?teachertoken=${teacherToken}`;
-    if (userAgent === 'Android_App') {
-      window.android.shareText.postMessage(url);
-    }
-    else if (userAgent === 'iOS_App') {  
-      window.webkit.messageHandlers.shareText(url);
+    
+    if(isMobile) {
+      /* eslint-disable */
+    shareText.postMessage(url)
+    .catch(()=>{
+      alert('공유하기 실패')
+    })
     }
     else{
-      // if (navigator.share) {
-    //     navigator.share({
-    //         title: `${user}님의 운전연수 요청!`,
-    //         text: `${user}님의 초보 탈출을 도와주세요!`,
-    //         url: url,
-    //     })
-    //     .then(response=>{
-    //       console.log(response);
-    //     })
-    //     .catch(response=>{
-    //       console.log(response)
-    //     })
-    // }else{
-    //    handleCopyClipBoard(url);
-    // }
-    alert('공유하기 실패');
+ if (navigator.share) {
+        navigator.share({
+            title: `${user}님의 운전연수 요청!`,
+            text: `${user}님의 초보 탈출을 도와주세요!`,
+            url: url,
+        })
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(response=>{
+          console.log(response)
+        })
+    }else{
+       handleCopyClipBoard(url);
     }
+    }
+
+     
   } 
   // 로그연 여부 확인 후 공유 또는 로그인 화면 이동.
   const isLogin = async() => {
