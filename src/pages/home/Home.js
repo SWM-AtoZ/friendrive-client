@@ -15,7 +15,13 @@ function Home() {
   const [progress, setProgress] = useState(0);
   const [cookies,,] = useCookies(['token']);
   var user='';
+  var userAgent='';
 
+  const iOS = navigator.userAgent.match(/iOS_App/i);
+  const Android = navigator.userAgent.match(/Android_App/i);
+    // 전역으로 사용할 것이기 때문에 리덕스에 데이터를 보관해주었습니다. 
+  if (iOS) {userAgent = 'iOS_App'};
+  if (Android) {userAgent ='Android_App'};
   const navigate = useNavigate();
 
   const expires = new Date();
@@ -61,7 +67,7 @@ function Home() {
         element.select();
         const copyValue = document.execCommand('copy');
         document.body.removeChild(element);
-        alert(`클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!`);
+        //alert(`클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!`);
         console.log(e);
       }
    };
@@ -75,49 +81,59 @@ function Home() {
     })
     .then((response)=>{
       teacherToken = response.data.token;
+      console.log(teacherToken);
     })
     .catch((response)=>{
       console.log(response);
     })
 
-    const url = `https://friendrive.net/teacher?teachertoken=${teacherToken}`;
-
-    if (navigator.share) {
-        navigator.share({
-            title: `${user}님의 운전연수 요청!`,
-            text: `${user}님의 초보 탈출을 도와주세요!`,
-            url: url,
-        })
-        .then(response=>{
-          console.log(response);
-        })
-        .catch(response=>{
-          console.log(response)
-        })
-    }else{
-       handleCopyClipBoard(url);
+    const url = `https://friendrive.net/teacherhome?teachertoken=${teacherToken}`;
+    if (userAgent === 'Android_App') {
+      window.android.shareText.postMessage(url);
+    }
+    else if (userAgent === 'iOS_App') {  
+      window.webkit.messageHandlers.shareText(url);
+    }
+    else{
+      // if (navigator.share) {
+    //     navigator.share({
+    //         title: `${user}님의 운전연수 요청!`,
+    //         text: `${user}님의 초보 탈출을 도와주세요!`,
+    //         url: url,
+    //     })
+    //     .then(response=>{
+    //       console.log(response);
+    //     })
+    //     .catch(response=>{
+    //       console.log(response)
+    //     })
+    // }else{
+    //    handleCopyClipBoard(url);
+    // }
+    alert('공유하기 실패');
     }
   } 
   // 로그연 여부 확인 후 공유 또는 로그인 화면 이동.
   const isLogin = async() => {
     if(cookies.token){
-  //  await axios.get("https://api.friendrive.net/user/info", {
-  //         headers: {
-  //             Authorization: `Bearer ${cookies.token}`
-  //         }
-  //     }).then(function (response) {
-  //         user = response.data.name;
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });  
+   await axios.get("https://api.friendrive.net/user/info", {
+          headers: {
+              Authorization: `Bearer ${cookies.token}`
+          }
+      }).then(function (response) {
+          user = response.data.name;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });  
 
-  //   await ShareTeacher();
-      alert('서비스 준비중입니다.');
+      await ShareTeacher();
     }
     else{
-      alert('로그인이 필요힌 서비스입니다');
-      navigate('/login')
+      const loginConfirm = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')
+      if(loginConfirm){
+        navigate('/login')
+      }
     }
   }
 

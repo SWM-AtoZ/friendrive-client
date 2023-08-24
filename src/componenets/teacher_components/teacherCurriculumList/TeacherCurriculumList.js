@@ -1,27 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import style from './curriculumList.module.css';
+import style from './teacher_curriculum_list.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const CurriculumList = ({day, title, progress}) => {
+const TeacherCurriculumList = ({day, title, progress, teacherToken}) => {
     const DaysItemsTotalNumb = [7,8,3,6,4];
     const TotalNumb = DaysItemsTotalNumb[day-1];
     const [percentage, setPercentage] = useState('');
-    const [cookies,,] = useCookies(['token']);
     const navigate = useNavigate();
     const circleRef = useRef();
     
     const goTodayList = () =>{
-            navigate(`/daylist?day=${day}`)
+            navigate(`/teacherDayList?day=${day}&teacher=${teacherToken}`)
     }
 
     useEffect(()=>{
         
        const outline = circleRef.current.getTotalLength(); // Dashoffset 전체원을 얼마나 그려줄것인가.
        circleRef.current.style.strokeDasharray = outline;
-    
-       if(cookies.token){
-        // 로그인이 된 경우
+        console.log(progress)
         circleRef.current.style.strokeDashoffset = outline * (1 - Math.floor((progress/TotalNumb) * 100) / 100);
         const tempPercent = Math.floor((progress/TotalNumb) * 100);
         setPercentage(tempPercent);
@@ -34,12 +31,7 @@ const CurriculumList = ({day, title, progress}) => {
         else if(tempPercent===100){
             circleRef.current.style.stroke = "#389300";
         }
-       }
-       else{
-        // 로그인이 되지 않은 경우
-        circleRef.current.style.strokeDashoffset = outline;
-        setPercentage(0);
-       }
+
     },[progress])
     return(
         <div onClick={goTodayList} className={style.curriculum_list}>
@@ -68,4 +60,4 @@ const CurriculumList = ({day, title, progress}) => {
     )
 }
 
-export default CurriculumList;
+export default TeacherCurriculumList;

@@ -1,22 +1,19 @@
-import style from './addmemo_component.module.css';
+import style from './teacher_add_memo_component.module.css'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const AddMemoComponent = ({setMemos,width,height,day,innertext}) => {
+const TeacherAddMemoComponent = ({width,height,day,innertext,teacherToken,studentName}) => {
     const navigate = useNavigate();
-    const[cookies,,] = useCookies(['token']);
 
     const goToWrite = () =>{
-        if(cookies.token){
-            navigate('/writing',{state : {
-                day : day
+            navigate('/feedbackWriting',{state : {
+                day : day,
+                teacherToken : teacherToken,
+                name : studentName
             }});
-        }
-        else{
-            alert('로그인이 필요한 서비스입니다.')
-        }
     }
 
+    // 뒤로가기하면 값을못받아와서 결국엔 페이지에서 선생토큰을 요청해야하는구나... 여기부터 다시하자.
     return(
         <div style={{width:`${width}px`, height:`${height}px`}} className={style.add_memo}>
             <div>{innertext}</div>
@@ -31,4 +28,4 @@ const AddMemoComponent = ({setMemos,width,height,day,innertext}) => {
     )
 }
 
-export default AddMemoComponent;
+export default TeacherAddMemoComponent;

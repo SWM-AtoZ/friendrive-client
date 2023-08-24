@@ -1,0 +1,24 @@
+.curruculumSection{
+    width: 100%;
+    height: 100%;
+}
+.teacherHomeTitle{
+    padding: 0 5% 0 5%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.teacherHomeTitle > span {
+    color: #47B2FF;
+}
+.curriculum_list_container{
+    box-sizing: border-box;
+    padding: 0 5% 0 5%;
+    width: 100%;
+    height: 85%;
+}
