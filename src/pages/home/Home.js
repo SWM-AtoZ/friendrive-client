@@ -15,13 +15,6 @@ function Home() {
   const [progress, setProgress] = useState(0);
   const [cookies,,] = useCookies(['token']);
   var user='';
-  // var userAgent='';
-
-  // const iOS = navigator.userAgent.match(/iOS_App/i);
-  // const Android = navigator.userAgent.match(/Android_App/i);
-    // 전역으로 사용할 것이기 때문에 리덕스에 데이터를 보관해주었습니다. 
-  // if (iOS) {userAgent = 'iOS_App'};
-  // if (Android) {userAgent ='Android_App'};
   const navigate = useNavigate();
 
   const expires = new Date();
@@ -90,14 +83,31 @@ function Home() {
     const url = `https://friendrive.net/teacherhome?teachertoken=${teacherToken}`;
     
     if(isMobile) {
-      /* eslint-disable */
-    shareText.postMessage(url)
-    .catch(()=>{
-      alert('공유하기 실패')
-    })
+      try{  //플러터 모바일 앱에서 공유하기 실행하는 경우
+        /* eslint-disable */
+        shareText.postMessage(url)
+      }catch(e){
+        //앱이 아닌 모바일 브라우저에서 실행하는 경우
+        if (navigator.share) {
+          navigator.share({
+              title: `${user}님의 운전연수 요청!`,
+              text: `${user}님의 초보 탈출을 도와주세요!`,
+              url: url,
+          })
+          .then(response=>{
+            console.log(response);
+          })
+          .catch(response=>{
+            console.log(response)
+          })
+      }else{
+         handleCopyClipBoard(url);
+      }
+      }
     }
-    else{
- if (navigator.share) {
+    else if(!isMobile){
+      //데스크탑 환경에서 실행하는 경우
+      if (navigator.share) {
         navigator.share({
             title: `${user}님의 운전연수 요청!`,
             text: `${user}님의 초보 탈출을 도와주세요!`,
