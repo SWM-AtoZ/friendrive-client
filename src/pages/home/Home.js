@@ -9,6 +9,10 @@ import axios from 'axios';
 
 //커리큘럼 프로그래스바, 서비스 피드백 페이지로 이동하는 기능 추가, UI 추가.
 function Home() {
+  if(!navigator.onLine){
+    alert('인터넷이 연결되어있지 않습니다.')
+  }
+  
   const total = 28; // 총 커리큘럼 갯수
   const [TotalCheckedNumb, setTotalCheckedNumb] = useState();
   const [color, setColor] = useState('');

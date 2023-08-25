@@ -33,6 +33,7 @@ const DayList = () => {
     .then(function (response) {
         setCurriculum(...response.data.curriculum.filter(item => item.days==day));
         setAllItems(response.data.items.filter((item)=>item.day==day));
+        console.log(response)
       })
       .catch(function (error) {
         console.log(error);

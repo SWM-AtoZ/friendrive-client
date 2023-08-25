@@ -7,7 +7,7 @@ import {
 import { CookiesProvider } from 'react-cookie';
 //페이지 임포트
 import App from './App';
-import Home from './pages/home/Home';
+import ErrorPage from './pages/error/ErrorPage';
 import Curriculum from './pages/curriculum/Curriculum';
 import DayList from './pages/daylist/DayList';
 import Detail from './pages/detail/Detail';
@@ -31,68 +31,84 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement:<ErrorPage/>
   },
   {
     path : 'curriculum',
     element: <Curriculum/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'daylist',
-    element:<DayList/>, 
+    element:<DayList/>,
+    errorElement:<ErrorPage/> 
   },
   {
     path:'writing',
     element:<Writing/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'detail',
     element:<Detail/>,
+    errorElement:<ErrorPage/>,
     children:[
       {
         index:true,
-        element:<Contents/>
+        element:<Contents/>,
+        errorElement:<ErrorPage/>
       },
       {
         path:'feedback',
-        element:<FeedBack/>
+        element:<FeedBack/>,
+        errorElement:<ErrorPage/>
       }
     ]
   },
   {
     path:'serviceFeedback',
     element:<ServiceFeedback/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'customerpage',
-    element:<CustomerPage/>
+    element:<CustomerPage/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'user',
     element:<User/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'login',
     element:<Login/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:"teacherhome",
     element: <TeacherHome/>,
+    errorElement:<ErrorPage/>
   },
   {
     path: "teacherDayList",
     element : <TeacherDayList/>,
+    errorElement:<ErrorPage/>
   },
   {
     path: "feedbackWriting",
-    element:<FeedbackWriting/>
+    element:<FeedbackWriting/>,
+    errorElement:<ErrorPage/>
   },
   {
     path : "teacherDetail",
     element : <TeacherDetail/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:'loading',
-    element:<Loading/>
+    element:<Loading/>,
+    errorElement:<ErrorPage/>
   }
 ]);
 
