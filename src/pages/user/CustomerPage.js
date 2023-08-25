@@ -10,8 +10,6 @@ const CustomerPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [SubmitBtn, setSubmitBtn] = useState(true);
     const [cookies,,] = useCookies(['token']);
-    const location  = useLocation();
-    const history = location.state;
 
     const onChangeWrite = (e) =>{
         setMemoText(e.target.value);

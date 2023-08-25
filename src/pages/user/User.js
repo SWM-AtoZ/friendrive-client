@@ -33,17 +33,15 @@ const User = () => {
         alert('로그아웃 되었습니다.');
     }
     const SignUp = () =>{
-      navigate('/Login',{
-        replace:true,
-        state:'/user'
-      });
+      navigate('/Login');
     }
+
     const clickServiceInfo = () =>{
       alert('서비스 준비중입니다.')
     }
 
     const goToServiceFeedback = () =>{
-      navigate('/customerpage',{state:'/user'});
+      navigate('/customerpage');
     }
 
   useEffect(()=>{

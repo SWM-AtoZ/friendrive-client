@@ -6,12 +6,18 @@
     padding-top: 2%;
     margin-bottom: 5%;
     position:relative;
+    box-sizing: border-box;
     top: 0;
     left: 0;
 }
 
 .back{
  position:absolute;
+ width:2rem;
+ height: 2rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
  left: 3%;
 }
 
