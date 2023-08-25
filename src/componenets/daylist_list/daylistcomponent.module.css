@@ -12,7 +12,9 @@
     padding:0 3% 0 5%;
     margin-bottom: 5%;
     box-sizing: border-box;
+    text-align: start;
 }
+
 
 .passBtn{
     width: 3rem;
@@ -20,7 +22,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0);
 }
+
 
 .title_box{
     display: flex;
