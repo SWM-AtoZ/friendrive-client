@@ -40,9 +40,6 @@ overflow-x:hidden;
     transition: all ease-in-out 0.03s;
 }
 
- .curriculum_btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
 
 .login_activation{
     width: 100%;
