@@ -1,5 +1,6 @@
 import style from './servicefeedback.module.css';
 import {useNavigate } from 'react-router-dom';
+import TopNavi from '../../componenets/topNavi/TopNavi';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
@@ -78,14 +79,7 @@ const ServiceFeedback = () => {
     },[feedBack])
     return(
         <section className={style.navi_section}>
-        <div id='topNavi' className={style.topNavi}>
-          <div onClick={() => navigate(-1)} className={style.back}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 8 12" fill="none">
-              <path d="M7.40991 10.5898L2.82991 5.99976L7.40991 1.40976L5.99991 -0.000244141L-8.7738e-05 5.99976L5.99991 11.9998L7.40991 10.5898Z" fill="black"/>
-            </svg>
-          </div>
-          <div className={style.naviTitle}>서비스 피드백</div>
-        </div>
+        <TopNavi title={'서비스 피드백'}/>
         <article className={style.writing_area_box}>
           <div className={style.page_description}>
             <div>서비스의 <span>중심</span>은 언제나 <span>고객님</span>입니다.</div>
