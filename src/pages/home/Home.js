@@ -209,7 +209,7 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='white'}} onClick={goToCurriculum} className={style.curriculum_btn}>
+      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='white'; goToCurriculum()}} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
