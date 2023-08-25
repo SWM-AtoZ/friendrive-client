@@ -163,6 +163,7 @@ const getFeedback = () =>{
 } 
 `;
     return(
+      <div className={style.Topbox}>
       <div className='common_list_container'>
           <TopNavi title={`Day ${day}`}/>
           <section className={style.day_list_section}>
@@ -197,6 +198,7 @@ const getFeedback = () =>{
             )}):<Loading/>)}
           </article>
           </section>
+        </div>
         </div>
    )
 }

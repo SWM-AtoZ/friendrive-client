@@ -13,7 +13,10 @@ function Home() {
     alert('인터넷이 연결되어있지 않습니다.')
   }
   const Curriculum_btnRef = useRef();
- 
+  const RequestRef = useRef();
+  const ComunnityRef = useRef();
+  const EventRef = useRef();
+
   const total = 28; // 총 커리큘럼 갯수
   const [TotalCheckedNumb, setTotalCheckedNumb] = useState();
   const [color, setColor] = useState('');
@@ -209,7 +212,7 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='white'}} onClick={goToCurriculum} className={style.curriculum_btn}>
+      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='#F8FBFC'; goToCurriculum();}} onClick={()=>{if(!isMobile){goToCurriculum()}}} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
@@ -228,18 +231,18 @@ function Home() {
           </div>
         </div>
       </button>
-     <button onClick={isLogin} className={style.curriculum_request_btn}>
+     <button  ref={RequestRef} onTouchStart={()=>{RequestRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{RequestRef.current.style.backgroundColor='#F8FBFC'; isLogin();}} onClick={()=>{if(!isMobile){isLogin()}}} className={style.curriculum_request_btn}>
       <div>운전 연수 요청하기</div>
       <div>공유 링크 보내고 지인에게 요청하기</div>
      </button>
      <div className={style.etc_box}>
-      <button onClick={goToCommunity} className={style.community_btn}>
+      <button ref={ComunnityRef} onTouchStart={()=>{ComunnityRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC'; goToCommunity();}} onClick={()=>{if(!isMobile){goToCommunity()}}} className={style.community_btn}>
         <div>커뮤니티</div>
         <div>
           <img src={community}/>
         </div>
       </button>
-      <button onClick={goToEventPage} className={style.event_btn}>
+      <button ref={EventRef} onTouchStart={()=>{EventRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{EventRef.current.style.backgroundColor='#F8FBFC'; goToEventPage();}} onClick={()=>{if(!isMobile){goToEventPage()}}} className={style.event_btn}>
         <div>이벤트</div>
         <div>
         <div>서비스 피드백을 남겨주세요</div>

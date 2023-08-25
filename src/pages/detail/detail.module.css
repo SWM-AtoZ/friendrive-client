@@ -3,8 +3,18 @@
     height: 100%;
     overflow: hidden;
     position: relative;
+    animation-duration: 0.7s;
+    animation-name: appear;
 }
-
+@keyframes appear {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
 .contents_box{
     width: 100%;
     height: 95%;
