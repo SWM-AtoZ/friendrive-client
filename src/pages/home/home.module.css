@@ -37,9 +37,10 @@ overflow-x:hidden;
     background-color: #F8FBFC;
     border-radius: 0.4375rem;
     border: 1px solid rgba(0, 0, 0, 0.10);  
+    transition: all ease-in-out 0.03s;
 }
 
-.curriculum_btn:active {
+ .curriculum_btn:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
