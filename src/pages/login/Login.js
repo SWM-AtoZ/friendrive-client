@@ -2,7 +2,7 @@ import style from './login.module.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 //로그인 api열리면 jwt토큰 받아서 쿠키에 저장하고 홈페이지로 리턴하는 코드까지 작성 완료
@@ -17,7 +17,10 @@ const Login = () => {
     const expires = new Date();
     expires.setMonth(expires.getMonth()+3);
     const navigate = useNavigate();
-    
+    const location = useLocation();
+    const history = location.state;
+
+
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
     const certiToggle = useRef();
@@ -94,7 +97,7 @@ const Login = () => {
             setCookies('token',response.data.accessToken,{
                 expires:expires
             })
-            navigate('/',{
+            navigate(`${history}`,{
                 replace : true
             })
             alert('로그인에 성공하였습니다.')
@@ -113,7 +116,7 @@ const Login = () => {
             setCookies('token',response.data.accessToken,{
                 expires:expires
             })
-            navigate('/',{
+            navigate(`${history}`,{
                 replace : true
             })
             alert('로그인에 성공하였습니다.')

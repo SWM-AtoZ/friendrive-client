@@ -188,12 +188,12 @@ const getMemo = () =>{
                 }
               }
               return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
+              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
             )}):<Loading/>):
             (allItems?allItems.map((item)=>{
               var check=false;
               return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked}/>
+              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
             )}):<Loading/>)}
           </article>
           </section>
