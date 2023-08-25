@@ -54,6 +54,11 @@ const Login = () => {
       })
       .catch(function (error) {
         console.log(error);
+        if(error.response.data.message === '인증번호 발송 횟수를 초과하였습니다.'){
+            alert('인증번호 발송 횟수를 초과하였습니다. 고객센터에 문의해주세요');
+        }else{
+            alert('현재 로그인이 불가한 상태입니다. 고객센터에 문의해주세요')
+        }
       });  
     }
 
@@ -104,6 +109,11 @@ const Login = () => {
           })
           .catch(function (error) {
             console.log(error);
+            if(error.response.data.message === '인증번호 발송 횟수를 초과하였습니다.'){
+                alert('인증번호 발송 횟수를 초과하였습니다. 고객센터에 문의해주세요');
+            }else{
+                alert('현재 로그인이 불가한 상태입니다. 고객센터에 문의해주세요')
+            }
           });     
         }
         else{
@@ -123,6 +133,11 @@ const Login = () => {
           })
           .catch(function (error) {
             console.log(error);
+            if(error.response.data.message === '인증번호 발송 횟수를 초과하였습니다.'){
+                alert('인증번호 발송 횟수를 초과하였습니다. 고객센터에 문의해주세요');
+            }else{
+                alert('현재 로그인이 불가한 상태입니다. 고객센터에 문의해주세요')
+            }
           });
         } 
     }
