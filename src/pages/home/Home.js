@@ -159,12 +159,14 @@ function Home() {
     navigate('user');
   }
 
-  const goToCurriculum = () => {
+  const goToCurriculum = (e) => {
+    console.log(e);
     navigate('curriculum');
+    //이벤트가 발생했을 때 임의의 css효과를 발동시키고싶다.
   }
 
   const goToCommunity = () => {
-    // navigate('community');
+    navigate('community');
     alert('서비스 준비중입니다');
   }
 
@@ -206,8 +208,7 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <div onClick={goToCurriculum} className={style.curriculum_btn}>
-        
+      <button onClick={goToCurriculum} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
@@ -225,25 +226,25 @@ function Home() {
             <img src={curriculumImg}/>
           </div>
         </div>
-      </div>
-     <div onClick={isLogin} className={style.curriculum_request_btn}>
+      </button>
+     <button onClick={isLogin} className={style.curriculum_request_btn}>
       <div>운전 연수 요청하기</div>
       <div>공유 링크 보내고 지인에게 요청하기</div>
-     </div>
+     </button>
      <div className={style.etc_box}>
-      <div onClick={goToCommunity} className={style.community_btn}>
+      <button onClick={goToCommunity} className={style.community_btn}>
         <div>커뮤니티</div>
         <div>
           <img src={community}/>
         </div>
-      </div>
-      <div onClick={goToEventPage} className={style.event_btn}>
+      </button>
+      <button onClick={goToEventPage} className={style.event_btn}>
         <div>이벤트</div>
         <div>
         <div>서비스 피드백을 남겨주세요</div>
         <div>추첨을 통해 기프티콘을 드립니다.</div>
         </div>
-      </div>
+      </button>
      </div>
       </article>
     </section>

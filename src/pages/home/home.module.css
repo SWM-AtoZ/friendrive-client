@@ -39,6 +39,10 @@ overflow-x:hidden;
     border: 1px solid rgba(0, 0, 0, 0.10);  
 }
 
+.curriculum_btn:active {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .login_activation{
     width: 100%;
     height: 100%;
@@ -97,7 +101,6 @@ overflow-x:hidden;
 }
 
 
-
 .login_pictogramArea{
     height: 100%;
     width: 40%;
@@ -109,6 +112,7 @@ overflow-x:hidden;
     object-fit:contain;
     position: absolute;
     bottom: 10%;
+    right: 0;
 }
 
 .login_deactivation{
@@ -140,6 +144,9 @@ overflow-x:hidden;
     color: rgba(0, 0, 0, 0.4);  
     font-weight: bold;
 }
+.curriculum_request_btn:active{
+    background-color: rgba(0, 0, 0, 0.05);
+}
 .etc_box{
     width: 100%;
     padding-top: 5%;
@@ -160,8 +167,13 @@ overflow-x:hidden;
     padding: 4% 4% 0 4%;
     box-sizing: border-box;
 }
+.community_btn:active{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .community_btn > div:nth-child(1){
     width: 100%;
+    text-align: start;
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -188,6 +200,11 @@ overflow-x:hidden;
     align-items: center;
     padding: 4% 4% 0 4%;
     box-sizing: border-box;
+    text-align: start;
+}
+
+.event_btn:active{
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .event_btn > div:nth-child(1){
