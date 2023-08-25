@@ -22,6 +22,7 @@
 .contents_tab button{
     background-color: white;
     flex-grow: 1;
+    font-weight: 700;
     height: 100%;
 }
 .contents_tab button:nth-child(1){

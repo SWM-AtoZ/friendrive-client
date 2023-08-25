@@ -59,6 +59,9 @@ input, textarea:focus{
 html{
 	background-color: #F8FBFC;
 	overflow: hidden;
+	/* IE모바일환경 줌 방지 */
+	-ms-content-zooming: none;
+	-ms-touch-action: pan-x pan-y;
 }
 
 body{

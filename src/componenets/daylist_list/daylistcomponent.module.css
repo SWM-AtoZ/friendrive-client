@@ -27,6 +27,8 @@
     align-items: center;
     justify-content: flex-start;
     flex-grow: 1;
+    font-weight: 800;
+    font-size: 1.2rem;
 }
 .PASS{
     display: inline-block;

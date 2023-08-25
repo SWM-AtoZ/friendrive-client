@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, setChecked, history}) => {
+const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, setChecked, day}) => {
     const navigate = useNavigate();
     const [passBtn, setPassBtn] = useState(check);
     const passRef = useRef();
@@ -53,7 +53,10 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
       else{
         const IsLogin = window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
         if(IsLogin){
-          navigate('/login');
+          navigate('/login',{
+            replace:true,
+            state : `/daylist?day=${day}`
+          });
         }
       }
     }

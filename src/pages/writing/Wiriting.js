@@ -11,7 +11,7 @@ const Writing = () => {
     const [cookies,,] = useCookies();
 
     const day = location.state.day;//!location.state.day&&'2';
-    const history = location.state.history&&location.state.history;
+    const history = location.state.history;
     
     const Write = (e) => {
       setMemoText(e.target.value);
@@ -27,7 +27,9 @@ const Writing = () => {
         })
         .then((response)=>{
           console.log(response)
-          navigate(-1);
+          navigate(history,{
+            replace:true
+          });
           alert('기록에 성공하였습니다.')
         })
         .catch((response)=>{

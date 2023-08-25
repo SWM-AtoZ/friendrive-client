@@ -145,7 +145,10 @@ function Home() {
     else{
       const loginConfirm = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')
       if(loginConfirm){
-        navigate('/login')
+        navigate('/login',{
+          replace:true,
+          state:'/'
+        })
       }
     }
   }
@@ -223,7 +226,7 @@ function Home() {
         </div>
       </div>
      <div onClick={isLogin} className={style.curriculum_request_btn}>
-      <div>커리큘럼 같이하기</div>
+      <div>운전 연수 요청하기</div>
       <div>공유 링크 보내고 지인에게 요청하기</div>
      </div>
      <div className={style.etc_box}>

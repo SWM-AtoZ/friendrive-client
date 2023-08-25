@@ -22,7 +22,14 @@
 .title{
     margin-left: 5%;
     width: 8rem;
-    line-height: 1.5;
+    line-height: 1.7;
+    font-weight: 800;
+}
+
+.title > div:nth-child(2){
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.6);
 }
 .circle_box{
     position: relative;

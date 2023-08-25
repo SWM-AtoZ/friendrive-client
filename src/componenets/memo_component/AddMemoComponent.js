@@ -8,14 +8,20 @@ const AddMemoComponent = ({width,height,day,innertext}) => {
 
     const goToWrite = () =>{
         if(cookies.token){
-            navigate('/writing',{state : {
-                day : day
+            navigate('/writing',{
+                replace : true
+                ,state : {
+                day : day,
+                history :`/daylist?day=${day}`
             }});
         }
         else{
             const loginConfirm = window.confirm('로그인이 필요한 서비스입니다, 로그인 하시겠습니까?');
             if(loginConfirm){
-                navigate('/login');
+                navigate('/login',{
+                    replace:true,
+                    state:`/daylist?day=${day}`
+                  });
             }
         }
     }
