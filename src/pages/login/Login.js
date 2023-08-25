@@ -17,9 +17,7 @@ const Login = () => {
     const expires = new Date();
     expires.setMonth(expires.getMonth()+3);
     const navigate = useNavigate();
-    const location = useLocation();
-    const history = location.state;
-
+    
 
     const loginbtnRef = useRef();
     const certibtnRef = useRef();
@@ -102,9 +100,7 @@ const Login = () => {
             setCookies('token',response.data.accessToken,{
                 expires:expires
             })
-            navigate(`${history}`,{
-                replace : true
-            })
+            navigate(-1)
             alert('로그인에 성공하였습니다.')
           })
           .catch(function (error) {
@@ -126,9 +122,7 @@ const Login = () => {
             setCookies('token',response.data.accessToken,{
                 expires:expires
             })
-            navigate(`${history}`,{
-                replace : true
-            })
+            navigate(-1)
             alert('로그인에 성공하였습니다.')
           })
           .catch(function (error) {

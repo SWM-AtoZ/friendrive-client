@@ -149,10 +149,7 @@ function Home() {
     else{
       const loginConfirm = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')
       if(loginConfirm){
-        navigate('/login',{
-          replace:true,
-          state:'/'
-        })
+        navigate('/login')
       }
     }
   }
@@ -172,7 +169,7 @@ function Home() {
   }
 
   const goToEventPage = () => {
-    navigate('serviceFeedback',{state:'/'});
+    navigate('serviceFeedback');
   }
 
   useEffect(()=>{

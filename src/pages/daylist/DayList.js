@@ -148,8 +148,9 @@ const getMemo = () =>{
 } 
 `;
     return(
-      <div className='common_list_container'>
-          <TopNavi title={`Day ${day}`}/>
+      <div className={style.Topbox}>
+        <TopNavi title={`Day ${day}`}/>
+         <div className='common_list_container'>
           <section className={style.day_list_section}>
             <div className={style.info_container}>
             <article className={style.day_info_box}>
@@ -199,6 +200,7 @@ const getMemo = () =>{
           </article>
           </section>
         </div>
+      </div>
    )
 }
 
