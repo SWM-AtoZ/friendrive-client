@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useReducer,useRef,useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import style from './home.module.css';
@@ -12,7 +12,8 @@ function Home() {
   if(!navigator.onLine){
     alert('인터넷이 연결되어있지 않습니다.')
   }
-  
+  const Curriculum_btnRef = useRef();
+ 
   const total = 28; // 총 커리큘럼 갯수
   const [TotalCheckedNumb, setTotalCheckedNumb] = useState();
   const [color, setColor] = useState('');
@@ -191,7 +192,7 @@ function Home() {
             setColor('#389300');
           }
   },[TotalCheckedNumb])
- 
+  
   return (
     <section id={style.home_section}>
       <header className={style.home_header}>
@@ -208,7 +209,7 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <button onClick={goToCurriculum} className={style.curriculum_btn}>
+      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='white'}} onClick={goToCurriculum} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
