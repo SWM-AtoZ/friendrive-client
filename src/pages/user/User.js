@@ -27,10 +27,13 @@ const User = () => {
     }
 
     const Logout = () => { //로그아웃 이벤트 함수
-        removeCookie('token'); 
-        removeCookie('teacherToken');
-        setISLogin(false);
-        alert('로그아웃 되었습니다.');
+        const LogoutConfirm = window.confirm('로그아웃 하시겠습니까?');
+        if(LogoutConfirm){
+          removeCookie('token'); 
+          removeCookie('teacherToken');
+          setISLogin(false);
+          alert('로그아웃 되었습니다.');
+        }
     }
     const SignUp = () =>{
       navigate('/Login');
