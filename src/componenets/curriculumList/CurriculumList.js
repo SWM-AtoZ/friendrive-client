@@ -43,7 +43,7 @@ const CurriculumList = ({day, title, progress}) => {
        }
     },[progress])
     return(
-        <button ref={CurriculumListRef} onTouchStart={()=>{CurriculumListRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{CurriculumListRef.current.style.backgroundColor='#F8FBFC'; goTodayList();}} onClick={()=>{if(!isMobile){goTodayList()}}} className={style.curriculum_list}>
+        <button ref={CurriculumListRef} onTouchStart={()=>{CurriculumListRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{CurriculumListRef.current.style.backgroundColor='#F8FBFC';}} onTouchMove={()=>{CurriculumListRef.current.style.backgroundColor='#F8FBFC';}} onClick={goTodayList} className={style.curriculum_list}>
                     <div className={style.curriculum_progress}>
                     {/* dayprocess 의 값에 따라 진행율 적용하여 보여줌 */}
                     <div className={style.circle_box}> 

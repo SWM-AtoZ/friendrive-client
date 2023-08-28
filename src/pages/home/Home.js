@@ -212,8 +212,8 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)';}} onTouchCancel={()=>{Curriculum_btnRef.current.style.backgroundColor='#F8FBFC'; 
-      }} onClick={()=>{if(!isMobile){goToCurriculum()}}} className={style.curriculum_btn}>
+      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)';}} onTouchMove={()=>{Curriculum_btnRef.current.style.backgroundColor='#F8FBFC'; 
+      }} onTouchEnd={()=>{Curriculum_btnRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToCurriculum()}} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
@@ -232,18 +232,18 @@ function Home() {
           </div>
         </div>
       </button>
-     <button  ref={RequestRef} onTouchStart={()=>{RequestRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{RequestRef.current.style.backgroundColor='#F8FBFC'; isLogin();}} onClick={()=>{if(!isMobile){isLogin()}}} className={style.curriculum_request_btn}>
+     <button  ref={RequestRef} onTouchStart={()=>{RequestRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{RequestRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{RequestRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{isLogin()}} className={style.curriculum_request_btn}>
       <div>운전 연수 요청하기</div>
       <div>공유 링크 보내고 지인에게 요청하기</div>
      </button>
      <div className={style.etc_box}>
-      <button ref={ComunnityRef} onTouchStart={()=>{ComunnityRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC'; goToCommunity();}} onClick={()=>{if(!isMobile){goToCommunity()}}} className={style.community_btn}>
+      <button ref={ComunnityRef} onTouchStart={()=>{ComunnityRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToCommunity()}} className={style.community_btn}>
         <div>커뮤니티</div>
         <div>
           <img src={community}/>
         </div>
       </button>
-      <button ref={EventRef} onTouchStart={()=>{EventRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchEnd={()=>{EventRef.current.style.backgroundColor='#F8FBFC'; goToEventPage();}} onClick={()=>{if(!isMobile){goToEventPage()}}} className={style.event_btn}>
+      <button ref={EventRef} onTouchStart={()=>{EventRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{EventRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{EventRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToEventPage()}} className={style.event_btn}>
         <div>이벤트</div>
         <div>
         <div>서비스 피드백을 남겨주세요</div>
