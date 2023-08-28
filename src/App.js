@@ -10,12 +10,21 @@ import './App.css';
 
 function App() {
   
+    //모바일 화면에 맞게 화면 높이 조정
+    function setScreenSize() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
+
   return (
     <>
-      <section className='section_container'>
+    <section className='section_container'>
       <Home/>
     </section>
     </>
+    
   );
 }
 
