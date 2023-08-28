@@ -113,15 +113,6 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-//모바일 화면에 맞게 크기 리사이징
-function setScreenSize() {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-setScreenSize();
-window.addEventListener('resize', setScreenSize);
-
 root.render(
   <CookiesProvider>
     <RouterProvider router={router} />
