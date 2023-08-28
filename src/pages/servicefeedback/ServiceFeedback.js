@@ -59,6 +59,8 @@ const ServiceFeedback = () => {
             })
             .then(response=>{
                 console.log(response);
+                navigate(-1);
+                alert('소중한 의견 감사합니다.');
             })
             .catch(response=>{
                 console.log(response);
