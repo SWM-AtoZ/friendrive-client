@@ -66,7 +66,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
     },[])
 
     return(
-        <div ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'; goToDetail();}}} onClick={()=>{if(!isMobile){goToDetail()}}} className={style.daylist}>
+        <div ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchMove={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC';}}} onClick={goToDetail} className={style.daylist}>
           <span ref={passRef} className={style.PASS}>PASS</span>
           <div className={style.title_box}>
                 <div className={style.icon_box}>
