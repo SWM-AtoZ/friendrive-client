@@ -8,21 +8,37 @@ const FeedbackWriting = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [feedbackText, setFeedbackText] = useState('');
-
+    const [teacherName, SetTeacherName] = useState('');
     const day = location.state.day;
     const teacherToken = location.state.teacherToken;
-    const studentName= location.state.studentName;
+    const studentName = location.state.studentName;
 
     const Write = (e) => {
       setFeedbackText(e.target.value);
     }
 
+    const onChangeName = (e) => {
+      SetTeacherName(e.target.value);
+  }
+
     const sendFeedback = () =>{
+      if(teacherName.length<1 || feedbackText.length<1){
+        if(teacherName.length<1 && feedbackText.length<1){
+          alert('이름과 피드백을 작성해주세요')
+        }
+        else if(teacherName.length<1){
+          alert('성함을 작성해주세요.')
+        }
+        else if(feedbackText.length<1){
+          alert('피드백을 작성해주세요.')
+        }
+      }
+      else{
         axios.post('https://api.friendrive.net/record/feedback',{
           teacherToken: `${teacherToken}`,
           feedback:`${feedbackText}`,
           day:`${day}`,
-          name: `${studentName}`
+          name: `${teacherName}`
         })
         .then((response)=>{
           console.log(response)
@@ -32,6 +48,7 @@ const FeedbackWriting = () => {
         .catch((response)=>{
           console.log(response);
       })
+      }
       }
 
     return(
@@ -46,7 +63,9 @@ const FeedbackWriting = () => {
           <button onClick={sendFeedback} className={style.wiriting_complete}>보내기</button>
         </div>
         <article className={style.writing_area_box}>
-          <textarea className={style.writing_area} onChange={Write} value={feedbackText} placeholder={`${studentName}님에게 보낼 피드백을 적어주세요`}></textarea>
+        <label for='teacherName' >이름 : </label> 
+        <input id='teacherName' className={style.teacherName_input} type='text' placeholder='선생님의 이름을 입력해주세요 (필수)' value={teacherName} onChange={onChangeName}></input>
+        <textarea className={style.writing_area} onChange={Write} value={feedbackText} placeholder={`${studentName}님에게 보낼 피드백을 적어주세요`}></textarea>
         </article>
         </section>
     )
