@@ -164,8 +164,8 @@ const getFeedback = () =>{
 `;
     return(
       <div className={style.Topbox}>
+      <TopNavi title={`Day ${day}`}/>
       <div className='common_list_container'>
-          <TopNavi title={`Day ${day}`}/>
           <section className={style.day_list_section}>
             <div className={style.info_container}>
             <article className={style.day_info_box}>
