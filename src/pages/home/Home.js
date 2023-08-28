@@ -212,7 +212,8 @@ function Home() {
         </div>
       </header>
       <article className={style.home_article}>
-      <button ref={Curriculum_btnRef} onClick={()=>{goToCurriculum()}} className={style.curriculum_btn}>
+      <button ref={Curriculum_btnRef} onTouchStart={()=>{Curriculum_btnRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)';}} onTouchCancel={()=>{Curriculum_btnRef.current.style.backgroundColor='#F8FBFC'; 
+      }} onClick={()=>{if(!isMobile){goToCurriculum()}}} className={style.curriculum_btn}>
         <div className={style.login_activation}>
           <div className={style.login_textArea}>
             <div>
