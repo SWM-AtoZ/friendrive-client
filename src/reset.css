@@ -59,7 +59,7 @@ input, textarea:focus{
 }
 html{
 	background-color: #F8FBFC;
-	overflow: hidden;
+	overflow:hidden;
 	/* IE모바일환경 줌 방지 */
 	-ms-content-zooming: none;
 	-ms-touch-action: pan-x pan-y;
@@ -67,16 +67,27 @@ html{
 
 body{
 	font-family: 'Nanum Gothic', sans-serif;
-	height:calc(var(--vh, 1vh) * 100);
+	/* height:calc(var(--vh, 1vh) * 100); */
 	max-width: 500px;
+	height: 100vh;
 	margin: 0 auto;
-	overflow: hidden;
 	background-color: #FFFFFF;
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	-ms-user-select:none;
 	user-select:none
 }
+/* 테블릿 환경까지 vh 리사이징 */
+@media screen and (max-width: 1024px) {
+	html{
+		overflow: auto;
+	}
+	body{
+		height:calc(var(--vh, 1vh) * 100);
+	}
+  }
+
+
 textarea{
 	font-family: 'Nanum Gothic', sans-serif;
 }
