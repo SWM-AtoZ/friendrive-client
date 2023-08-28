@@ -1,19 +1,34 @@
 import style from './contents.module.css';
 import styled from 'styled-components';
-import { useLocation, useOutletContext } from 'react-router-dom';
+import axios from 'axios';
+import { useLocation, useOutletContext, useSearchParams } from 'react-router-dom';
 
 //slick-slider import
 import Slider from "react-slick";
 import '../../slick-carousel/slick/slick.css';
 import '../../slick-carousel/slick/slick-theme.css';
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 
 const Contents = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const title = searchParams.get("content");
     const [contentHeight] = useOutletContext();
-    const {state} = useLocation();
-    const contents = state.contents;
-    console.log(contents);
+    const [contents,setContents] = useState();
+
+    const callContents = () =>{
+      //api 호출 후 아이템중 컨텐트title과 일치하는 것만 빼움
+      axios.get("https://api.friendrive.net/curriculum")
+      .then(function (response) {
+      const [itemInfo] = response.data.items.filter((item)=>item.subject===title);
+      setContents(itemInfo.content);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });  
+  }
+
     useEffect(()=>{
+        callContents();
         const arrow = document.getElementById('arrow');
         const content = document.getElementById('contents');
         const feedback = document.getElementById('feedback');
@@ -34,7 +49,7 @@ const Contents = () => {
       };
     return(
         <StyledSlider {...settings}>
-            {contents.map(item=>(
+            {contents&&contents.map(item=>(
             <div>
                 <div style={{height:`${contentHeight}px`}} className={style.content}>
                    {contents[0]!==''?(<div className={style.content_inner}>
