@@ -10,14 +10,13 @@ const Writing = () => {
     const [memoText, setMemoText] = useState('');
     const [cookies,,] = useCookies();
 
-    const day = location.state.day;//!location.state.day&&'2';
-    const history = location.state.history;
-    
+    const day = location.state.day;
     const Write = (e) => {
       setMemoText(e.target.value);
     }
     const sendMemo = () =>{
-        axios.post('https://api.friendrive.net/record/memo',{
+        if(memoText.length>1){
+          axios.post('https://api.friendrive.net/record/memo',{
           memo:`${memoText}`,
           day:`${day}`
         },{
@@ -27,14 +26,16 @@ const Writing = () => {
         })
         .then((response)=>{
           console.log(response)
-          navigate(history,{
-            replace:true
-          });
+          navigate(-1);
           alert('기록에 성공하였습니다.')
         })
         .catch((response)=>{
           console.log(response);
       })
+        }
+        else{
+          alert('메모 내용을 입력해주세요.');
+        }
       }
 
     return(

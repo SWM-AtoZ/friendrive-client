@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import { isMobile } from 'react-device-detect';
 
 const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, setChecked, day}) => {
     const navigate = useNavigate();
@@ -66,7 +65,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
     },[])
 
     return(
-        <div ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchMove={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC';}}} onClick={goToDetail} className={style.daylist}>
+        <button ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchMove={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC';}}} onClick={goToDetail} className={style.daylist}>
           <span ref={passRef} className={style.PASS}>PASS</span>
           <div className={style.title_box}>
                 <div className={style.icon_box}>
@@ -91,7 +90,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
           <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none">
                   <path d="M9.70498 6L8.29498 7.41L12.875 12L8.29498 16.59L9.70498 18L15.705 12L9.70498 6Z" fill="black" fill-opacity="0.6"/>
           </svg>
-        </div>
+        </button>
     )
 }
 

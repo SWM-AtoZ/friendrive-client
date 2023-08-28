@@ -176,7 +176,7 @@ const getFeedback = () =>{
                 <div className={style.memoBox_container}>
                     {feedbacks.length>0?(
                     <StyledSlider {...Settings}>
-                      {feedbacks.map((item)=><TeacherFeedbackComponent key={item.id} memo_article={item.feedbackAndMemo} writing_time={item.createdAt} width={memoBoxWidth} height={memoBoxHeight} />)}
+                      {feedbacks.map((item)=><TeacherFeedbackComponent key={item.id} teacherName={item.name} memo_article={item.feedbackAndMemo} writing_time={item.createdAt} width={memoBoxWidth} height={memoBoxHeight} />)}
                       <div>
                         <TeacherAddMemoComponent width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`피드백 추가하기`} teacherToken={teacherToken} studentName={studentName}/>
                       </div>

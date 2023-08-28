@@ -72,6 +72,10 @@ body{
 	margin: 0 auto;
 	overflow: hidden;
 	background-color: #FFFFFF;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
 }
 textarea{
 	font-family: 'Nanum Gothic', sans-serif;
