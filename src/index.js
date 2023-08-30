@@ -111,6 +111,11 @@ const router = createBrowserRouter([
         path:'alert',
         element:<Alert/>,
         errorElement:<ErrorPage/>
+      },
+      {
+        path:'confirm',
+        element:<Confirm/>,
+        errorElement:<ErrorPage/>
       }
     ]
   },

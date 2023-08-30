@@ -34,7 +34,8 @@ const DayList = () => {
     navigate(`confirm?day=${day}`,{
       state:{
         message_title:'로그인 필요 서비스입니다',
-        message_description:'로그인 하시겠습니까?'
+        message_description:'로그인 하시겠습니까?',
+        Islogout:false
       }
     });
   };
