@@ -1,8 +1,4 @@
-import React,{useState,useRef, useEffect} from 'react';
-import Loading from './pages/loading/Loading';
-import { Outlet } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import axios from 'axios';
+import React from 'react';
 import Home from './pages/home/Home';
 
 // css파일 임포트
