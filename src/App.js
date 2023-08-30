@@ -7,12 +7,7 @@ import './App.css';
 function App() {
   
   return (
-    <>
-    <section className='section_container'>
       <Home/>
-    </section>
-    </>
-    
   );
 }
 
