@@ -23,8 +23,8 @@ const DayList = () => {
   const [curriculum, setCurriculum] = useState();
   const [allItems, setAllItems] = useState();
   const memoBoxRef = useRef();
-  const [memoBoxWidth, setmemoBoxWidth] = useState(0);
-  const [memoBoxHeight,setmemoBoxHeight] = useState(0);
+  const [memoBoxWidth, setmemoBoxWidth] = useState();
+  const [memoBoxHeight,setmemoBoxHeight] = useState();
   const [memos, setMemo] = useState([]);
   const day = Number(searchParams.get("day"));
   
@@ -185,7 +185,7 @@ const getMemo = () =>{
               {cookies.token?
                 (
                 <div className={style.memoBox_container}>
-                    {memos.length>0?(
+                    {memos.length>0&&memoBoxHeight?(
                     <StyledSlider {...Settings}>
                       {memos.map((item)=><MemoComponent key={item.id} confirm={removeconfirm} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
                       <div>

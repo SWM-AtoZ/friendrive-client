@@ -43,7 +43,6 @@ const FeedbackWriting = () => {
         .then((response)=>{
           console.log(response)
           navigate(-1);
-          alert('피드백이 전송되었습니다.')
         })
         .catch((response)=>{
           console.log(response);
