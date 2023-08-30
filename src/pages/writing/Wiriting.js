@@ -25,9 +25,7 @@ const Writing = () => {
           }
         })
         .then((response)=>{
-          console.log(response)
           navigate(-1);
-          alert('기록에 성공하였습니다.')
         })
         .catch((response)=>{
           console.log(response);

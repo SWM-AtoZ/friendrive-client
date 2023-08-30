@@ -1,24 +1,28 @@
 import style from './addmemo_component.module.css';
 import { useCookies } from 'react-cookie';
+import { isMobile } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 
-const AddMemoComponent = ({width,height,day,innertext}) => {
+const AddMemoComponent = ({confirm,width,height,day,innertext}) => {
     const navigate = useNavigate();
     const[cookies,,] = useCookies(['token']);
 
     const goToWrite = () =>{
         if(cookies.token){
             navigate('/writing',{
-                replace : true
-                ,state : {
-                day : day,
-                history :`/daylist?day=${day}`
+                state : {
+                day : day
             }});
         }
         else{
-            const loginConfirm = window.confirm('로그인이 필요한 서비스입니다, 로그인 하시겠습니까?');
-            if(loginConfirm){
-                navigate('/login');
+            if(!isMobile){
+                const loginConfirm = window.confirm('로그인이 필요한 서비스입니다, 로그인 하시겠습니까?');
+                if(loginConfirm){
+                    navigate('/login');
+                }
+            }
+            else{
+                confirm();
             }
         }
     }

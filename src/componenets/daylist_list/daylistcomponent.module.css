@@ -13,9 +13,6 @@
     margin-bottom: 0.5rem;
     text-align: start;
 }
-button:active {
-    background-color: rgba(0, 0, 0, 0.05);
-}
 
 .passBtn{
     width: 3rem;
