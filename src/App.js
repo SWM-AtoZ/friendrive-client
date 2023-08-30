@@ -160,7 +160,8 @@ function App() {
         navigate('confirm',{
           state:{
             message_title:'로그인 필요 서비스입니다',
-            message_description:'로그인 하시겠습니까?'
+            message_description:'로그인 하시겠습니까?',
+            Islogout : false
           }
         });
       }
@@ -271,7 +272,8 @@ function App() {
       </button>
      </div>
       </article>
-      <Outlet/>
+      {/* 알럿,컨펌창 예외처리를 위한 outletContext 공백처리 */}
+      <Outlet context={{}}/>
     </section>
   );
 }

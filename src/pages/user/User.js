@@ -28,6 +28,7 @@ const User = () => {
     }
 
     const Logout = () => { //로그아웃 이벤트 함수
+       if(!isMobile){
         const LogoutConfirm = window.confirm('로그아웃 하시겠습니까?');
         if(LogoutConfirm){
           removeCookie('token'); 
@@ -35,6 +36,16 @@ const User = () => {
           setISLogin(false);
           alert('로그아웃 되었습니다.');
         }
+       }
+       else{
+        navigate('confirm',{
+          state:{
+            message_title:'정말 로그아웃 하시겠습니까?',
+            message_description:'로그아웃이 됩니다.',
+            Islogout : true
+          }
+        });
+       }
     }
     const SignUp = () =>{
       navigate('/Login');
@@ -105,7 +116,7 @@ const User = () => {
         </div>
       </div>
   </div>
-  <Outlet/>
+  <Outlet context={{setISLogin:setISLogin}}/>
   </div>)
 }
 
