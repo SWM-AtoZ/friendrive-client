@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { isMobile } from 'react-device-detect';
 
-const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, setChecked, day}) => {
+const DaylistComponent = ({confirm,subject,contents,icon, check, itemId, checkedItem, setChecked, day}) => {
     const navigate = useNavigate();
     const [passBtn, setPassBtn] = useState(check);
     const passRef = useRef();
-    const passBtnRef = useRef();
     const [cookies,,] = useCookies();
     const DayListComponentRef = useRef();
 
@@ -53,19 +53,24 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
       }); 
       }
       else{
-        const IsLogin = window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-        if(IsLogin){
-          navigate('/login');
+        if(!isMobile){
+          const IsLogin = window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+            if(IsLogin){
+              navigate('/login');
+          }
         }
+        else{
+          confirm()
+        }
+        
       }
     }
     useEffect(()=>{
       check?passRef.current.style.setProperty('opacity', '1'):passRef.current.style.setProperty('opacity', '0');
-      console.log(passBtnRef);
     },[])
 
     return(
-        <button ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchMove={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC';}}} onClick={goToDetail} className={style.daylist}>
+        <button ref={DayListComponentRef} onTouchStart={(e)=>{if(e.target.localName==='div'){DayListComponentRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}}} onTouchMove={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC'}}} onTouchEnd={(e)=>{if(e.target.localName!=='button'&&e.target.localName!=='svg'&&e.target.localName!=='path'){DayListComponentRef.current.style.backgroundColor='#F8FBFC';}}} onClick={goToDetail} className={style.daylist}>
           <span ref={passRef} className={style.PASS}>PASS</span>
           <div className={style.title_box}>
                 <div className={style.icon_box}>
@@ -75,7 +80,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
                   {subject}
                 </div>
           </div>
-          {<button ref={passBtnRef} onClick={pressPass} className={style.passBtn}>
+          <section onClick={pressPass} className={style.passBtn}>
                   {passBtn?(
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 21 21" fill="none">
                     <path  d="M6.39001 16.2251V6.06508C6.39001 5.66508 6.51001 5.27508 6.73001 4.94508L9.46001 0.885083C9.89001 0.235083 10.96 -0.224917 11.87 0.115083C12.85 0.445083 13.5 1.54508 13.29 2.52508L12.77 5.79508C12.73 6.09508 12.81 6.36508 12.98 6.57508C13.15 6.76508 13.4 6.88508 13.67 6.88508H17.78C18.57 6.88508 19.25 7.20508 19.65 7.76508C20.03 8.30508 20.1 9.00508 19.85 9.71508L17.39 17.2051C17.08 18.4451 15.73 19.4551 14.39 19.4551H10.49C9.82001 19.4551 8.88001 19.2251 8.45001 18.7951L7.17001 17.8051C6.68001 17.4351 6.39001 16.8451 6.39001 16.2251Z" fill="#47B2FF"/>
@@ -86,7 +91,7 @@ const DaylistComponent = ({subject,contents,icon, check, itemId, checkedItem, se
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M1.73371 5.72806C1.63499 5.81918 1.5 6.03647 1.5 6.65195V16.452C1.5 17.0674 1.63499 17.2847 1.73371 17.3759C1.84716 17.4806 2.10748 17.602 2.75 17.602H3.75C4.39252 17.602 4.65284 17.4806 4.76629 17.3759C4.86501 17.2847 5 17.0674 5 16.452V6.65195C5 6.03647 4.86501 5.81918 4.76629 5.72806C4.65284 5.62333 4.39252 5.50195 3.75 5.50195H2.75C2.10748 5.50195 1.84716 5.62333 1.73371 5.72806ZM0.71629 4.62585C1.25284 4.13058 1.99252 4.00195 2.75 4.00195H3.75C4.50748 4.00195 5.24716 4.13058 5.78371 4.62585C6.33499 5.13473 6.5 5.86744 6.5 6.65195V16.452C6.5 17.2365 6.33499 17.9692 5.78371 18.4781C5.24716 18.9733 4.50748 19.102 3.75 19.102H2.75C1.99252 19.102 1.25284 18.9733 0.71629 18.4781C0.165005 17.9692 0 17.2365 0 16.452V6.65195C0 5.86744 0.165005 5.13473 0.71629 4.62585Z" fill="#202632"/>
                   </svg>
                   )}
-          </button>}
+          </section>
           <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none">
                   <path d="M9.70498 6L8.29498 7.41L12.875 12L8.29498 16.59L9.70498 18L15.705 12L9.70498 6Z" fill="black" fill-opacity="0.6"/>
           </svg>

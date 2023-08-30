@@ -3,12 +3,13 @@ import { useCookies } from 'react-cookie';
 import memo from './memo.png';
 import teacher from'./teacher.png';
 import axios from 'axios';
-const MemoComponent = ({setMemos, memo_article,writing_time,is_feedback,teacher_name,memo_id,width, height }) => {
+import { isMobile } from 'react-device-detect';
+const MemoComponent = ({confirm,setMemos, memo_article,writing_time,is_feedback,teacher_name,memo_id,width, height }) => {
     const [cookies,,] = useCookies(['token']);
    //삭제버튼 누르면 카드에서 메모/피드백 삭제하는 함수
-    const removeMemo = (e) =>{
-      console.log(e)
-      const removeConfirm = window.confirm('정말 삭제하시겠습니까?');
+    const removeMemo = () =>{
+      if(!isMobile){
+        const removeConfirm = window.confirm('정말 삭제하시겠습니까?');
       if(removeConfirm){
         axios.delete(`https://api.friendrive.net/record/${memo_id}`,{
         headers:{
@@ -22,6 +23,11 @@ const MemoComponent = ({setMemos, memo_article,writing_time,is_feedback,teacher_
       .catch((response)=>{
         console.log(response);
       })
+      }
+      }
+      else{
+       confirm(memo_id);
+
       }
     }
 

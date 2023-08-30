@@ -2,7 +2,7 @@ import style from './daylist.module.css';
 import { styled } from 'styled-components';
 import '../../global.css';
 import TopNavi from '../../componenets/topNavi/TopNavi';
-import {useSearchParams} from 'react-router-dom';
+import {Outlet, useNavigate, useSearchParams} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useEffect, useRef, useState } from 'react';
 import Loading from '../loading/Loading';
@@ -27,6 +27,27 @@ const DayList = () => {
   const [memoBoxHeight,setmemoBoxHeight] = useState(0);
   const [memos, setMemo] = useState([]);
   const day = Number(searchParams.get("day"));
+  
+  const navigate = useNavigate();
+
+  const loginconfirm = () => {
+    navigate(`confirm?day=${day}`,{
+      state:{
+        message_title:'로그인 필요 서비스입니다',
+        message_description:'로그인 하시겠습니까?'
+      }
+    });
+  };
+
+  const removeconfirm = (memo_id) => {
+    navigate(`deleteconfirm?day=${day}`,{
+      state:{
+        message_title:'정말 삭제하시겠습니까?',
+        message_description:'해당 내용이 삭제됩니다.',
+        memo_id : memo_id
+      }
+    });
+  };
 
   const getCurriculum = async() =>{
     await axios.get("https://api.friendrive.net/curriculum")
@@ -165,17 +186,17 @@ const getMemo = () =>{
                 <div className={style.memoBox_container}>
                     {memos.length>0?(
                     <StyledSlider {...Settings}>
-                      {memos.map((item)=><MemoComponent key={item.id} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
+                      {memos.map((item)=><MemoComponent key={item.id} confirm={removeconfirm} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
                       <div>
-                        <AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`메모 추가하기`}/>
+                        <AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`메모 추가하기`}/>
                       </div>
                     </StyledSlider>
-                    ):(<AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모 또는 피드백이 없습니다.'}/>)
+                    ):(<AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모 또는 피드백이 없습니다.'}/>)
                     }
                 </div>
                 ):
                 (
-                  <AddMemoComponent setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모, 피드백 보기는 로그인 이후 이용가능합니다.'}/>
+                  <AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모, 피드백 보기는 로그인 이후 이용가능합니다.'}/>
                 )}
             </div>
           </article>
@@ -190,16 +211,17 @@ const getMemo = () =>{
                 }
               }
               return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
+              <DaylistComponent confirm={loginconfirm} key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
             )}):<Loading/>):
             (allItems?allItems.map((item)=>{
               var check=false;
               return (
-              <DaylistComponent key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
+              <DaylistComponent confirm={loginconfirm} key={item.itemId} subject={item.subject} contents={item.content} icon={item.iconLink} check={check} itemId={item.itemId} checkedItem={checkedItem} setChecked={setChecked} day={day}/>
             )}):<Loading/>)}
           </article>
           </section>
         </div>
+        <Outlet context={{setMemo:setMemo}}/>
       </div>
    )
 }
