@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import style from './user.module.css';
 import axios from 'axios';
 import banner from './banner.png';
+import { isMobile } from 'react-device-detect';
 
 const User = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['']);
@@ -40,7 +41,18 @@ const User = () => {
     }
 
     const clickServiceInfo = () =>{
-      alert('서비스 준비중입니다.')
+      if(!isMobile){
+        alert('서비스 준비중입니다.');
+        //추후 PC는 모달로 교체
+      }
+      else{
+        navigate('alert',{
+          state:{
+            message_title:'서비스 준비중입니다.',
+            message_description:'좋은 서비스로 찾아 뵙겠습니다'
+          }
+        });
+      }
     }
 
     const goToServiceFeedback = () =>{
@@ -93,6 +105,7 @@ const User = () => {
         </div>
       </div>
   </div>
+  <Outlet/>
   </div>)
 }
 

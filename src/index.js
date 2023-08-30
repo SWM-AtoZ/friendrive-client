@@ -19,6 +19,9 @@ import Writing from './pages/writing/Wiriting';
 import Contents from './pages/detail/Contents';
 import FeedBack from './pages/detail/FeedBack';
 import CustomerPage from './pages/user/CustomerPage';
+import Alert from './pages/modal/Alert';
+import Confirm from './pages/modal/Confirm';
+import DeleteConfirm from './pages/modal/DeleteConfirm';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
 import TeacherHome from './pages/teacher/TeacherHome';
@@ -31,7 +34,19 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    errorElement:<ErrorPage/>
+    errorElement:<ErrorPage/>,
+    children:[
+      {
+        path:'alert',
+        element:<Alert/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:'confirm',
+        element:<Confirm/>,
+        errorElement:<ErrorPage/>
+      }
+    ]
   },
   {
     path : 'curriculum',
@@ -41,7 +56,19 @@ const router = createBrowserRouter([
   {
     path:'daylist',
     element:<DayList/>,
-    errorElement:<ErrorPage/> 
+    errorElement:<ErrorPage/> ,
+    children:[
+      {
+        path:'confirm',
+        element:<Confirm/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:'deleteconfirm',
+        element:<DeleteConfirm/>,
+        errorElement:<ErrorPage/>
+      }
+    ]
   },
   {
     path:'writing',
@@ -78,7 +105,14 @@ const router = createBrowserRouter([
   {
     path:'user',
     element:<User/>,
-    errorElement:<ErrorPage/>
+    errorElement:<ErrorPage/>,
+    children:[
+      {
+        path:'alert',
+        element:<Alert/>,
+        errorElement:<ErrorPage/>
+      }
+    ]
   },
   {
     path:'login',
@@ -124,6 +158,5 @@ root.render(
   <CookiesProvider>
     <RouterProvider router={router} />
   </CookiesProvider>
- 
 );
 
