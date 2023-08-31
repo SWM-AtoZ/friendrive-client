@@ -2,7 +2,7 @@ import style from './servicefeedback.module.css';
 import {useNavigate } from 'react-router-dom';
 import TopNavi from '../../componenets/topNavi/TopNavi';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useCookies } from 'react-cookie';
 
 const ServiceFeedback = () => {
@@ -11,7 +11,8 @@ const ServiceFeedback = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [SubmitBtn, setSubmitBtn] = useState(true);
     const [cookies,,] = useCookies(['token']);
-    
+    const [text,setText] = useState('');
+    const toast = useRef();
 
     const onChangeWrite = (e) =>{
         setMemoText(e.target.value);
@@ -26,8 +27,15 @@ const ServiceFeedback = () => {
                 feedback : `${feedBack}`
             })
             .then(response=>{
-                console.log(response);
-                navigate(-1);
+                toast.current.innerText = '소중한 의견 감사합니다!';
+                    toast.current.style.display = 'block';
+                    toast.current.style.opacity = '1';
+                    setTimeout ( ()=>{
+                        toast.current.style.opacity = '0';
+                    },500)
+                    setTimeout (()=>{
+                        navigate(-1);
+                    },600)
             })
             .catch(response=>{
                 console.log(response);
@@ -41,7 +49,15 @@ const ServiceFeedback = () => {
             })
             .then(response=>{
                 console.log(response);
-                navigate(-1);
+                toast.current.innerText = '소중한 의견 감사합니다!';
+                    toast.current.style.display = 'block';
+                    toast.current.style.opacity = '1';
+                    setTimeout ( ()=>{
+                        toast.current.style.opacity = '0';
+                    },500)
+                    setTimeout (()=>{
+                        navigate(-1);
+                    },600)
             })
             .catch(response=>{
                 console.log(response);
@@ -49,7 +65,17 @@ const ServiceFeedback = () => {
             }
             else{
                 if(phoneNumber.length>0){
-                    alert('전화번호를 올바르게 입력해주세요')
+                    //alert('전화번호를 올바르게 입력해주세요')
+                    
+                    toast.current.style.display = 'block';
+                    toast.current.innerText = '전화번호를 올바르게 입력해주세요.';
+                    toast.current.style.opacity = '1';
+                    setTimeout ( ()=>{
+                        toast.current.style.opacity = '0';
+                    },500)
+                    setTimeout (()=>{
+                    toast.current.style.display ='none';
+                    },800)
                 }
                 else{
                     axios.post('https://api.friendrive.net/feedback',{
@@ -57,7 +83,15 @@ const ServiceFeedback = () => {
             })
             .then(response=>{
                 console.log(response);
-                navigate(-1);
+                toast.current.innerText = '소중한 의견 감사합니다!';
+                    toast.current.style.display = 'block';
+                    toast.current.style.opacity = '1';
+                    setTimeout ( ()=>{
+                        toast.current.style.opacity = '0';
+                    },500)
+                    setTimeout (()=>{
+                        navigate(-1);
+                    },600)
             })
             .catch(response=>{
                 console.log(response);
@@ -73,7 +107,6 @@ const ServiceFeedback = () => {
         else{
             setSubmitBtn(true);
         }
-    
     },[feedBack])
     return(
         <section className={style.navi_section}>
@@ -92,6 +125,7 @@ const ServiceFeedback = () => {
           </div>}
           <button onClick={sendFeedback} className={style.send_btn} disabled={SubmitBtn}>작성 완료</button>
         </article>
+        <div ref={toast} className={style.toast}>토스트창</div>
         </section>
     )
 }
