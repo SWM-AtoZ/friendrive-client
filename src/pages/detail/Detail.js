@@ -6,6 +6,7 @@ import axios from 'axios';
 
 //slick-slider import
 import { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 const Detail = ()=>{   
     //navigate로 props 전달받는 코드
@@ -19,11 +20,19 @@ const Detail = ()=>{
         navigate(`/detail?content=${title}`,{replace:true})
     }
 
-    const goFeedback = () => {
-        // navigate(`feedback`, {
-        //     replace:true,
-        //     state:{contents:contents, subject:subject}})
-        alert('서비스 준비중입니다.')
+    const goFeedback = (e) => {
+        if(!isMobile){
+            alert('서비스 준비중입니다.');
+            //추후 PC는 모달로 교체
+          }
+          else{
+            navigate('alert',{
+              state:{
+                message_title:'서비스 준비중입니다.',
+                message_description:'좋은 서비스로 찾아 뵙겠습니다'
+              }
+            });
+          }
     }
     
     useEffect(()=>{

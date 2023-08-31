@@ -10,7 +10,6 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    background-color:rgb(0,0,0,0.3);
     animation-name: appear;
     animation-duration: 0.4s;
 }
