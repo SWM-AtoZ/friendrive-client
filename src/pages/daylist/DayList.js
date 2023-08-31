@@ -90,14 +90,15 @@ const getMemo = () =>{
   }
 
  useEffect(()=>{
-  getCurriculum();
-  setmemoBoxWidth(prev=>memoBoxRef.current.offsetWidth);
-  setmemoBoxHeight(prev=>memoBoxRef.current.offsetHeight);
   if(cookies.token){
     getChecked();
     getMemo();
   }
- },[])
+  getCurriculum();
+  setmemoBoxWidth(prev=>memoBoxRef.current.offsetWidth);
+  setmemoBoxHeight(prev=>memoBoxRef.current.offsetHeight);
+  console.log(memoBoxHeight);
+ },[memoBoxHeight])
  
   const Settings = {
     infinite: true,
@@ -185,9 +186,9 @@ const getMemo = () =>{
               {cookies.token?
                 (
                 <div className={style.memoBox_container}>
-                    {memos.length>0&&memoBoxHeight?(
+                    {memos.length>0?(
                     <StyledSlider {...Settings}>
-                      {memos.map((item)=><MemoComponent key={item.id} confirm={removeconfirm} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id} width={memoBoxWidth} height={memoBoxHeight} />)}
+                      {memos.map((item)=><MemoComponent key={item.id} confirm={removeconfirm} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id}  width={memoBoxWidth} height={memoBoxHeight}/>)}
                       <div>
                         <AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`메모 추가하기`}/>
                       </div>
