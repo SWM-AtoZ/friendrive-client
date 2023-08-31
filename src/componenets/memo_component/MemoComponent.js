@@ -4,7 +4,7 @@ import memo from './memo.png';
 import teacher from'./teacher.png';
 import axios from 'axios';
 import { isMobile } from 'react-device-detect';
-const MemoComponent = ({confirm,setMemos, memo_article,writing_time,is_feedback,teacher_name,memo_id,width, height }) => {
+const MemoComponent = ({confirm,setMemos, memo_article,writing_time,is_feedback,teacher_name,memo_id,width,height}) => {
     const [cookies,,] = useCookies(['token']);
    //삭제버튼 누르면 카드에서 메모/피드백 삭제하는 함수
     const removeMemo = () =>{
@@ -32,7 +32,7 @@ const MemoComponent = ({confirm,setMemos, memo_article,writing_time,is_feedback,
     }
 
     return(
-        <div style={{width:`${width}px`, height:`${height}px`}} className={style.memoBox}>
+        <div style={{width:`${width}px`, height:`${height}px`}}  className={style.memoBox}>
                   <div className={style.memoBox_top}>
                     <div className={style.memo_iconBox}>
                     <div className={style.memo_icon} style={{backgroundImage:`url(${is_feedback?teacher:memo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', }}></div>
