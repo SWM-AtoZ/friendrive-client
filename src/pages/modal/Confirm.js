@@ -12,7 +12,8 @@ const Islogout = location.state.Islogout;
 
 const [cookies, setCookie, removeCookie] = useCookies(['']);
 const {setISLogin} = useOutletContext();
-const ClickOk = () =>{
+const ClickOk = (e) =>{
+        e.stopPropagation();
         if(!Islogout){
             navigate('/login',{
                 replace:true
@@ -25,11 +26,12 @@ const ClickOk = () =>{
           navigate(-1);
         }
 }
-const ClicikCancle = () =>{
+const ClicikCancle = (e) =>{
+    e.stopPropagation();
     navigate(-1);
 }
     return(
-        <section className={style.alert_container}>
+        <section onClick={ClicikCancle} className={style.alert_container}>
         <div className={style.alert_innerbox}>
             <div>
             <div>{title}</div>

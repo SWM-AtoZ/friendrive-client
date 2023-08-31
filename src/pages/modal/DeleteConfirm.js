@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import style from './confirm.module.css';
+import style from './delete_confirm.module.css';
 import { useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -14,7 +14,8 @@ const memo_id = location.state.memo_id;
 const {setMemo} = useOutletContext();
 const [cookies,,] = useCookies(['token']);
 
-const ClickOk = () =>{
+const ClickOk = (e) =>{
+  e.stopPropagation();
     axios.delete(`https://api.friendrive.net/record/${memo_id}`,{
         headers:{
           Authorization: `Bearer ${cookies.token}`
@@ -30,11 +31,13 @@ const ClickOk = () =>{
     navigate(-1);
 
 }
-const ClicikCancle = () =>{
+const ClicikCancle = (e) =>{
+  e.stopPropagation();
+  
     navigate(-1);
 }
     return(
-        <section className={style.alert_container}>
+        <section onClick={ClicikCancle} className={style.alert_container}>
         <div className={style.alert_innerbox}>
             <div>
             <div>{title}</div>

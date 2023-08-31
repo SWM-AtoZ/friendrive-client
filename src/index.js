@@ -89,6 +89,11 @@ const router = createBrowserRouter([
         path:'feedback',
         element:<FeedBack/>,
         errorElement:<ErrorPage/>
+      },
+      {
+        path:'alert',
+        element:<Alert/>,
+        errorElement:<ErrorPage/>
       }
     ]
   },

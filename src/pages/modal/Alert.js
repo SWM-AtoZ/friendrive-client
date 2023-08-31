@@ -6,11 +6,12 @@ const navigate = useNavigate();
 const location = useLocation();
 const title = location.state.message_title;
 const description = location.state.message_description;
-const ClickOk = () =>{
+const ClickOk = (e) =>{
+  e.stopPropagation();
         navigate(-1);
 }
     return(
-        <section className={style.alert_container}>
+        <section onClick={ClickOk} className={style.alert_container}>
         <div className={style.alert_innerbox}>
             <div>
             <div>{title}</div>
