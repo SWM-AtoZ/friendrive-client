@@ -179,8 +179,8 @@ const getMemo = () =>{
             <article className={style.day_info_box}>
             <div className={style.day_info}>
               {cookies.token?(//chekedItem을 넣어준다.
-                <DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={checkedItem&&checkedItem.length}/>
-              ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0}/>)}
+                <DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={checkedItem&&checkedItem.length} confirm={loginconfirm} memosLength={memos.length}/>
+              ):(<DayinfoTitle day={day} title={curriculum&&curriculum.title} dayprocess={0} confirm={loginconfirm} memosLength={memos.length}/>)}
             </div>
             <div ref={memoBoxRef} className={style.day_memo}>
               {cookies.token?
@@ -189,9 +189,6 @@ const getMemo = () =>{
                     {memos.length>0?(
                     <StyledSlider {...Settings}>
                       {memos.map((item)=><MemoComponent key={item.id} confirm={removeconfirm} setMemos={setMemo} memo_article={item.feedbackAndMemo} writing_time={item.createdAt}is_feedback={item.isFeedback}teacher_name={item.name} memo_id={item.id}  width={memoBoxWidth} height={memoBoxHeight}/>)}
-                      <div>
-                        <AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={`메모 추가하기`}/>
-                      </div>
                     </StyledSlider>
                     ):(<AddMemoComponent confirm={loginconfirm} setMemos={setMemo} width={memoBoxWidth} height={memoBoxHeight} day={day} innertext={'메모 또는 피드백이 없습니다.'}/>)
                     }
