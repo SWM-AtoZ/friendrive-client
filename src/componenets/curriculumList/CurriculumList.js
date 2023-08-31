@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
 const CurriculumList = ({day, title, progress}) => {
-    const DaysItemsTotalNumb = [7,8,3,6,4];
+    const DaysItemsTotalNumb = [7,8,4,6,4];
     const TotalNumb = DaysItemsTotalNumb[day-1];
     const [percentage, setPercentage] = useState('');
     const [cookies,,] = useCookies(['token']);
