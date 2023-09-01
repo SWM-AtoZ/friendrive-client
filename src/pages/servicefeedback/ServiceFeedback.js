@@ -115,13 +115,13 @@ const ServiceFeedback = () => {
           <div className={style.page_description}>
             <div>서비스의 <span>중심</span>은 언제나 <span>고객님</span>입니다.</div>
             <div className={style.page_description_inner}>
-            <div>이용하며 느끼신 불편한 점이나 바라는 점을 알려주세요. <br/>소중한 의견으로 한뼘 더 자라는 FD가 되도록 하겠습니다.<br/><span>{'( '}추첨을 통해 소정의 상품을 드립니다.{' )'}</span> </div>
+            <div>이용하며 느끼신 불편한 점이나 바라는 점을 알려주세요. <br/>소중한 의견으로 한뼘 더 자라는 FD가 되도록 하겠습니다.<br/></div>
             </div>
           </div>
           <textarea className={style.writing_area} onChange={onChangeWrite} value={feedBack} placeholder='(필수) 서비스에 대한 소중한 의견사항을 남겨주세요'></textarea>
           {!cookies.token&&<div className={style.phoneNumber_box}>
           <label for="phoneNumber">전화번호</label>
-          <input id="phoneNumber" className={style.login_input} type='number' placeholder='(선택) 소정의 상품을 원하시는 분은 전화번호를 남겨주세요' value={phoneNumber} onChange={onChangePhonenumber}></input>
+          <input id="phoneNumber" className={style.login_input} type='number' placeholder="(선택)  ' - ' 는 제외하고 번호만 기재해 주세요" value={phoneNumber} onChange={onChangePhonenumber}></input>
           </div>}
           <button onClick={sendFeedback} className={style.send_btn} disabled={SubmitBtn}>작성 완료</button>
         </article>
