@@ -54,6 +54,7 @@ table {
 }
 a{
 	text-decoration: none;
+	/* color: black; */
 }
 input, textarea { 
 	-webkit-user-select : auto;
@@ -61,6 +62,16 @@ input, textarea {
 input, textarea:focus{
 	outline-color: rgba(71, 178, 255, 0.6);
 }
+input, textarea, button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+	color: black;
+}
+
 html{
 	background-color: #F8FBFC;
 	overflow: hidden;
@@ -80,7 +91,7 @@ body{
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	-ms-user-select:none;
-	user-select:none
+	user-select:none;
 }
 /* 테블릿 환경까지 vh 리사이징 */
 @media screen and (max-width: 1024px) {
