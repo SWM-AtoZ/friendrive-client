@@ -275,18 +275,15 @@ function App() {
       <div>공유 링크 보내고 지인에게 요청하기</div>
      </button>
      <div className={style.etc_box}>
-      <button ref={ComunnityRef} onTouchStart={()=>{ComunnityRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToCommunity()}} className={style.community_btn}>
+      {/* <button ref={ComunnityRef} onTouchStart={()=>{ComunnityRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{ComunnityRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToCommunity()}} className={style.community_btn}>
         <div>커뮤니티</div>
         <div>
           <img src={community}/>
         </div>
-      </button>
+      </button> */}
       <button ref={EventRef} onTouchStart={()=>{EventRef.current.style.backgroundColor='rgba(0, 0, 0, 0.05)'}} onTouchMove={()=>{EventRef.current.style.backgroundColor='#F8FBFC';}} onTouchEnd={()=>{EventRef.current.style.backgroundColor='#F8FBFC';}} onClick={()=>{goToEventPage()}} className={style.event_btn}>
-        <div>이벤트</div>
-        <div>
-        <div>서비스 피드백을 남겨주세요</div>
-        <div>추첨을 통해 기프티콘을 드립니다.</div>
-        </div>
+        <div>서비스 피드백</div>
+        <div>사용중에 좋았던 점 또는 불편했던 점을 남겨주세요<p></p>더 나은 서비스로 보답 드리겠습니다.</div>
       </button>
      </div>
       </article>

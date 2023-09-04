@@ -36,7 +36,8 @@ const Detail = ()=>{
     }
     
     useEffect(()=>{
-        const remainSpace = Math.round(document.getElementById('topNavi').getBoundingClientRect().height+document.getElementById('content_tab').getBoundingClientRect().height);
+        // const remainSpace = Math.round(document.getElementById('topNavi').getBoundingClientRect().height+document.getElementById('content_tab').getBoundingClientRect().height);
+        const remainSpace = Math.round(document.getElementById('topNavi').getBoundingClientRect().height);
         const content_height = Math.round(document.getElementById('detail_section').getBoundingClientRect().height)-remainSpace-30;
         setContentHeight(content_height);
     },[])
@@ -45,10 +46,10 @@ const Detail = ()=>{
     <section id='detail_section' className={style.detail_section}>
         <TopNavi title={title}/>
         <article className={style.contents_box}>
-        <div id='content_tab' className={style.contents_tab}>
+        {/* <div id='content_tab' className={style.contents_tab}>
             <button id='contents' onClick={goContents}>학습</button>
             <button id='feedback' onClick={goFeedback}>평가</button>
-        </div>
+        </div> */}
         <Outlet context={[contentHeight]}/>
         </article>
         <div id='arrow' className={style.s1_arrow}>
