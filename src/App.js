@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import style from './App.module.css';
 import community from './community.png';
 import curriculumImg from './curriculum_btnimg.png';
-import { isMobile } from 'react-device-detect';
+import { isMobile, isTablet, isIOS } from 'react-device-detect';
 import axios from 'axios';
 
 function App() {
@@ -91,11 +91,16 @@ function App() {
     
     if(isMobile) {
       try{  //플러터 모바일 앱에서 공유하기 실행하는 경우
-        /* eslint-disable */
-        shareText.postMessage(url)
+        if(isTablet&&isIOS){
+          handleCopyClipBoard(url);
+        }
+        else{
+          /* eslint-disable */
+          shareText.postMessage(url);
+        }
       }catch(e){
-        //앱이 아닌 모바일 브라우저에서 실행하는 경우
-        if (navigator.share) {
+        //모바일 브라우저 또는 모바일 웹뷰에서 실행하는 경우
+        if (navigator.share){
           navigator.share({
               title: `${user}님의 운전연수 요청!`,
               text: `${user}님의 초보 탈출을 도와주세요!`,
@@ -108,12 +113,13 @@ function App() {
             console.log(response)
           })
       }else{
+         //안드로이드 웹뷰환경
          handleCopyClipBoard(url);
       }
       }
     }
     else if(!isMobile){
-      //데스크탑 환경 또는 안드로이드웹뷰에서 실행하는 경우
+      //데스크탑 환경에서 실행하는 경우
       if (navigator.share) {
         navigator.share({
             title: `${user}님의 운전연수 요청!`,
