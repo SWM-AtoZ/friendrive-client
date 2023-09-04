@@ -56,7 +56,10 @@ function App() {
       try {
         //데스크탑 환경에서 사용하는경우
         await navigator.clipboard.writeText(uri);
-        alert('클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!');
+        if(!isMobile){
+          alert('클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!');
+        }
+       
       } catch (e) {
         // 안드로이드 웹뷰 환경에서 사용하는경우
         const element = document.createElement('textarea');
@@ -69,6 +72,7 @@ function App() {
         const copyValue = document.execCommand('copy');
         document.body.removeChild(element);
         console.log(e);
+        alert('실험 얼럿창');
       }
    };
   
