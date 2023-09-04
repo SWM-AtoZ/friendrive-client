@@ -59,7 +59,6 @@ function App() {
         if(!isMobile){
           alert('클립보드에 선생님 페이지가 복사되었습니다. 선생님께 연수를 요청드려보세요!');
         }
-       
       } catch (e) {
         // 안드로이드 웹뷰 환경에서 사용하는경우
         const element = document.createElement('textarea');
@@ -72,7 +71,6 @@ function App() {
         const copyValue = document.execCommand('copy');
         document.body.removeChild(element);
         console.log(e);
-        alert('실험 얼럿창');
       }
    };
   
@@ -124,7 +122,7 @@ function App() {
     }
     else if(!isMobile){
       //데스크탑 환경에서 실행하는 경우
-      if (navigator.share) {
+      if (navigator.share){
         navigator.share({
             title: `${user}님의 운전연수 요청!`,
             text: `${user}님의 초보 탈출을 도와주세요!`,
@@ -136,6 +134,7 @@ function App() {
         .catch(response=>{
           console.log(response)
         })
+        alert('성공하였습니디')
     }else{
        handleCopyClipBoard(url);
     }
