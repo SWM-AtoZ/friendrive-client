@@ -104,12 +104,12 @@ const User = () => {
           <path d="M8.59003 7.41L13.17 12L8.59003 16.59L10 18L16 12L10 6L8.59003 7.41Z" fill="rgba(0, 0, 0, 0.1)"/>
           </svg>
         </div>
-        <div onClick={clickServiceInfo} className={style.service_info_item}>
+        {/* <div onClick={clickServiceInfo} className={style.service_info_item}>
           <div>프렌드라이브 이용약관</div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M8.59003 7.41L13.17 12L8.59003 16.59L10 18L16 12L10 6L8.59003 7.41Z" fill="rgba(0, 0, 0, 0.1)"/>
           </svg>
-        </div>
+        </div> */}
         <div className={style.service_info_item}>
         <div>버전 정보</div>
         <div style={{color:'rgba(0,0,0,0.3)', paddingRight:'4%', fontSize:'0.9rem'}}>v2.0</div>
