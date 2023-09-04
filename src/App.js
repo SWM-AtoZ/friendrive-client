@@ -94,7 +94,17 @@ function App() {
     if(isMobile) {
       try{  //플러터 모바일 앱에서 공유하기 실행하는 경우
         if(isTablet&&isIOS){
-          handleCopyClipBoard(url);
+          navigator.share({
+            title: `${user}님의 운전연수 요청!`,
+            text: `${user}님의 초보 탈출을 도와주세요!`,
+            url: url,
+        })
+        .then(response=>{
+          console.log(response);
+        })
+        .catch(response=>{
+          console.log(response)
+        })
         }
         else{
           /* eslint-disable */
@@ -134,7 +144,6 @@ function App() {
         .catch(response=>{
           console.log(response)
         })
-        alert('성공하였습니디')
     }else{
        handleCopyClipBoard(url);
     }
