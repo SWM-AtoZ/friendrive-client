@@ -30,12 +30,12 @@ const Contents = () => {
     useEffect(()=>{
         callContents();
         const arrow = document.getElementById('arrow');
-        const content = document.getElementById('contents');
-        const feedback = document.getElementById('feedback');
+        // const content = document.getElementById('contents');
+        // const feedback = document.getElementById('feedback');
 
         arrow.style.display = 'block';
-        content.style.backgroundColor = 'rgba(0, 0, 0, 0.07)';
-        feedback.style.backgroundColor = 'white';
+        // content.style.backgroundColor = 'rgba(0, 0, 0, 0.07)';
+        // feedback.style.backgroundColor = 'white';
 
     },[])
     
