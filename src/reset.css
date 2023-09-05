@@ -83,15 +83,19 @@ html{
 body{
 	font-family: 'Nanum Gothic', sans-serif;
 	/* height:calc(var(--vh, 1vh) * 100); */
+	width: 100%;
 	max-width: 500px;
 	height: 100vh;
-	margin: 0 auto;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%,0);
 	overflow: hidden;
 	background-color: #FFFFFF;
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	-ms-user-select:none;
 	user-select:none;
+	position: fixed;
 }
 /* 테블릿 환경까지 vh 리사이징 */
 @media screen and (max-width: 1024px) {
@@ -113,4 +117,5 @@ textarea{
 	height: 100%;
 	color: black;
 	white-space: pre-wrap;
+	position: relative;
 }
