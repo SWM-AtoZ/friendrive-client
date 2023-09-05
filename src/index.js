@@ -22,6 +22,9 @@ import CustomerPage from './pages/user/CustomerPage';
 import Alert from './pages/modal/Alert';
 import Confirm from './pages/modal/Confirm';
 import DeleteConfirm from './pages/modal/DeleteConfirm';
+import ServiceInfoList from './pages/user/ServiceInfoList';
+import TermsAndConditions from './pages/user/TermsAndConditions';
+import PrivacyPolicy from './pages/user/PrivacyPolicy';
 
 //loader를 이용하여 컴포넌트가 렌더링 되기 전에 데이터를 처리할 수 있다.
 import TeacherHome from './pages/teacher/TeacherHome';
@@ -52,6 +55,21 @@ const router = createBrowserRouter([
     path : 'curriculum',
     element: <Curriculum/>,
     errorElement:<ErrorPage/>
+  },
+  {
+    path : 'serviceinfolist',
+    element : <ServiceInfoList/>,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path : 'TermsAndCondition',
+    element : <TermsAndConditions/>,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path : 'PrivacyPolicy',
+    element : <PrivacyPolicy/>,
+    errorElement : <ErrorPage/>
   },
   {
     path:'daylist',
