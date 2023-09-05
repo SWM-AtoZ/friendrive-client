@@ -1,0 +1,32 @@
+.serviceinfo_area{
+    width: 100%;
+    height: 100%;
+}
+
+.serviceinfo_box{
+    width: 100%;
+    height: 95%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding:3% 4% 3% 4%;
+    box-sizing: border-box;
+}
+
+.serviceinfo_box h1{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.serviceinfo_box p {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.serviceinfo_box div{
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    line-height: 1rem;
+}
