@@ -14,13 +14,13 @@
 .curriculum_progress{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
+    width: 100%;
 }
 
 
 .title{
     margin-left: 5%;
-    width: 8rem;
     line-height: 1.7;
     font-weight: 800;
 }
@@ -29,6 +29,7 @@
     font-weight: 700;
     font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.6);
+    flex-grow: 1;
 }
 .circle{
     transition: all ease-in-out 0.3s;
