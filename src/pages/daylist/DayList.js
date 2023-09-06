@@ -170,6 +170,7 @@ const getMemo = () =>{
   }
 } 
 `;
+
     return(
       <div className={style.Topbox}>
         <TopNavi title={`Day ${day}`}/>
