@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
 const Curriculum = () => {
-    const curriculum = ['기본 조작하기','핸들링 배우기','주차 마스터하기','차선변경 익히기','주행 정복하기']
+    const curriculum = ['넓은 공간에서 기본 조작 배우기','넓은 도로에서 기본 주행 배우기','주차 마스터하기','큰 도로에서 차선변경 익히기','주행 정복하기']
     const [day1, setDay1] = useState(0);
     const [day2, setDay2] = useState(0);
     const [day3, setDay3] = useState(0);
