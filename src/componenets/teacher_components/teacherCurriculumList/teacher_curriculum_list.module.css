@@ -12,7 +12,6 @@
     margin-bottom: 0.5rem;
     box-sizing: border-box;
     text-align: start;
-
 }
 
 .curriculum_list:active {
@@ -20,12 +19,14 @@
 }
 
 .curriculum_progress{
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .title{
+    flex-grow: 1;
     margin-left: 5%;
     width: 8rem;
     line-height: 1.7;
@@ -54,7 +55,6 @@
 .circle_inner_box{
     transform: rotateZ(270deg);
 }
-
 
 .go_daylist{
 

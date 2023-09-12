@@ -22,6 +22,7 @@ import CustomerPage from './pages/user/CustomerPage';
 import Alert from './pages/modal/Alert';
 import Confirm from './pages/modal/Confirm';
 import DeleteConfirm from './pages/modal/DeleteConfirm';
+import WriteConfirm from './pages/modal/WriteConfirm';
 import ServiceInfoList from './pages/user/ServiceInfoList';
 import TermsAndConditions from './pages/user/TermsAndConditions';
 import PrivacyPolicy from './pages/user/PrivacyPolicy';
@@ -160,7 +161,14 @@ const router = createBrowserRouter([
   {
     path: "feedbackWriting",
     element:<FeedbackWriting/>,
-    errorElement:<ErrorPage/>
+    errorElement:<ErrorPage/>,
+    children:[
+      {
+        path:'writeconfirm',
+        element:<WriteConfirm/>,
+        errorElement:<ErrorPage/>
+      }
+    ]
   },
   {
     path : "teacherDetail",
