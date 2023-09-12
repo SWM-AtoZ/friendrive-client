@@ -1,8 +1,9 @@
 import { useCookies } from 'react-cookie';
 import style from './feedbackwriting.module.css'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 const FeedbackWriting = () => {
     const navigate = useNavigate();
@@ -34,7 +35,20 @@ const FeedbackWriting = () => {
         }
       }
       else{
-        axios.post('https://api.friendrive.net/record/feedback',{
+        if(isMobile){
+          navigate('writeconfirm',{
+            state:{
+              message_title:'피드백을 보내시겠습니까?',
+              message_description:'작성한 피드백이 연수생분에게 전달돼요.',
+              teacherToken : teacherToken,
+              feedbackText: feedbackText,
+              day : day,
+              teacherName : teacherName
+            }
+          })
+        } 
+        else{
+          axios.post('https://api.friendrive.net/record/feedback',{
           teacherToken: `${teacherToken}`,
           feedback:`${feedbackText}`,
           day:`${day}`,
@@ -47,6 +61,7 @@ const FeedbackWriting = () => {
         .catch((response)=>{
           console.log(response);
       })
+        }
       }
       }
 
@@ -66,6 +81,7 @@ const FeedbackWriting = () => {
         <input id='teacherName' className={style.teacherName_input} type='text' placeholder='선생님의 이름을 입력해주세요 (필수)' value={teacherName} onChange={onChangeName}></input>
         <textarea className={style.writing_area} onChange={Write} value={feedbackText} placeholder={`${studentName}님에게 보낼 피드백을 적어주세요`}></textarea>
         </article>
+        <Outlet/>
         </section>
     )
 }

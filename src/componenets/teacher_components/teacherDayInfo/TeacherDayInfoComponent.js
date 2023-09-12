@@ -2,7 +2,7 @@ import style from './teacher_day_info.module.css';
 import { useEffect, useRef, useState } from 'react';
 
 const DayinfoTitle = ({day, title, dayprocess}) => {
-    const DaysItemsTotalNumb = [7,8,3,6,4];
+    const DaysItemsTotalNumb = [7,8,4,5,4];
     const TotalNumb = DaysItemsTotalNumb[day-1];
     const [percentage, setPercentage] = useState('');
     const circleRef = useRef();
