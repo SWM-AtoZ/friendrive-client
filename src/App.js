@@ -24,10 +24,6 @@ function App() {
   var user='';
   const navigate = useNavigate();
 
-  const expires = new Date();
-  expires.setMonth(expires.getMonth+3);
-  
-
   const params= new URL(window.location.href).searchParams;
   const code = params.get('code');
   const body = {
