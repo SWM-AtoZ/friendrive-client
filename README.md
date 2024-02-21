@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Friendrive Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduce
 
-## Available Scripts
+장롱면허 운전자를 위한 운전연수 가이드 서비스
+play store: https://play.google.com/store/apps/details?id=com.atoz.friendrive
+app store: https://apps.apple.com/kr/app/friendrive/id6463844533
+Web: https://friendrive.net
 
-In the project directory, you can run:
+## 개요
 
-### `npm start`
+실제 운전연수 과정에서 강사님과의 대화로 대다수의 초보운전자들이 정규적인 운전교육을 마치고도 추가연수가 필요함을 느꼈습니다.
+해당 문제의식을 검증하고자 면허 취득자 304명을 대상으로 정량조사를 실시하여 면허 취득 후 추가적인 연수를 받았거나 필요하다는 의견이 압도적임을 확인할 수 있었으며
+대다수의 추가연수가 전문 학원이 아닌 가족, 지인, 방문 연수 등 비전문가를 통해 이뤄지고 있음을 확인할 수 있었습니다.
+해서 저희 팀은 비전문가에게 운전연수를 받는 운전자들이 쉽게 운전연수를 요청,진행 할 수 있는 서비스를 기획하게 되었습니다.
+또한 전문가(전국 자동차운전 연합회,도로교통공단,경찰청,강사) 분들과의 인터뷰를 거쳐 신뢰할 수 있는 연수 가이드 정보와
+앞으로 서비스의 방향을 설정하는데 있어 많은 도움을 얻을 수 있었습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 개발환경
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+|       구분        |   세부 내용   |
+| :---------------: | :-----------: | :----: |
+|   S/W 개발환경    |      OS       | ubuntu |
+|                   | 개발환경(IDE) |  ㄴㄴ  |
+|                   |   개발도구    |  ㅇㅇ  |
+|                   |   개발언어    |  ㄹㄹ  |
+| 프로젝트 관리환경 |   디바이스    |  ㅇㅇ  |
+|                   |   형상관리    |  ㅁㅁ  |
+|                   | 의사소통 관리 |  ㅇㅇ  |
