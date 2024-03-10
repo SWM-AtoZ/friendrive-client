@@ -157,39 +157,39 @@ function App() {
   const isLogin = async () => {
     user = "윤상일";
     await ShareTeacher();
-    // if (cookies.token) {
-    //   await axios
-    //     .get("https://api.friendrive.net/user/info", {
-    //       headers: {
-    //         Authorization: `Bearer ${cookies.token}`,
-    //       },
-    //     })
-    //     .then(function (response) {
-    //       user = response.data.name;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
+    if (cookies.token) {
+      await axios
+        .get("https://api.friendrive.net/user/info", {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        })
+        .then(function (response) {
+          user = response.data.name;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
-    //   await ShareTeacher();
-    // } else {
-    //   if (!isMobile) {
-    //     const loginConfirm = window.confirm(
-    //       "로그인이 필요한 서비스입니다. 로그인 하시겠습니까?"
-    //     );
-    //     if (loginConfirm) {
-    //       navigate("/login");
-    //     }
-    //   } else {
-    //     navigate("confirm", {
-    //       state: {
-    //         message_title: "로그인 필요 서비스입니다",
-    //         message_description: "로그인 하시겠습니까?",
-    //         Islogout: false,
-    //       },
-    //     });
-    //   }
-    // }
+      await ShareTeacher();
+    } else {
+      if (!isMobile) {
+        const loginConfirm = window.confirm(
+          "로그인이 필요한 서비스입니다. 로그인 하시겠습니까?"
+        );
+        if (loginConfirm) {
+          navigate("/login");
+        }
+      } else {
+        navigate("confirm", {
+          state: {
+            message_title: "로그인 필요 서비스입니다",
+            message_description: "로그인 하시겠습니까?",
+            Islogout: false,
+          },
+        });
+      }
+    }
   };
 
   const goToUser = () => {
