@@ -3,119 +3,204 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
 button,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-html{
-	font-size: 16px;
+html {
+  font-size: 16px;
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-a{
-	text-decoration: none;
-	/* color: black; */
+a {
+  text-decoration: none;
+  /* color: black; */
 }
-input, textarea { 
-	-webkit-user-select : auto;
-  }
-input, textarea:focus{
-	outline-color: rgba(71, 178, 255, 0.6);
+input,
+textarea {
+  -webkit-user-select: auto;
 }
-input, textarea, button {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-	color: black;
+input,
+textarea:focus {
+  outline-color: rgba(71, 178, 255, 0.6);
 }
-
-html{
-	background-color: #F8FBFC;
-	overflow: hidden;
-	/* IE모바일환경 줌 방지 */
-	-ms-content-zooming: none;
-	-ms-touch-action: pan-x pan-y;
+input,
+textarea,
+button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  color: black;
 }
 
-body{
-	font-family: 'Nanum Gothic', sans-serif;
-	/* height:calc(var(--vh, 1vh) * 100); */
-	width: 100%;
-	max-width: 500px;
-	height: 100vh;
-	top: 0;
-	left: 50%;
-	transform: translate(-50%,0);
-	overflow: hidden;
-	background-color: #FFFFFF;
-	-webkit-user-select:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	user-select:none;
-	position: fixed;
+html {
+  background-color: #f8fbfc;
+  overflow: hidden;
+  /* IE모바일환경 줌 방지 */
+  -ms-content-zooming: none;
+  -ms-touch-action: pan-x pan-y;
+}
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  /* height:calc(var(--vh, 1vh) * 100); */
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+  background-color: #ffffff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: fixed;
 }
 /* 테블릿 환경까지 vh 리사이징 */
 @media screen and (max-width: 1024px) {
-	html{
-		overflow: auto;
-	}
-	body{
-		height:calc(var(--vh, 1vh) * 100);
-	}
+  html {
+    overflow: auto;
   }
-
-textarea{
-	font-family: 'Nanum Gothic', sans-serif;
+  body {
+    height: calc(var(--vh, 1vh) * 100);
+  }
 }
 
-#root{
-	background-color: #FFFFFF;
-	width: 100%;
-	height: 100%;
-	color: black;
-	white-space: pre-wrap;
-	position: relative;
+textarea {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+#root {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  color: black;
+  white-space: pre-wrap;
+  position: relative;
 }

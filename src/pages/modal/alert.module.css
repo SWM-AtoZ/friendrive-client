@@ -1,70 +1,70 @@
 /* 알럿창 */
 
-.alert_container{
-    position: absolute;
-    top: 0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    animation-name: appear;
-    animation-duration: 0.4s;
+.alert_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  animation-name: appear;
+  animation-duration: 0.4s;
 }
 @keyframes appear {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
   }
-.alert_innerbox{
-    width:70%;
-    height:25%;
-    padding: 0 5% 0 5%;
-    box-sizing: border-box;
-    margin : 0 auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-around;
-    align-items: center;
-    background-color: white;
-    border-radius: 0.4375rem;
-    border: 1px solid rgba(0, 0, 0, 0.20);  
+
+  to {
+    opacity: 1;
+  }
+}
+.alert_innerbox {
+  width: 70%;
+  height: 25%;
+  padding: 0 5% 0 5%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.4375rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 .alert_innerbox > div {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.alert_innerbox > div > div:nth-child(1){
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-bottom: 2%;
-}
-
-.alert_innerbox > div > div:nth-child(2){
-    margin-top: 5%;
-    font-size: 0.9rem;
-    font-weight: bold;
-    opacity: 0.3;
+.alert_innerbox > div > div:nth-child(1) {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 2%;
 }
 
-.alert_innerbox button{
-    width:50%;
-    height: 22%;
-    border: 1px solid #4f4f4f;
-    border-radius: 0.4rem;
-    background-color: white;
-    margin-bottom: 6%;
+.alert_innerbox > div > div:nth-child(2) {
+  margin-top: 5%;
+  font-size: 0.9rem;
+  font-weight: bold;
+  opacity: 0.3;
 }
 
-.alert_innerbox button:active{
-    background-color: rgba(0, 0, 0, 0.05);
+.alert_innerbox button {
+  width: 50%;
+  height: 22%;
+  border: 1px solid #4f4f4f;
+  border-radius: 0.4rem;
+  background-color: white;
+  margin-bottom: 6%;
+}
+
+.alert_innerbox button:active {
+  background-color: rgba(0, 0, 0, 0.05);
 }
