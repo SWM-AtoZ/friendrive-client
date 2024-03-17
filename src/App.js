@@ -72,20 +72,20 @@ function App() {
   };
 
   const ShareTeacher = async () => {
-    let teacherToken = "testToken";
-    // await axios
-    //   .get("https://api.friendrive.net/teacher/token", {
-    //     headers: {
-    //       Authorization: `Bearer ${cookies.token}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     teacherToken = response.data.token;
-    //     console.log(teacherToken);
-    //   })
-    //   .catch((response) => {
-    //     console.log(response);
-    //   });
+    let teacherToken = "";
+    await axios
+      .get("https://api.friendrive.net/teacher/token", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then((response) => {
+        teacherToken = response.data.token;
+        console.log(teacherToken);
+      })
+      .catch((response) => {
+        console.log(response);
+      });
 
     const url = `https://friendrive.net/teacherhome?teachertoken=${teacherToken}`;
 
